@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;0,800;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./member.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+
+      function ChangeData(data){
+        let { content, bEmail, bPhone, website, title, location } = data;
+        document.querySelector(".info-name").innerHTML = title; 
+        document.querySelector(".location").innerHTML = location; 
+        document.querySelector(".mail").href = `mailto:${bEmail}`; 
+        document.querySelector(".web").href = website; 
+        document.querySelector(".phone").href =  `tel:+${bPhone}`; 
+        // document.querySelector(".location").innerHTML = content; 
+        
+      }
+
+
+      let token = sessionStorage.getItem("token");
+      if(token && token != "undefined"){
+      console.log("yes" + token)  
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${token}`);
+
+      var raw = "";
+
+          var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
+
+        fetch("/member/details", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+                console.log(result)
+                ChangeData(result);
+              })
+          .catch(error => console.log('error', error));
+              
+      }
+      else{
+        window.location = "/login";
+      }
+    </script>
+
+    <div class="side">
+      <button class="close-side">
+        <img src="./images/close.svg" alt="close" class="close-svg" /> CLOSE
+        MENU
+      </button>
+      <div class="side-links">
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Forum</a>
+        <a href="#">Members</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <header>
+      <img src="./images/CLIK.png" alt="CLIK" class="logo" />
+      <div class="navstuff">
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Forum</a>
+        <a href="#">Members</a>
+        <a href="#">Contact Us</a>
+        <a href="#">About Us</a>
+      </div>
+      <img src="./images/open-menu.svg" alt="menu" class="ham" />
+    </header>
+    <main>
+      <h1 class="main-heading">MEMBERS</h1>
+      <div class="container">
+        <div class="info">
+          <div class="info-img">
+            <img src="./images/company.jpg" alt="company" />
+            <div class="show-upload">
+              <img src="./images/upload.svg" alt="upload" />
+              Change Image
+            </div>
+          </div>
+          <div class="info-text-1">
+            <div class="namenicon">
+              <h2 class="info-name"></h2>
+              <a class="web" href="#">
+                <img
+                  src="./images/internet.svg"
+                  alt="internet"
+                  class="info-icons"
+                />
+              </a>
+              <a class="phone" href="#">
+                <img
+                  src="./images/phone.svg"
+                  alt="internet"
+                  class="info-icons"
+                />
+              </a>
+              <a class="mail" href="#">
+                <img
+                  src="./images/email.svg"
+                  alt="internet"
+                  class="info-icons"
+                />
+              </a>
+            </div>
+            <img src="./images/pin.svg" alt="pin" class="pin-icon" />
+            <p class="location">Mathikere, Bengaluru</p>
+            <div class="sep"></div>
+            <div class="info-actual-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              mattis lorem eu ante mollis, id tristique mauris cursus. Nam
+              commodo, felis quis euismod vestibulum, lectus diam mollis lacus,
+              fermentum tincidunt neque ante id purus. Nulla tellus lorem,
+              rutrum id commodo sollicitudin, commodo id odio. Mauris lobortis
+              lectus vitae tortor iaculis, a luctus felis efficitur. Aenean non
+              ultrices ligula. Vivamus ipsum velit, rhoncus in malesuada non,
+              semper in massa. <br /><br />
+              Pellentesque aliquam nibh eget ullamcorper mollis. Aenean nisi
+              nulla, sollicitudin eget dui sit amet, pretium semper nulla.
+              Quisque risus purus, laoreet vel magna lobortis, finibus accumsan
+              magna. Sed at felis posuere, tincidunt augue a, venenatis eros.
+              Cras interdum pulvinar nunc ac bibendum. Nam tristique non neque
+              eu facilisis. Vivamus sit amet elit vitae nulla posuere egestas.
+              Integer rutrum vestibulum nibh.
+            </div>
+          </div>
+          <div class="info-text-2">
+            Phasellus mattis tempus eros. In consequat arcu quam. Suspendisse id
+            scelerisque augue. Quisque blandit tellus eu diam imperdiet
+            eleifend. Nulla egestas ac urna ac pharetra. Morbi in aliquet felis,
+            sodales vulputate ligula. Sed sed porttitor nulla. In id nunc nec
+            ligula congue vestibulum ut a lorem. Class aptent taciti sociosqu ad
+            litora torquent per conubia nostra, per inceptos himenaeos.
+            <br /><br />
+            Proin egestas, ex eu pulvinar dictum, tellus odio sollicitudin nibh,
+            sit amet blandit sapien velit sit amet leo. Morbi lobortis aliquam
+            lacinia. Duis sollicitudin dui eget congue convallis. Phasellus non
+            aliquam turpis. Mauris eget sollicitudin massa. Morbi in arcu eu sem
+            interdum laoreet vel non mi. Phasellus scelerisque semper mauris sed
+            cursus. Morbi tincidunt lacus id tincidunt tempor. Proin auctor
+            bibendum turpis et ultricies. Vivamus ultricies sodales nisl quis
+            placerat. Proin interdum interdum arcu, nec tempor ex condimentum
+            sed. Pellentesque eget felis et tellus rutrum mollis eu ut nunc. Ut
+            convallis magna leo, ac commodo felis dignissim sed.
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <img src="./images/CLIK.png" alt="CLIK" class="logo" />
+      <div class="cu">
+        <h3>Contact Us</h3>
+        <p>
+          <b>Office:</b> No.21, 3rd Floor, Ramachandra Arcade, 2nd Cross, MSR
+          Engineering College Rd, Mathikere Extension, Mathikere, Bengaluru,
+          Karnataka 560054 Phone: +91 80 42061421 Fax: +91 80 23601850 Email:
+          clik@clikindia.co.in
+        </p>
+        <p><b>Fax:</b> +91 80 23601850</p>
+        <p><b>Email:</b> clik@clikindia.co.in</p>
+      </div>
+      <div class="ql">
+        <h3>Quick Links</h3>
+        <a href="#">Services</a>
+        <a href="#">Forum</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="fu">
+        <h3>Follow Us</h3>
+        <div class="socials">
+          <a href="#"><img src="./images/facebook.svg" alt="fb" /></a>
+          <a href="#"><img src="./images/youtube.svg" alt="fb" /></a>
+          <a href="#"><img src="./images/twitter.svg" alt="fb" /></a>
+          <a href="#"><img src="./images/linkedin.svg" alt="fb" /></a>
+        </div>
+      </div>
+    </footer>
+    <script src="./index.js"></script>
+    
+  </body>
+</html>
