@@ -3,54 +3,58 @@ const express = require('express');
 const router = express.Router();
 
 const { auth } = require("../middlewares");
-
-
 const registerController = require("../controllers/register");
 const loginController = require("../controllers/loginController");
 
+router.use('/member',express.static('public'));
+router.use('/admin',express.static('public'));
 
+//admin
+router.get('/admin',(req,res)=>{
+  res.render('pages/dashboard.ejs');
+})
 
-
-
-router.get('/member',  (req, res) => {
-  res.render('pages/member.ejs');
-});
-
-router.get('/members', async (req, res) => {
-  let result = await registerController.returnUsers();
-  console.log(req.headers)
-  res.send(result);
-});
-
-
-
-router.get('/register', (req, res) => {
+router.get('/admin/register', (req, res) => {
   res.render('pages/register.ejs', {isError: false });
 });
 
-router.post('/register', async (req, res) => {
+router.post('/admin/register', async (req, res) => {
   let token = await registerController.addNewUser(req.body);
   res.send(token);
 });
 
+//members area
+
+router.get('/member',(req,res)=>{
+  res.render('pages/index.ejs');
+})
+
+router.get('/member/edit',(req, res) => {
+  res.render('pages/member.ejs');
+});
+
+router.get('/member/all', async (req, res) => {
+  let result = await registerController.returnUsers();
+  console.log(req.headers)
+  res.send(result);
+});
 router.get('/member/details', auth, (req, res) => {
   console.log(req.dataJWT)
-
   res.send(req.dataJWT);
 });
-
-router.get('/login', (req, res) => {
-  res.render('pages/index.ejs');
-});
-
-router.post('/login', async (req, res) => {
+router.post('/member/login', async (req, res) => {
   let response = await loginController.loginUser(req.body);
   res.json(response);
 });
 
+//public
+router.get('/page/:slug', (req, res)=>{
+  res.send(req.params.slug);
+});
+
 
 router.get('/', (req, res) => {
-  res.render('pages/dashboard.ejs');
+  res.render('pages/members.ejs');
 });
 
 

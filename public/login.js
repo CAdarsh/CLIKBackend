@@ -14,7 +14,7 @@ formButton.addEventListener("click",(e)=>{
         redirect: 'follow',
         body: JSON.stringify(data)
   };
-    fetch('/login',requestOptions)
+    fetch('/member/login',requestOptions)
         .then(response => response.json())
         .then(data => {
             if(data.code == 403){
@@ -22,7 +22,8 @@ formButton.addEventListener("click",(e)=>{
             }
             else{
                 sessionStorage.setItem("token",data.token);
-                window.location = "/member";
+                console.log("Hellso")
+                window.location = "http://localhost:5000/member/edit";
             }
         })
 
