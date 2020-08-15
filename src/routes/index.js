@@ -5,9 +5,11 @@ const router = express.Router();
 const { auth } = require("../middlewares");
 const registerController = require("../controllers/register");
 const loginController = require("../controllers/loginController");
+const getDetails = require("../controllers/getDetails");
 
 router.use('/member',express.static('public'));
 router.use('/admin',express.static('public'));
+router.use('/page',express.static('public'));
 
 //admin
 router.get('/admin',(req,res)=>{
@@ -49,7 +51,13 @@ router.post('/member/login', async (req, res) => {
 
 //public
 router.get('/page/:slug', (req, res)=>{
-  res.send(req.params.slug);
+  res.render('pages/memberDisplay.ejs',{slug:req.params.slug});
+});
+
+router.post('/page/details',async (req, res)=>{
+  console.log(req.body)
+  let result = await getDetails.getUser(req.body.slug);  
+  // res.json(result);
 });
 
 
