@@ -9,7 +9,7 @@ body {
 header {
   padding: 10px 10vw;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr auto;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -17,14 +17,25 @@ header {
 header a {
   color: black;
   text-decoration: none;
+  margin-left: 20px;
 }
 .logo {
   height: 50px;
 }
 .navstuff {
-  display: grid;
-  grid-template-columns: repeat(6, auto);
+  display: flex;
+  grid-template-columns: repeat(7, auto);
   font-size: 14px;
+  align-items: center;
+}
+.sup {
+  background-color: #444788;
+  padding: 7px 15px;
+  display: grid;
+  justify-content: center;
+  margin-left: 15px;
+  border-radius: 3px;
+  color: white;
 }
 .main-heading {
   text-align: center;
@@ -134,7 +145,7 @@ footer .logo {
   row-gap: 20px;
   font-size: 16px;
   padding-top: 30px;
-  opacity: 0.8;
+  opacity: 1;
 }
 .side-links a {
   color: black;
@@ -161,6 +172,15 @@ footer .logo {
   }
   .ham {
     display: block;
+  }
+  .sup {
+    background-color: #444788;
+    padding: 7px 15px;
+    display: grid;
+    justify-content: center;
+    margin-left: 0px;
+    border-radius: 3px;
+    color: white !important;
   }
 }
 @media only screen and (max-width: 600px) {

@@ -14,82 +14,91 @@
   </head>
   <body>
     <script>
-
-      function ChangeData(data){
+      function ChangeData(data) {
         let { content, bEmail, bPhone, website, title, location } = data;
-        document.querySelector(".info-name").innerHTML = title; 
-        document.querySelector(".location").innerHTML = location; 
-        document.querySelector(".mail").href = `mailto:${bEmail}`; 
-        document.querySelector(".web").href = website; 
-        document.querySelector(".phone").href =  `tel:+${bPhone}`; 
-        // document.querySelector(".location").innerHTML = content; 
-        
+        document.querySelector(".info-name").innerHTML = title;
+        document.querySelector(".location").innerHTML = location;
+        document.querySelector(".mail").href = `mailto:${bEmail}`;
+        document.querySelector(".web").href = website;
+        document.querySelector(".phone").href = `tel:+${bPhone}`;
+        // document.querySelector(".location").innerHTML = content;
       }
-
 
       let token = sessionStorage.getItem("token");
-      if(token && token != "undefined"){
-      console.log("yes" + token)  
-      var myHeaders = new Headers();
-      myHeaders.append("Authorization", `Bearer ${token}`);
+      if (token && token != "undefined") {
+        console.log("yes" + token);
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
 
-      var raw = "";
+        var raw = "";
 
-          var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-          };
+        var requestOptions = {
+          method: "GET",
+          headers: myHeaders,
+          redirect: "follow",
+        };
 
         fetch("/member/details", requestOptions)
-          .then(response => response.json())
-          .then(result => {
-                console.log(result)
-                ChangeData(result);
-              })
-          .catch(error => console.log('error', error));
-              
-      }
-      else{
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+            ChangeData(result);
+          })
+          .catch((error) => console.log("error", error));
+      } else {
         window.location = "/login";
       }
     </script>
 
-    <div class="side">
-      <button class="close-side">
-        <img src="./images/close.svg" alt="close" class="close-svg" /> CLOSE
-        MENU
-      </button>
-      <div class="side-links">
-        <a href="#">Home</a>
-        <a href="#">Services</a>
-        <a href="#">Forum</a>
-        <a href="#">Members</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
-      </div>
-    </div>
-    <header>
-      <img src="./images/CLIK.png" alt="CLIK" class="logo" />
-      <div class="navstuff">
-        <a href="#">Home</a>
-        <a href="#">Services</a>
-        <a href="#">Forum</a>
-        <a href="#">Members</a>
-        <a href="#">Contact Us</a>
-        <a href="#">About Us</a>
-      </div>
-      <img src="./images/open-menu.svg" alt="menu" class="ham" />
-    </header>
+    <%- include('../partials/header') %>
     <main>
       <h1 class="main-heading">MEMBERS</h1>
       <div class="container">
+        <div class="edit-inps">
+          <div class="editnfeed">
+            <div class="edit-button">Edit</div>
+            <div class="edit-feed">Edit Successful</div>
+          </div>
+          <div class="inp-tags">
+            <input
+              class="website edit-inp"
+              type="text"
+              placeholder="Website"
+              class="edit-inp"
+            />
+            <input
+              class="phone edit-inp"
+              type="text"
+              placeholder="Phone no."
+              class="edit-inp"
+            />
+            <input
+              class="email edit-inp"
+              type="text"
+              placeholder="email id"
+              class="edit-inp"
+            />
+          </div>
+        </div>
         <div class="info">
           <div class="info-img">
             <img src="./images/company.jpg" alt="company" />
             <div class="show-upload">
               <img src="./images/upload.svg" alt="upload" />
               Change Image
+              <input
+                type="file"
+                style="
+                  opacity: 0;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  bottom: 0;
+                  right: 0;
+                  width: 100%;
+                  height: 100%;
+                "
+              />
             </div>
           </div>
           <div class="info-text-1">
@@ -128,50 +137,20 @@
               rutrum id commodo sollicitudin, commodo id odio. Mauris lobortis
               lectus vitae tortor iaculis, a luctus felis efficitur. Aenean non
               ultrices ligula. Vivamus ipsum velit, rhoncus in malesuada non,
-              semper in massa. <br /><br />
-              Pellentesque aliquam nibh eget ullamcorper mollis. Aenean nisi
-              nulla, sollicitudin eget dui sit amet, pretium semper nulla.
-              Quisque risus purus, laoreet vel magna lobortis, finibus accumsan
-              magna. Sed at felis posuere, tincidunt augue a, venenatis eros.
-              Cras interdum pulvinar nunc ac bibendum. Nam tristique non neque
-              eu facilisis. Vivamus sit amet elit vitae nulla posuere egestas.
-              Integer rutrum vestibulum nibh.
+              semper in massa. Pellentesque aliquam nibh eget ullamcorper
+              mollis. Aenean nisi nulla, sollicitudin eget dui sit amet, pretium
+              semper nulla. Quisque risus purus, laoreet vel magna lobortis,
+              finibus accumsan magna. Sed at felis posuere, tincidunt augue a,
+              venenatis eros. Cras interdum pulvinar nunc ac bibendum. Nam
+              tristique non neque eu facilisis. Vivamus sit amet elit vitae
+              nulla posuere egestas. Integer rutrum vestibulum nibh.
             </div>
           </div>
         </div>
       </div>
     </main>
-    <footer>
-      <img src="./images/CLIK.png" alt="CLIK" class="logo" />
-      <div class="cu">
-        <h3>Contact Us</h3>
-        <p>
-          <b>Office:</b> No.21, 3rd Floor, Ramachandra Arcade, 2nd Cross, MSR
-          Engineering College Rd, Mathikere Extension, Mathikere, Bengaluru,
-          Karnataka 560054 Phone: +91 80 42061421 Fax: +91 80 23601850 Email:
-          clik@clikindia.co.in
-        </p>
-        <p><b>Fax:</b> +91 80 23601850</p>
-        <p><b>Email:</b> clik@clikindia.co.in</p>
-      </div>
-      <div class="ql">
-        <h3>Quick Links</h3>
-        <a href="#">Services</a>
-        <a href="#">Forum</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
-      </div>
-      <div class="fu">
-        <h3>Follow Us</h3>
-        <div class="socials">
-          <a href="#"><img src="./images/facebook.svg" alt="fb" /></a>
-          <a href="#"><img src="./images/youtube.svg" alt="fb" /></a>
-          <a href="#"><img src="./images/twitter.svg" alt="fb" /></a>
-          <a href="#"><img src="./images/linkedin.svg" alt="fb" /></a>
-        </div>
-      </div>
-    </footer>
+    <%- include('../partials/footer') %>
     <script src="./index.js"></script>
-    
+    <script src="./member.js"></script>
   </body>
 </html>

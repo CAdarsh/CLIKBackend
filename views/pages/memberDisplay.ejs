@@ -14,85 +14,55 @@
   </head>
   <body>
     <script>
-
       // function ChangeData(data){
       //   let { content, bEmail, bPhone, website, title, location } = data;
-      //   document.querySelector(".info-name").innerHTML = title; 
-      //   document.querySelector(".location").innerHTML = location; 
-      //   document.querySelector(".mail").href = `mailto:${bEmail}`; 
-      //   document.querySelector(".web").href = website; 
-      //   document.querySelector(".phone").href =  `tel:+${bPhone}`; 
-      //   // document.querySelector(".location").innerHTML = content; 
-        
-      // }
+      //   document.querySelector(".info-name").innerHTML = title;
+      //   document.querySelector(".location").innerHTML = location;
+      //   document.querySelector(".mail").href = `mailto:${bEmail}`;
+      //   document.querySelector(".web").href = website;
+      //   document.querySelector(".phone").href =  `tel:+${bPhone}`;
+      //   // document.querySelector(".location").innerHTML = content;
 
+      // }
 
       // let token = sessionStorage.getItem("token");
       // if(token && token != "undefined"){
-      // console.log("yes" + token)  
+      // console.log("yes" + token)
       // var myHeaders = new Headers();
       // myHeaders.append("Authorization", `Bearer ${token}`);
 
       // var raw = "";
 
-          // var requestOptions = {
-          //   method: 'GET',
-          //   headers: myHeaders,
-          //   redirect: 'follow'
-          // };
-
-     
+      // var requestOptions = {
+      //   method: 'GET',
+      //   headers: myHeaders,
+      //   redirect: 'follow'
+      // };
 
       var obj = {
-        slug: "<%=slug%>"
-      }
+        slug: "<%=slug%>",
+      };
 
       var requestOptions = {
-            method: 'POST',
-            body: JSON.stringify(obj),
-            headers: {
-                    "Content-Type": "application/json"
-                }
-          };
-          console.log("lol")
+        method: "POST",
+        body: JSON.stringify(obj),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      console.log("lol");
 
-         fetch("/page/details", requestOptions)
-          .then(response => response.json())
-          .then(result => {
-                console.log(result)
-                console.log("result")
-                ChangeData(result);
-              })
-          .catch(error => console.log('error', error));
-
+      fetch("/page/details", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          console.log("result");
+          ChangeData(result);
+        })
+        .catch((error) => console.log("error", error));
     </script>
 
-    <div class="side">
-      <button class="close-side">
-        <img src="./images/close.svg" alt="close" class="close-svg" /> CLOSE
-        MENU
-      </button>
-      <div class="side-links">
-        <a href="#">Home</a>
-        <a href="#">Services</a>
-        <a href="#">Forum</a>
-        <a href="#">Members</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
-      </div>
-    </div>
-    <header>
-      <img src="./images/CLIK.png" alt="CLIK" class="logo" />
-      <div class="navstuff">
-        <a href="#">Home</a>
-        <a href="#">Services</a>
-        <a href="#">Forum</a>
-        <a href="#">Members</a>
-        <a href="#">Contact Us</a>
-        <a href="#">About Us</a>
-      </div>
-      <img src="./images/open-menu.svg" alt="menu" class="ham" />
-    </header>
+    <%- include('../partials/header') %>
     <main>
       <h1 class="main-heading">MEMBERS</h1>
       <div class="container">
@@ -153,37 +123,7 @@
         </div>
       </div>
     </main>
-    <footer>
-      <img src="./images/CLIK.png" alt="CLIK" class="logo" />
-      <div class="cu">
-        <h3>Contact Us</h3>
-        <p>
-          <b>Office:</b> No.21, 3rd Floor, Ramachandra Arcade, 2nd Cross, MSR
-          Engineering College Rd, Mathikere Extension, Mathikere, Bengaluru,
-          Karnataka 560054 Phone: +91 80 42061421 Fax: +91 80 23601850 Email:
-          clik@clikindia.co.in
-        </p>
-        <p><b>Fax:</b> +91 80 23601850</p>
-        <p><b>Email:</b> clik@clikindia.co.in</p>
-      </div>
-      <div class="ql">
-        <h3>Quick Links</h3>
-        <a href="#">Services</a>
-        <a href="#">Forum</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
-      </div>
-      <div class="fu">
-        <h3>Follow Us</h3>
-        <div class="socials">
-          <a href="#"><img src="./images/facebook.svg" alt="fb" /></a>
-          <a href="#"><img src="./images/youtube.svg" alt="fb" /></a>
-          <a href="#"><img src="./images/twitter.svg" alt="fb" /></a>
-          <a href="#"><img src="./images/linkedin.svg" alt="fb" /></a>
-        </div>
-      </div>
-    </footer>
+    <%- include('../partials/footer') %>
     <script src="./index.js"></script>
-    
   </body>
 </html>
