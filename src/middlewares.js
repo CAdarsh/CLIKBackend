@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 let memberModel = require("./models/Member"); 
+let adminModel = require("./models/Admin"); 
 
 function notFound(req, res, next) {
   res.status(404);
@@ -27,6 +28,28 @@ let auth = async (req,res,next) => {
     // res.redirect("/login");
   }
 };
+
+
+let adminAuth = async (req,res,next) => {
+  try{  
+        let token = req.header('Authorization').split(" ")[1];
+        let data = jwt.verify(token,"lololol");
+        let user = await adminModel.findOne({email: data.email,password: data.password}).catch((err)=>console.log(err))
+        console.log(user)
+        if(!user){
+          throw new Error("Invalid Token");
+        }
+        else{
+          req.data = user;
+          next()
+        }
+  }
+  catch(err){
+    console.log("bad")
+    req.data = false;
+  }
+}
+
 
 let authAndUpdate = async (req,res,next) => {
     
@@ -65,5 +88,6 @@ module.exports = {
   notFound,
   errorHandler,
   auth,
-  authAndUpdate
+  authAndUpdate,
+  adminAuth
 };

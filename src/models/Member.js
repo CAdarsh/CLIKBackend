@@ -7,6 +7,7 @@ let memberScheme = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
         validate: val => {
             if(!validator.isEmail(val)){
                 throw new Error({ error: "Invalid Email Address"} )

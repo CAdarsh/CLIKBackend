@@ -2,10 +2,12 @@ const express = require('express');
 
 const router = express.Router();
 
-const { auth,authAndUpdate } = require("../middlewares");
+const { auth,authAndUpdate,adminAuth } = require("../middlewares");
 const registerController = require("../controllers/register");
 const loginController = require("../controllers/loginController");
 const getDetails = require("../controllers/getDetails");
+const { addAdmin,sendAdmin,deleteAdmin,loginAdmin } = require("../controllers/admin");
+
 
 router.use('/member',express.static('public'));
 router.use('/admin',express.static('public'));
@@ -13,21 +15,47 @@ router.use('/page',express.static('public'));
 
 //admin
 router.get('/admin',(req,res)=>{
-  res.render('pages/dashboard.ejs');
+    res.render('pages/dashboard.ejs');
+})
+
+// router.get('/admin/add',async (req,res)=>{
+//   let result = await addAdmin(req.body); 
+//   res.json(result)
+// })
+
+router.get('/admin/all', adminAuth,async (req,res)=>{
+  let result = await sendAdmin(); 
+  res.json(result)
+})
+
+router.get('/admin/delete', adminAuth,async (req,res)=>{
+  let result = await deleteAdmin(); 
+  res.json(result)
+})
+
+
+router.get('/admin/login',async (req,res)=>{
+  res.render('pages/adminLogin.ejs');
+})
+
+router.post('/admin/login',async (req,res)=>{
+  let result = await loginAdmin(req.body); 
+  res.json(result)
 })
 
 router.get('/admin/register', (req, res) => {
   res.render('pages/register.ejs', {isError: false });
 });
 
-router.get('/admin/login', (req,res)=>{
-  res.render('pages/adminLogin.ejs');
-})
-
-router.post('/admin/register', async (req, res) => {
-  let token = await registerController.addNewUser(req.body);
-  res.send(token);
-});
+router.post('/admin/register', adminAuth, async (req, res) => {
+  if(req.data){
+    let token = await registerController.addNewUser(req.body);
+    res.send("1");  
+  }
+  else{
+    res.send("0");
+  }
+  });
 
 //members area
 
