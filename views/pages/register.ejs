@@ -15,7 +15,7 @@
     <%- include('../partials/header') %>
     <main>
       <script>
-        let token = sessionStorage.getItem("adminAuth");
+        let token = sessionStorage.getItem("adminToken");
         if(!token){
           window.location = '/admin/login';
         }

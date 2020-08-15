@@ -25,7 +25,7 @@ if(token){
     }).then(data=>data.text())
     .then(token=>{
            console.log(token);
-           sessionStorage.setItem("token",`${token}`);
+        //    sessionStorage.setItem("token",`${token}`);
            window.location = '/admin';
        })
        .catch(err=>console.log(err));
