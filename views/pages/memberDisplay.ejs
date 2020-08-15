@@ -14,19 +14,18 @@
   </head>
   <body>
     <script>
-      function ChangeData(data){
-        if(data.status==200){
-              let { content, bEmail, bPhone, website, title, location } = data.data;
-              document.querySelector(".info-name").innerHTML = title;
-              document.querySelector(".location").innerHTML = location;
-              document.querySelector(".mail").href = `mailto:${bEmail}`;
-              document.querySelector(".web").href = website;
-              document.querySelector(".phone").href =  `tel:+${bPhone}`;
-              document.querySelector(".info-actual-text").innerHTML = content;
-          }
-          else {
-            window.location = "/404";
-          }
+      function ChangeData(data) {
+        if (data.status == 200) {
+          let { content, bEmail, bPhone, website, title, location } = data.data;
+          document.querySelector(".info-name").innerHTML = title;
+          document.querySelector(".location").innerHTML = location;
+          document.querySelector(".mail").href = `mailto:${bEmail}`;
+          document.querySelector(".web").href = website;
+          document.querySelector(".phone").href = `tel:+${bPhone}`;
+          document.querySelector(".info-actual-text").innerHTML = content;
+        } else {
+          window.location = "/404";
+        }
       }
 
       var obj = {
@@ -44,6 +43,7 @@
       fetch("/page/details", requestOptions)
         .then((response) => response.json())
         .then((result) => {
+          document.querySelector(".loader").style.display = "none";
           ChangeData(result);
         })
         .catch((error) => console.log("error", error));
@@ -89,6 +89,7 @@
             <img src="./images/pin.svg" alt="pin" class="pin-icon" />
             <p class="location">Mathikere, Bengaluru</p>
             <div class="sep"></div>
+            <div class="loader"></div>
             <div class="info-actual-text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
               mattis lorem eu ante mollis, id tristique mauris cursus. Nam

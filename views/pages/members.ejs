@@ -14,7 +14,7 @@
   </head>
   <body>
     <%- include('../partials/header') %>
-   
+
     <main>
       <div class="container">
         <h1 class="main-heading">MEMBERS</h1>
@@ -24,32 +24,33 @@
             <div class="dash-loc">Location</div>
             <div class="dash-loc">Active Since</div>
           </div>
-          <div class="member-container">
-             
-          </div>
+          <div class="loader"></div>
+          <div class="member-container"></div>
         </div>
       </div>
     </main>
     <%- include('../partials/footer') %>
     <script>
       let options = {
-        method: "GET"
-      }
+        method: "GET",
+      };
       let dataContainer = document.querySelector(".member-container");
-      fetch("/member/all").then((res)=>res.json()).then((data)=>{
-        data.map((member)=>{
+      fetch("/member/all")
+        .then((res) => res.json())
+        .then((data) => {
+          document.querySelector(".loader").style.display = "none";
+          data.map((member) => {
             dataContainer.innerHTML += ` <a href="/page/${member.slug}"> <div class="dash-row">
                 <div class="dash-name">
                   <img src="./images/CLIK.png" alt="clik" class="dash-img" /> ${member.title}
                 </div>
                 <div class="dash-loc">${member.location}</div>
                 <div class="dash-loc">2006</div>
-              </div> </a>` 
-            console.log(member)
-
-        })
-        console.log(dataContainer)
-      })
+              </div> </a>`;
+            console.log(member);
+          });
+          console.log(dataContainer);
+        });
     </script>
     <script src="./index.js"></script>
   </body>

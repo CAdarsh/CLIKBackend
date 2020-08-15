@@ -6,14 +6,29 @@ form {
   grid-template-columns: 1fr 1fr;
   column-gap: 20px;
 }
-.error-message{
+.error-message {
   color: red;
   font-size: 13px;
   margin: auto;
 }
-.slug-message{
+.slug-message {
   font-size: 13px;
   margin: auto;
+}
+
+.text-inp-cont {
+  position: relative;
+}
+.feed-text {
+  position: absolute;
+  font-size: 13px;
+  padding: 0px 5px;
+  box-sizing: border-box;
+  top: 87%;
+  left: 0px;
+  color: red;
+  height: 20px;
+  width: 100%;
 }
 @media only screen and (max-width: 1100px) {
   .inps {

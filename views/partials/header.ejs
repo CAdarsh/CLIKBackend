@@ -22,14 +22,8 @@
     <a href="#">Members</a>
     <a href="#">Contact Us</a>
     <a href="#">About Us</a>
-    <a href="#" class="sup">Sign Up</a>
-    <a href="#" class="sup sup-log">Logout</a>
+    <a href="/member" class="sup">Sign Up</a>
+    <a href="/" class="sup">Logout</a>
   </div>
   <img src="./images/open-menu.svg" alt="menu" class="ham" />
-  <script>
-    document.querySelector(".sup-log").addEventListener("click",()=>{
-      sessionStorage.removeItem("token");
-      window.location = '/member';
-    })
-  </script>
 </header>

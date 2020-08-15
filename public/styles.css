@@ -156,6 +156,30 @@ footer .logo {
   height: 1em;
   margin-right: 10px;
 }
+.text-inp-cont {
+  position: relative;
+}
+.feed-text {
+  position: absolute;
+  font-size: 13px;
+  padding: 0px 5px;
+  box-sizing: border-box;
+  top: 87%;
+  left: 0px;
+  color: red;
+  height: 20px;
+  width: 100%;
+}
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #444788;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  margin: 20px auto;
+}
 @media only screen and (max-width: 1000px) {
   form {
     width: 500px !important;
@@ -189,5 +213,23 @@ footer .logo {
   }
   form {
     width: 300px !important;
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

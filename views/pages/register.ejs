@@ -16,55 +16,83 @@
     <main>
       <script>
         let token = sessionStorage.getItem("adminToken");
-        if(!token){
-          window.location = '/admin/login';
+        if (!token) {
+          window.location = "/admin/login";
         }
       </script>
       <h1 class="main-heading">Create Account</h1>
       <form>
         <div class="inps">
-          <input
-            name="email"
-            class="text-inp text-inp-email"
-            type="email"
-            placeholder="Email"
-          />
-          <input
-            name="buisnessName"
-            type="text"
-            class="text-inp text-inp-bname"
-            placeholder="Company"
-          />
-          <input
-            name="name"
-            type="text"
-            class="text-inp text-inp-name"
-            placeholder="Full Name"
-          />
-          <input
-            name="phone"
-            type="text"
-            class="text-inp-phone"
-            placeholder="Phone Number"
-          />
-          <input
-            name="password"
-            type="password"
-            class="text-inp-password"
-            placeholder="Password"
-          />
-          <input
-            name="cpassword"
-            type="password"
-            class="text-inp"
-            placeholder="Confirm Password"
-          />
-          <input
-            name="slug"
-            type="text"
-            class="text-inp-route"
-            placeholder="Enter the Route"
-          />
+          <div class="text-inp-cont em-text">
+            <input
+              name="email"
+              class="text-inp text-inp-email"
+              type="email"
+              placeholder="Email"
+              required
+            />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont bn-text">
+            <input
+              name="buisnessName"
+              type="text"
+              class="text-inp text-inp-bname"
+              placeholder="Company"
+              required
+            />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont n-text">
+            <input
+              name="name"
+              type="text"
+              class="text-inp text-inp-name"
+              placeholder="Full Name"
+              required
+            />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont ph-text">
+            <input
+              name="phone"
+              type="text"
+              class="text-inp-phone text-inp"
+              placeholder="Phone Number"
+              required
+            />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont p-text">
+            <input
+              name="password"
+              type="password"
+              class="text-inp-password text-inp"
+              placeholder="Password"
+              required
+            />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont cp-text">
+            <input
+              name="cpassword"
+              type="password"
+              class="text-inp-cpassword text-inp"
+              placeholder="Confirm Password"
+              required
+            />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont sl-text">
+            <input
+              name="slug"
+              type="text"
+              class="text-inp-route text-inp"
+              placeholder="Enter the Route"
+              required
+            />
+            <div class="feed-text"></div>
+          </div>
           <div class="slug-message">
             Ex: member.clikindia.co.in/member/route_name
           </div>
