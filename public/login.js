@@ -3,8 +3,8 @@ let formButton = document.querySelector(".subm");
 formButton.addEventListener("click",(e)=>{
     e.preventDefault();
     let data = {
-        email: document.querySelector(".text-inp-email").value,
-        password: document.querySelector(".text-inp-pass").value
+        email: document.querySelectorAll(".text-inp")[0].value,
+        password: document.querySelectorAll(".text-inp")[1].value,
     };
     var requestOptions = {
         method: 'post',

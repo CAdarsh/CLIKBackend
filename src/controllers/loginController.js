@@ -4,6 +4,7 @@ let jwt = require('jsonwebtoken');
 
 let loginUser = async (data) => {
     let { email, password } = data;
+    console.log(email,password);
     let resultUser = await model.findOne({email: email,password: password});
     if (resultUser){
         let token = jwt.sign({email: data.email},"lololol")

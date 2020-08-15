@@ -11,7 +11,7 @@ formSubmit.addEventListener("click",(e)=>{
         password: document.querySelector(".text-inp-password").value,
         slug: document.querySelector(".text-inp-route").value
     }
-fetch("/register",{
+fetch("/admin/register",{
         method: "POST",
         body: JSON.stringify(data),
         headers: {

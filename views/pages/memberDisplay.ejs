@@ -14,30 +14,20 @@
   </head>
   <body>
     <script>
-      // function ChangeData(data){
-      //   let { content, bEmail, bPhone, website, title, location } = data;
-      //   document.querySelector(".info-name").innerHTML = title;
-      //   document.querySelector(".location").innerHTML = location;
-      //   document.querySelector(".mail").href = `mailto:${bEmail}`;
-      //   document.querySelector(".web").href = website;
-      //   document.querySelector(".phone").href =  `tel:+${bPhone}`;
-      //   // document.querySelector(".location").innerHTML = content;
-
-      // }
-
-      // let token = sessionStorage.getItem("token");
-      // if(token && token != "undefined"){
-      // console.log("yes" + token)
-      // var myHeaders = new Headers();
-      // myHeaders.append("Authorization", `Bearer ${token}`);
-
-      // var raw = "";
-
-      // var requestOptions = {
-      //   method: 'GET',
-      //   headers: myHeaders,
-      //   redirect: 'follow'
-      // };
+      function ChangeData(data){
+        if(data.status==200){
+              let { content, bEmail, bPhone, website, title, location } = data.data;
+              document.querySelector(".info-name").innerHTML = title;
+              document.querySelector(".location").innerHTML = location;
+              document.querySelector(".mail").href = `mailto:${bEmail}`;
+              document.querySelector(".web").href = website;
+              document.querySelector(".phone").href =  `tel:+${bPhone}`;
+              document.querySelector(".info-actual-text").innerHTML = content;
+          }
+          else {
+            window.location = "/404";
+          }
+      }
 
       var obj = {
         slug: "<%=slug%>",
@@ -50,13 +40,10 @@
           "Content-Type": "application/json",
         },
       };
-      console.log("lol");
 
       fetch("/page/details", requestOptions)
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
-          console.log("result");
           ChangeData(result);
         })
         .catch((error) => console.log("error", error));

@@ -22,11 +22,33 @@ let auth = async (req,res,next) => {
     }
   }
   catch(err) {
-    console.log("Invalid");
+    // console.log("Invalid");
     req.dataJWT = err;
     // res.redirect("/login");
   }
 };
+
+let authAndUpdate = async (req,res,next) => {
+    
+  // try {
+    let { content, bEmail, bPhone, website, title, location } = req.body;
+    let token = req.header('Authorization').split(" ")[1];
+    let data = jwt.verify(token,"lololol");
+    console.log("Slug"+req.body.slug)
+    let user = await memberModel.findOne({slug: req.body.slug})
+    if(!user){
+      throw new Error("Invalid Token");
+    }
+    else{
+      req.data = await memberModel.updateOne({slug: req.body.slug},{ content, bEmail, bPhone, website, title, location });
+      next()
+    }
+  // }
+  // catch(err) {
+  //   console.log("Invalid");
+  //   req.dataJWT = err;
+  // }
+}
 
 /* eslint-disable no-unused-vars */
 function errorHandler(err, req, res, next) {
@@ -42,5 +64,6 @@ function errorHandler(err, req, res, next) {
 module.exports = {
   notFound,
   errorHandler,
-  auth
+  auth,
+  authAndUpdate
 };

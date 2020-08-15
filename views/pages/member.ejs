@@ -15,18 +15,18 @@
   <body>
     <script>
       function ChangeData(data) {
-        let { content, bEmail, bPhone, website, title, location } = data;
+        let { content, bEmail, bPhone, website, title, location,slug } = data;
         document.querySelector(".info-name").innerHTML = title;
+        document.querySelector(".slug").value = slug;
         document.querySelector(".location").innerHTML = location;
         document.querySelector(".mail").href = `mailto:${bEmail}`;
         document.querySelector(".web").href = website;
         document.querySelector(".phone").href = `tel:+${bPhone}`;
-        // document.querySelector(".location").innerHTML = content;
+        document.querySelector(".info-actual-text").innerHTML = content;
       }
 
       let token = sessionStorage.getItem("token");
       if (token && token != "undefined") {
-        console.log("yes" + token);
         var myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
 
@@ -46,7 +46,7 @@
           })
           .catch((error) => console.log("error", error));
       } else {
-        window.location = "/login";
+        window.location = "/member";
       }
     </script>
 
@@ -64,6 +64,12 @@
               class="website edit-inp"
               type="text"
               placeholder="Website"
+              class="edit-inp"
+            />
+            <input
+              class="slug edit-inp"
+              type="text"
+              placeholder="Slug"
               class="edit-inp"
             />
             <input

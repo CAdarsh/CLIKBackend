@@ -9,22 +9,40 @@ document.querySelector(".edit-button").addEventListener("click", () => {
     edit.innerHTML = "Submit";
     document.querySelector(".show-upload").style.display = "grid";
   } else {
-    let compName = document.querySelector(".info-name").innerHTML;
-    let compDesc = document.querySelector(".info-actual-text").innerHTML;
-    let compLoca = document.querySelector(".location").innerHTML;
-    let compWeb = document.querySelector(".website").value;
-    let compPhone = document.querySelector(".phone").value;
-    let compEmail = document.querySelector(".email").value;
-    let sendingObject = {
-      compName,
-      compDesc,
-      compLoca,
-      compWeb,
-      compPhone,
-      compEmail,
-    };
+    
+
+    let title = document.querySelector(".info-name").innerHTML;
+    let content = document.querySelector(".info-actual-text").innerHTML;
+    let location = document.querySelector(".location").innerHTML;
+    let website = document.querySelector(".website").value;
+    let bPhone = document.querySelector(".phone").value;
+    let bEmail = document.querySelector(".email").value;
+    let slug = document.querySelector(".slug").value;
+    let sendingObject = { slug,content, bEmail, bPhone, website, title, location };
     //do fetch here
-    console.log(compName, compDesc, compLoca, compWeb, compPhone, compEmail);
+    let token = sessionStorage.getItem("token");
+      if (token && token != "undefined") {
+        console.log("yes" + token);
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+        myHeaders.append("Content-Type",'application/json');
+        var requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: JSON.stringify(sendingObject),
+          redirect: "follow",
+        };
+
+        fetch("/member/details", requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            ChangeData(result);
+          })
+          .then(()=>{window.location = '/member/edit'})
+          .catch((error) => console.log("error", error));
+      } else {
+        window.location = "/member";
+      }
     document.designMode = "off";
     document.querySelector(".inp-tags").style.display = "none";
     edit.innerHTML = "Edit";
