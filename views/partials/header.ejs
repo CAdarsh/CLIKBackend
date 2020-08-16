@@ -9,8 +9,9 @@
     <a href="#">Members</a>
     <a href="#">About Us</a>
     <a href="#">Contact Us</a>
-    <a href="#" class="sup">Sign Up</a>
-    <a href="#" class="sup">Logout</a>
+    <% if(logout){ %>
+    <a href="/" class="sup">Logout</a>
+    <% } %>
   </div>
 </div>
 <header>
@@ -22,8 +23,9 @@
     <a href="#">Members</a>
     <a href="#">Contact Us</a>
     <a href="#">About Us</a>
-    <a href="/member" class="sup">Sign Up</a>
+    <% if(logout){ %>
     <a href="/" class="sup">Logout</a>
+    <% } %>
   </div>
   <img src="./images/open-menu.svg" alt="menu" class="ham" />
 </header>

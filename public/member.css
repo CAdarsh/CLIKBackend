@@ -107,6 +107,11 @@
   color: green;
   display: none;
 }
+.img-feed {
+  position: unset;
+  padding: 0px;
+  display: none;
+}
 @media only screen and (max-width: 1000px) {
   .info {
     grid-template-columns: 1fr;
