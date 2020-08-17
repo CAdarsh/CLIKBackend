@@ -41,26 +41,17 @@
         <div class="renbutt">
           <h2 class="recent">Recent Entries</h2>
           <div class="new-entry-cont">
-            <button class="new-entry">+ New Entry</button>
+            <a class="new-entry" href="/admin/register">+ New Entry</a>
           </div>
         </div>
         <div class="dash-table">
           <div class="dash-first-row">
             <div class="dash-name">Name</div>
             <div class="dash-loc">Location</div>
-            <div class="dash-loc">Active Since</div>
+            <!-- <div class="dash-loc">Active Since</div> -->
             <div></div>
           </div>
-          <!-- <div class="dash-row">
-            <div class="dash-name">John Doe Power Solutions</div>
-            <div class="dash-loc">Bengaluru</div>
-            <div class="dash-loc">2006</div>
-            <div class="dash-edit-cont">
-              <button class="dash-edit">
-                <img src="./images/edit.svg" alt="edit" class="dash-edit-img" />
-              </button>
-            </div>
-          </div> -->
+          <div class="loader"></div>
         </div>
       </div>
     </main>
@@ -75,21 +66,21 @@
       fetch("/member/all")
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
-          // document.querySelector(".loader").style.display = "none";
+          document.querySelector(".loader").style.display = "none";
           data.map((member) => {
             dataContainer.innerHTML += `
-              
-              <div class="dash-row">
-            <div class="dash-name">${member.title}</div>
-            <div class="dash-loc">${member.location}</div>
-            <div class="dash-loc">2006</div>
-            <div class="dash-edit-cont">
-              <button class="dash-edit">
-                <img src="./images/edit.svg" alt="edit" class="dash-edit-img" />
-              </button>
+            <div class="dash-row link-div" onclick="window.location='/page/${member.slug}';">
+              <div class="dash-name">${member.title}</div>
+              <div class="dash-loc">${member.location}</div>
+              <div class="dash-edit-cont">
+                <a class="dash-edit" href="/delete/${member._id}">
+                  
+                    <img src="./images/delete.svg" alt="edit" class="dash-edit-img" />
+                  
+                </a>
+              </div>
             </div>
-          </div>`;
+                      `;
             console.log(member);
           });
           console.log(dataContainer);

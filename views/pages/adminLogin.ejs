@@ -11,32 +11,7 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="side">
-      <button class="close-side">
-        <img src="./images/close.svg" alt="close" class="close-svg" /> CLOSE
-        MENU
-      </button>
-      <div class="side-links">
-        <a href="#">Home</a>
-        <a href="#">Services</a>
-        <a href="#">Forum</a>
-        <a href="#">Members</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
-      </div>
-    </div>
-    <header>
-      <img src="./images/CLIK.png" alt="CLIK" class="logo" />
-      <div class="navstuff">
-        <a href="#">Home</a>
-        <a href="#">Services</a>
-        <a href="#">Forum</a>
-        <a href="#">Members</a>
-        <a href="#">Contact Us</a>
-        <a href="#">About Us</a>
-      </div>
-      <img src="./images/open-menu.svg" alt="menu" class="ham" />
-    </header>
+    <%- include('../partials/header') %>
     <main>
       <h1 class="main-heading">Admin Login</h1>
       <form>
@@ -48,48 +23,19 @@
           <input type="text" class="text-inp" placeholder="Password" />
           <div class="feed-text"></div>
         </div>
-        <p class="fp">Forgot Password?</p>
-        <div class="cb">
+        <!-- <p class="fp">Forgot Password?</p> -->
+        <!-- <div class="cb">
           <input type="checkbox" />
           <label>Keep me signed in</label>
-        </div>
+        </div> -->
         <input class="subm" type="submit" value="Sign in" />
-        <div class="nom">
+        <!-- <div class="nom">
           <p>Not a member?</p>
           <a href="/register">Register</a>
-        </div>
+        </div> -->
       </form>
     </main>
-    <footer>
-      <img src="./images/CLIK.png" alt="CLIK" class="logo" />
-      <div class="cu">
-        <h3>Contact Us</h3>
-        <p>
-          <b>Office:</b> No.21, 3rd Floor, Ramachandra Arcade, 2nd Cross, MSR
-          Engineering College Rd, Mathikere Extension, Mathikere, Bengaluru,
-          Karnataka 560054 Phone: +91 80 42061421 Fax: +91 80 23601850 Email:
-          clik@clikindia.co.in
-        </p>
-        <p><b>Fax:</b> +91 80 23601850</p>
-        <p><b>Email:</b> clik@clikindia.co.in</p>
-      </div>
-      <div class="ql">
-        <h3>Quick Links</h3>
-        <a href="#">Services</a>
-        <a href="#">Forum</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
-      </div>
-      <div class="fu">
-        <h3>Follow Us</h3>
-        <div class="socials">
-          <a href="#"><img src="./images/facebook.svg" alt="fb" /></a>
-          <a href="#"><img src="./images/youtube.svg" alt="fb" /></a>
-          <a href="#"><img src="./images/twitter.svg" alt="fb" /></a>
-          <a href="#"><img src="./images/linkedin.svg" alt="fb" /></a>
-        </div>
-      </div>
-    </footer>
+    <%- include('../partials/footer') %>
     <script src="./adminLogin.js"></script>
     <script src="./index.js"></script>
   </body>

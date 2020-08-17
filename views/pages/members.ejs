@@ -40,7 +40,7 @@
         .then((data) => {
           document.querySelector(".loader").style.display = "none";
           data.map((member) => {
-            dataContainer.innerHTML += ` <a href="/page/${member.slug}"> <div class="dash-row">
+            dataContainer.innerHTML += ` <a href="/page/${member.slug}" class="link-divs"> <div class="dash-row">
                 <div class="dash-name">
                   <img src="./images/CLIK.png" alt="clik" class="dash-img" /> ${member.title}
                 </div>

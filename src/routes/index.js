@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 const bodyParser = require("body-parser");
+let memberModel = require("../models/Member");
 let multer = require("multer");
 let storage = multer.diskStorage({
   destination: "./public/uploads/",
@@ -95,34 +97,40 @@ router.get("/member/edit", (req, res) => {
 
 router.get("/member/all", async (req, res) => {
   let result = await registerController.returnUsers();
-  console.log(req.headers);
+  // console.log(req.headers);
   res.send(result);
 });
 router.get("/member/details", auth, (req, res) => {
-  // console.log(req.body);
   res.send(req.dataJWT);
 });
-// router.post("/member/testdetail", (req, res) => {
-//   console.log("testing...");
-//   console.log(req.headers);
-//   // console.log(req);
-// });
-router.post("/member/details", (req, res) => {
-  upload(req, res, (err) => {
-    if (err) {
-      res.send(err);
-      console.log(err);
-    } else {
-      console.log(req.file);
-      res.json(JSON.parse(req.headers.contents));
-    }
-  });
-});
+router.post("/member/details", authAndUpdate, (req, res) => {});
 router.post("/member/login", async (req, res) => {
   let response = await loginController.loginUser(req.body);
   console.log(response, req.body);
   res.json(response);
 });
+
+router.get(
+  "/delete/:id",
+  //add appropriate middleware
+  async (req, res) => {
+    let member = await memberModel.findOne({ _id: req.params.id });
+    if (!!member.image.split("\\")[2]) {
+      fs.unlink(`public/uploads/${member.image.split("\\")[2]}`, (err) => {
+        if (err) throw err;
+        console.log("image was deleted");
+      });
+    }
+    memberModel.deleteOne({ _id: req.params.id }, function (err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        console.log(result);
+        res.redirect("/admin");
+      }
+    });
+  }
+);
 
 //public
 router.get("/page/:slug", (req, res) => {
@@ -146,4 +154,3 @@ router.get("/404", (req, res) => {
 });
 
 module.exports = router;
-//changes done

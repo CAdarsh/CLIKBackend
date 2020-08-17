@@ -36,13 +36,10 @@ document.querySelector(".edit-button").addEventListener("click", () => {
       var myHeaders = new Headers();
       myHeaders.append("Authorization", `Bearer ${token}`);
       myHeaders.append("contents", JSON.stringify(sendingObject));
-
-      // myHeaders.append("Content-Type", "application/json");
       var requestOptions = {
         method: "POST",
         headers: myHeaders,
         body: formData,
-        // redirect: "follow",
       };
       delete requestOptions.headers["Content-Type"];
       fetch("/member/details", requestOptions)

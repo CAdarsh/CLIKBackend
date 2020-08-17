@@ -1,6 +1,4 @@
 let formSubmit = document.querySelector(".subm");
-// let token = sessionStorage.getItem("adminToken");
-
 formSubmit.addEventListener("click", (e) => {
   document.querySelectorAll(".feed-text").forEach((x) => {
     x.innerHTML = "";
@@ -26,6 +24,7 @@ formSubmit.addEventListener("click", (e) => {
       "Enter a valid email address";
     return;
   }
+  console.log("cleared 1");
   if (data.buisnessName === "") {
     document.querySelector(".bn-text .feed-text").innerHTML =
       "This field is required";
@@ -49,14 +48,15 @@ formSubmit.addEventListener("click", (e) => {
   if (!data.phone.match(/^\d+$/)) {
     document.querySelector(".ph-text .feed-text").innerHTML =
       "This field should contain only digits";
+    console.log("phone");
     return;
   }
   if (data.password !== data.cpassword) {
     document.querySelector(".cp-text .feed-text").innerHTML =
       "Password doesn't match";
-
     return;
   }
+  console.log("cleared feedback");
   if (token) {
     fetch("/admin/register", {
       method: "POST",

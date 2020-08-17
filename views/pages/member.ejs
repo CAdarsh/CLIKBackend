@@ -15,7 +15,7 @@
   <body>
     <script>
       function ChangeData(data) {
-        let { content, bEmail, bPhone, website, title, location, slug } = data;
+        let { content, bEmail, bPhone, website, title, location, slug, image } = data;
         document.querySelector(".info-name").innerHTML = title;
         document.querySelector(".slug").value = slug;
         document.querySelector(".location").innerHTML = location;
@@ -23,6 +23,7 @@
         document.querySelector(".web").href = website;
         document.querySelector(".phone").href = `tel:+${bPhone}`;
         document.querySelector(".info-actual-text").innerHTML = content;
+        document.querySelector("#img-main").src = image;
       }
 
       let token = sessionStorage.getItem("token");
@@ -89,9 +90,9 @@
         <div class="img-feed feed-text">Please upload an image</div>
         <div class="info">
           <div class="info-img">
-            <img src="./images/company.jpg" alt="company" />
+            <img src="./images/company.jpg" alt="company" id="img-main"/>
             <div class="show-upload">
-              <img src="./images/upload.svg" alt="upload" />
+              <img src="./images/upload.svg" alt="upload"  />
               Change Image
               <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
               <input
@@ -108,6 +109,7 @@
                   height: 100%;
                 "
                 class="image-file-up"
+                accept=".jpg,.png,.jpeg"
               />
               <!-- </form> -->
             </div>
@@ -141,20 +143,7 @@
             <p class="location">Mathikere, Bengaluru</p>
             <div class="sep"></div>
             <div class="info-actual-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              mattis lorem eu ante mollis, id tristique mauris cursus. Nam
-              commodo, felis quis euismod vestibulum, lectus diam mollis lacus,
-              fermentum tincidunt neque ante id purus. Nulla tellus lorem,
-              rutrum id commodo sollicitudin, commodo id odio. Mauris lobortis
-              lectus vitae tortor iaculis, a luctus felis efficitur. Aenean non
-              ultrices ligula. Vivamus ipsum velit, rhoncus in malesuada non,
-              semper in massa. Pellentesque aliquam nibh eget ullamcorper
-              mollis. Aenean nisi nulla, sollicitudin eget dui sit amet, pretium
-              semper nulla. Quisque risus purus, laoreet vel magna lobortis,
-              finibus accumsan magna. Sed at felis posuere, tincidunt augue a,
-              venenatis eros. Cras interdum pulvinar nunc ac bibendum. Nam
-              tristique non neque eu facilisis. Vivamus sit amet elit vitae
-              nulla posuere egestas. Integer rutrum vestibulum nibh.
+        
             </div>
           </div>
         </div>
