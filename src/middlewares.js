@@ -1,6 +1,20 @@
 const jwt = require("jsonwebtoken");
 let memberModel = require("./models/Member");
 let adminModel = require("./models/Admin");
+const path = require("path");
+let multer=require('multer');
+let storage = multer.diskStorage({
+  destination: "./public/uploads/",
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+let upload = multer({
+  storage: storage,
+}).single("myImage");
 
 function notFound(req, res, next) {
   res.status(404);
@@ -46,24 +60,45 @@ let adminAuth = async (req, res, next) => {
   }
 };
 
-let authAndUpdate = async (req, res, next) => {
+let authAndUpdate = (req, res, next) => {
   // try {
   let { content, bEmail, bPhone, website, title, location, slug } = JSON.parse(
     req.headers.contents
   );
+  
   let token = req.header("Authorization").split(" ")[1];
   let data = jwt.verify(token, "lololol");
-  console.log("Slug" + req.body.slug);
-  let user = await memberModel.findOne({ slug: slug });
-  if (!user) {
-    throw new Error("Invalid Token");
-  } else {
-    req.data = await memberModel.updateOne(
-      { slug: slug },
-      { content, bEmail, bPhone, website, title, location }
-    );
+
+  upload(req, res, async (err) => {
+    if (err) {
+      res.send(err);
+    } else {
+      console.log(req.file)
+      let user = await memberModel.findOne({ slug: slug });
+      if (!user) {
+        throw new Error("Invalid Token");
+      } else {
+        if(req.file){
+          req.data = await memberModel.updateOne(
+            { slug: slug },
+            { content, bEmail, bPhone, website, title, location,image: req.file.path.split('public')[1] }
+          );
+          console.log({ content, bEmail, bPhone, website, title, location,image: req.file.path.split('public')[1] })  
+        }
+        else{
+          req.data = await memberModel.updateOne(
+            { slug: slug },
+            { content, bEmail, bPhone, website, title, location}
+          );
+          console.log({ content, bEmail, bPhone, website, title, location })    
+        }
+        }
+      res.json(JSON.parse(req.headers.contents));
+    }
     next();
-  }
+  });
+  
+  
   // }
   // catch(err) {
   //   console.log("Invalid");

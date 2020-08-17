@@ -99,23 +99,10 @@ router.get("/member/all", async (req, res) => {
   res.send(result);
 });
 router.get("/member/details", auth, (req, res) => {
-  // console.log(req.body);
   res.send(req.dataJWT);
 });
-// router.post("/member/testdetail", (req, res) => {
-//   console.log("testing...");
-//   console.log(req.headers);
-//   // console.log(req);
-// });
-router.post("/member/details", authAndUpdate, (req, res) => {
-  upload(req, res, (err) => {
-    if (err) {
-      res.send(err);
-    } else {
-      // console.log(req.file);
-      res.json(JSON.parse(req.headers.contents));
-    }
-  });
+router.post("/member/details",authAndUpdate, (req, res) => {
+ 
 });
 router.post("/member/login", async (req, res) => {
   let response = await loginController.loginUser(req.body);
@@ -145,4 +132,3 @@ router.get("/404", (req, res) => {
 });
 
 module.exports = router;
-//changes done

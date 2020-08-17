@@ -67,6 +67,10 @@ let memberScheme = new mongoose.Schema({
     website: {
         type: String,
         default: "Enter your website address"
+    },
+    image: {
+        type: String,
+        default: "/images/company.jpg"
     }
 
 })
