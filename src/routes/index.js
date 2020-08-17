@@ -107,20 +107,16 @@ router.get("/member/details", auth, (req, res) => {
 //   console.log(req.headers);
 //   // console.log(req);
 // });
-router.post(
-  "/member/details",
-  //  authAndUpdate,
-  (req, res) => {
-    console.log(JSON.parse(req.headers.contents));
-    upload(req, res, (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        console.log(req.file);
-      }
-    });
-  }
-);
+router.post("/member/details", authAndUpdate, (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      res.send(err);
+    } else {
+      // console.log(req.file);
+      res.json(JSON.parse(req.headers.contents));
+    }
+  });
+});
 router.post("/member/login", async (req, res) => {
   let response = await loginController.loginUser(req.body);
   console.log(response, req.body);
