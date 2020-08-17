@@ -102,21 +102,23 @@ router.get("/member/details", auth, (req, res) => {
   // console.log(req.body);
   res.send(req.dataJWT);
 });
+// router.post("/member/testdetail", (req, res) => {
+//   console.log("testing...");
+//   console.log(req.headers);
+//   // console.log(req);
+// });
 router.post(
   "/member/details",
-  // authAndUpdate,
+  //  authAndUpdate,
   (req, res) => {
-    console.log(req.body + "this is boooooooooody");
+    console.log(JSON.parse(req.headers.contents));
     upload(req, res, (err) => {
       if (err) {
         res.send(err);
-        console.log(err + "this is the eeeeeeeeeerrorr");
       } else {
-        console.log("req.file=====" + req.file);
+        console.log(req.file);
       }
     });
-    // console.log("req.body===========" + req.file);
-    // res.json(req.data);
   }
 );
 router.post("/member/login", async (req, res) => {

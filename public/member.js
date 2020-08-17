@@ -17,32 +17,26 @@ document.querySelector(".edit-button").addEventListener("click", () => {
     let bEmail = document.querySelector(".email").value;
     let slug = document.querySelector(".slug").value;
     let imageFile = document.querySelector(".image-file-up");
+    let sendingObject = {
+      slug,
+      content,
+      bEmail,
+      bPhone,
+      website,
+      title,
+      location,
+    };
 
-    let formData = new FormData();
-
-    formData.append("myImage", imageFile.files[0]);
-    formData.append("title", JSON.stringify(title));
-    formData.append("content", content);
-    formData.append("location", location);
-    formData.append("website", website);
-    formData.append("bPhone", bPhone);
-    formData.append("bEmail", bEmail);
-    formData.append("slug", slug);
-    // let sendingObject = {
-    //   slug,
-    //   content,
-    //   bEmail,
-    //   bPhone,
-    //   website,
-    //   title,
-    //   location,
-    //   formData,
-    // };
     let token = sessionStorage.getItem("token");
+    let formData = new FormData();
+    formData.append("myImage", imageFile.files[0]);
+
     if (token && token != "undefined") {
       console.log("yes" + token);
       var myHeaders = new Headers();
       myHeaders.append("Authorization", `Bearer ${token}`);
+      myHeaders.append("contents", JSON.stringify(sendingObject));
+
       // myHeaders.append("Content-Type", "application/json");
       var requestOptions = {
         method: "POST",
