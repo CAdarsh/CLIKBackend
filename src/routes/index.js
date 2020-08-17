@@ -107,12 +107,13 @@ router.get("/member/details", auth, (req, res) => {
 //   console.log(req.headers);
 //   // console.log(req);
 // });
-router.post("/member/details", authAndUpdate, (req, res) => {
+router.post("/member/details", (req, res) => {
   upload(req, res, (err) => {
     if (err) {
       res.send(err);
+      console.log(err);
     } else {
-      // console.log(req.file);
+      console.log(req.file);
       res.json(JSON.parse(req.headers.contents));
     }
   });
