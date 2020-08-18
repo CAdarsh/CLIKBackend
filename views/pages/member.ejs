@@ -15,9 +15,19 @@
   <body>
     <script>
       function ChangeData(data) {
-        let { content, bEmail, bPhone, website, title, location, slug, image } = data;
+        let {
+          content,
+          bEmail,
+          bPhone,
+          website,
+          title,
+          location,
+          slug,
+          image,
+        } = data;
         document.querySelector(".info-name").innerHTML = title;
         document.querySelector(".slug").value = slug;
+        document.querySelector(".slug").setAttribute("data-dslug", slug);
         document.querySelector(".location").innerHTML = location;
         document.querySelector(".mail").href = `mailto:${bEmail}`;
         document.querySelector(".web").href = website;
@@ -25,7 +35,6 @@
         document.querySelector(".info-actual-text").innerHTML = content;
         document.querySelector("#img-main").src = image;
       }
-
       let token = sessionStorage.getItem("token");
       if (token && token != "undefined") {
         var myHeaders = new Headers();
@@ -67,12 +76,17 @@
               placeholder="Website"
               class="edit-inp"
             />
-            <input
-              class="slug edit-inp"
-              type="text"
-              placeholder="Slug"
-              class="edit-inp"
-            />
+            <div class="inp-cont">
+              <input
+                class="slug edit-inp"
+                type="text"
+                placeholder="Slug"
+                class="edit-inp"
+              />
+              <div class="slug-feed">
+                Slug is already taken
+              </div>
+            </div>
             <input
               class="phone edit-inp"
               type="text"
@@ -90,9 +104,9 @@
         <div class="img-feed feed-text">Please upload an image</div>
         <div class="info">
           <div class="info-img">
-            <img src="./images/company.jpg" alt="company" id="img-main"/>
+            <img src="./images/company.jpg" alt="company" id="img-main" />
             <div class="show-upload">
-              <img src="./images/upload.svg" alt="upload"  />
+              <img src="./images/upload.svg" alt="upload" />
               Change Image
               <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
               <input
@@ -142,9 +156,7 @@
             <img src="./images/pin.svg" alt="pin" class="pin-icon" />
             <p class="location">Mathikere, Bengaluru</p>
             <div class="sep"></div>
-            <div class="info-actual-text">
-        
-            </div>
+            <div class="info-actual-text"></div>
           </div>
         </div>
       </div>

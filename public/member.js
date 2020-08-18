@@ -1,7 +1,7 @@
 let edit = document.querySelector(".edit-button");
 let isEditing = false;
 
-document.querySelector(".edit-button").addEventListener("click", () => {
+document.querySelector(".edit-button").addEventListener("click", async () => {
   isEditing = !isEditing;
   if (isEditing) {
     document.querySelector(".inp-tags").style.display = "flex";
@@ -9,6 +9,10 @@ document.querySelector(".edit-button").addEventListener("click", () => {
     edit.innerHTML = "Submit";
     document.querySelector(".show-upload").style.display = "grid";
   } else {
+    document.querySelector(".slug-feed").style.display = "none";
+    let initialSlug = document
+      .querySelector(".slug")
+      .getAttribute("data-dslug");
     let title = document.querySelector(".info-name").innerHTML;
     let content = document.querySelector(".info-actual-text").innerHTML;
     let location = document.querySelector(".location").innerHTML;
@@ -17,6 +21,16 @@ document.querySelector(".edit-button").addEventListener("click", () => {
     let bEmail = document.querySelector(".email").value;
     let slug = document.querySelector(".slug").value;
     let imageFile = document.querySelector(".image-file-up");
+    if (slug !== initialSlug) {
+      let fResult = await fetch(`/member/slug/${slug}`);
+      let resp = await fResult.json();
+
+      if (resp.result === 0) {
+        document.querySelector(".slug-feed").style.display = "block";
+        return;
+      }
+    }
+    // return;
     let sendingObject = {
       slug,
       content,

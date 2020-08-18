@@ -1,5 +1,5 @@
 let formSubmit = document.querySelector(".subm");
-formSubmit.addEventListener("click", (e) => {
+formSubmit.addEventListener("click", async (e) => {
   document.querySelectorAll(".feed-text").forEach((x) => {
     x.innerHTML = "";
   });
@@ -38,6 +38,14 @@ formSubmit.addEventListener("click", (e) => {
   if (data.slug === "") {
     document.querySelector(".sl-text .feed-text").innerHTML =
       "This field is required";
+    return;
+  }
+  let fResult = await fetch(`/member/slug/${data.slug}`);
+  let resp = await fResult.json();
+  console.log(resp.result);
+  if (resp.result === 0) {
+    document.querySelector(".sl-text .feed-text").innerHTML =
+      "This slug is already taken";
     return;
   }
   if (data.password === "") {

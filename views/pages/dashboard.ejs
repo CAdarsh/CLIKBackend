@@ -69,21 +69,49 @@
           document.querySelector(".loader").style.display = "none";
           data.map((member) => {
             dataContainer.innerHTML += `
-            <div class="dash-row link-div" onclick="window.location='/page/${member.slug}';">
+            <div class="dash-row link-div" data-slug="${member.slug}">
               <div class="dash-name">${member.title}</div>
               <div class="dash-loc">${member.location}</div>
               <div class="dash-edit-cont">
-                <a class="dash-edit" href="/delete/${member._id}">
+                <button class="dash-edit" data-hrf=${member._id}>
                   
                     <img src="./images/delete.svg" alt="edit" class="dash-edit-img" />
                   
-                </a>
+                </button>
               </div>
             </div>
                       `;
             console.log(member);
+            let token = sessionStorage.getItem("adminToken");
+            let myHeaders = new Headers();
+            myHeaders.append("Authorization", `Bearer ${token}`);
+            document.querySelectorAll(".dash-edit").forEach((x) => {
+              x.addEventListener("click", () => {
+                let memID = x.getAttribute("data-hrf");
+
+                fetch(`/delete/${memID}`, {
+                  headers: myHeaders,
+                })
+                  .then(() => {
+                    document.location.reload();
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              });
+            });
+            document.querySelectorAll(".link-div").forEach((x) => {
+              x.addEventListener("click", (e) => {
+                if (
+                  e.target.nodeName !== "IMG" &&
+                  e.target.nodeName !== "BUTTON"
+                ) {
+                  let slug = x.getAttribute("data-slug");
+                  window.location = `/page/${slug}`;
+                }
+              });
+            });
           });
-          console.log(dataContainer);
         });
     </script>
   </body>

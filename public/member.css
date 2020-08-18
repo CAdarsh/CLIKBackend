@@ -112,6 +112,11 @@
   padding: 0px;
   display: none;
 }
+.slug-feed {
+  color: red;
+  font-size: 13px;
+  display: none;
+}
 @media only screen and (max-width: 1000px) {
   .info {
     grid-template-columns: 1fr;

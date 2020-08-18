@@ -110,34 +110,29 @@ router.post("/member/login", async (req, res) => {
   res.json(response);
 });
 
-router.get("/member/slug", async (req,res)=>{
-  let result = await getDetails.isSlugAvail(req.body.slug);
+router.get("/member/slug/:slug", async (req, res) => {
+  let result = await getDetails.isSlugAvail(req.params.slug);
   console.log(result);
-  res.json({result});
-})
+  res.json({ result });
+});
 
-
-router.get(
-  "/delete/:id",
-  adminAuth,
-  async (req, res) => {
-    let member = await memberModel.findOne({ _id: req.params.id });
-    if (!!member.image.split("\\")[2]) {
-      fs.unlink(`public/uploads/${member.image.split("\\")[2]}`, (err) => {
-        if (err) throw err;
-        console.log("image was deleted");
-      });
-    }
-    memberModel.deleteOne({ _id: req.params.id }, function (err, result) {
-      if (err) {
-        res.send(err);
-      } else {
-        console.log(result);
-        res.redirect("/admin");
-      }
+router.get("/delete/:id", adminAuth, async (req, res) => {
+  let member = await memberModel.findOne({ _id: req.params.id });
+  if (!!member.image.split("\\")[2]) {
+    fs.unlink(`public/uploads/${member.image.split("\\")[2]}`, (err) => {
+      if (err) throw err;
+      console.log("image was deleted");
     });
   }
-);
+  memberModel.deleteOne({ _id: req.params.id }, function (err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      console.log(result);
+      res.redirect("/admin");
+    }
+  });
+});
 
 //public
 router.get("/page/:slug", (req, res) => {
