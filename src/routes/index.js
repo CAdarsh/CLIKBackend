@@ -110,9 +110,16 @@ router.post("/member/login", async (req, res) => {
   res.json(response);
 });
 
+router.get("/member/slug", async (req,res)=>{
+  let result = await getDetails.isSlugAvail(req.body.slug);
+  console.log(result);
+  res.json({result});
+})
+
+
 router.get(
   "/delete/:id",
-  //add appropriate middleware
+  adminAuth,
   async (req, res) => {
     let member = await memberModel.findOne({ _id: req.params.id });
     if (!!member.image.split("\\")[2]) {

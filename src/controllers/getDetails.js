@@ -17,4 +17,18 @@ let getUser = async (slug) => {
     }
 }
 
-exports.getUser = getUser;
+let isSlugAvail = async (slug) => {
+    let user = await model.findOne({slug: slug});
+    if(user){
+        return 0;
+    }
+    else{
+        return 1;
+    }
+}
+
+
+module.exports= {
+        getUser,
+        isSlugAvail
+    };
