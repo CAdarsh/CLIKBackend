@@ -40,7 +40,7 @@ formButton.addEventListener('click', (e) => {
         document.querySelector('.feed-text-error').innerHTML = 'Invalid email and password';
       } else if (data.status == 200) {
         sessionStorage.setItem('adminToken', data.token);
-        window.location = 'http://localhost:5000/admin';
+        window.location = '/admin';
       }
     });
 });
