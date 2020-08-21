@@ -8,7 +8,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./dashboard.css" />
+    <!-- <link rel="stylesheet" href="./dashboard.css" /> -->
     <link rel="stylesheet" href="./member.css" />
     <title>Document</title>
   </head>
@@ -26,14 +26,14 @@
           image,
         } = data;
         document.querySelector(".info-name").innerHTML = title;
-        document.querySelector(".slug").value = slug;
-        document.querySelector(".slug").setAttribute("data-dslug", slug);
+        // document.querySelector(".slug").value = slug;
+        // document.querySelector(".slug").setAttribute("data-dslug", slug);
         document.querySelector(".location").innerHTML = location;
-        document.querySelector(".mail").href = `mailto:${bEmail}`;
-        document.querySelector(".web").href = website;
-        document.querySelector(".phone").href = `tel:+${bPhone}`;
-        document.querySelector(".info-actual-text").innerHTML = content;
-        document.querySelector("#img-main").src = image;
+        document.querySelector(".contact-email").href = `mailto:${bEmail}`;
+        document.querySelector(".contact-website").href = website;
+        document.querySelector(".contact-phone").href = `tel:+${bPhone}`;
+        document.querySelector(".about-text").innerHTML = content;
+        console.log(data)
       }
       let token = sessionStorage.getItem("token");
       if (token && token != "undefined") {
@@ -62,105 +62,123 @@
 
     <%- include('../partials/header') %>
     <main>
-      <h1 class="main-heading">MEMBERS</h1>
-      <div class="container">
-        <div class="edit-inps">
-          <div class="editnfeed">
-            <div class="edit-button">Edit</div>
-            <div class="edit-feed">Edit Successful</div>
-          </div>
-          <div class="inp-tags">
-            <input
-              class="website edit-inp"
-              type="text"
-              placeholder="Website"
-              class="edit-inp"
-            />
-            <div class="inp-cont">
-              <input
-                class="slug edit-inp"
-                type="text"
-                placeholder="Slug"
-                class="edit-inp"
-              />
-              <div class="slug-feed">
-                Slug is already taken
+      <div class="inner-nav">
+          <div class="company-logo"><img src="./images/clogo.jpg" alt="logo" id="img-main" class="company-logo-img"></div>
+          <div class="company-info"> 
+              <div class="company-name-loc">
+                  <h1 class="company-name info-name">John Doe Power Solutions</h2>
+                  <p class="company-loc location"><img class="company-loc-img" src="./images/pin.svg" alt="pin"> Mathikere, Bengaluru</p>
               </div>
-            </div>
-            <input
-              class="phone edit-inp"
-              type="text"
-              placeholder="Phone no."
-              class="edit-inp"
-            />
-            <input
-              class="email edit-inp"
-              type="text"
-              placeholder="email id"
-              class="edit-inp"
-            />
+              <div class="company-nav">
+                  <button class="company-nav-button btn-abt">About</button>
+                  <button class="company-nav-button btn-pro">Products</button>
+                  <button class="company-nav-button btn-con">Contact</button>
+              </div>
+              <button class="company-edit">Edit</button>
           </div>
-        </div>
-        <div class="img-feed feed-text">Please upload an image</div>
-        <div class="info">
-          <div class="info-img">
-            <img src="./images/company.jpg" alt="company" id="img-main" />
-            <div class="show-upload">
-              <img src="./images/upload.svg" alt="upload" />
-              Change Image
-              <!-- <form action="#" method="post" enctype="multipart/form-data"> -->
-              <input
-                name="myImage"
-                type="file"
-                style="
-                  opacity: 0;
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  bottom: 0;
-                  right: 0;
-                  width: 100%;
-                  height: 100%;
-                "
-                class="image-file-up"
-                accept=".jpg,.png,.jpeg"
-              />
-              <!-- </form> -->
-            </div>
-          </div>
-          <div class="info-text-1">
-            <div class="namenicon">
-              <h2 class="info-name"></h2>
-              <a class="web" href="#">
-                <img
-                  src="./images/internet.svg"
-                  alt="internet"
-                  class="info-icons"
-                />
-              </a>
-              <a class="phone" href="#">
-                <img
-                  src="./images/phone.svg"
-                  alt="internet"
-                  class="info-icons"
-                />
-              </a>
-              <a class="mail" href="#">
-                <img
-                  src="./images/email.svg"
-                  alt="internet"
-                  class="info-icons"
-                />
-              </a>
-            </div>
-            <img src="./images/pin.svg" alt="pin" class="pin-icon" />
-            <p class="location">Mathikere, Bengaluru</p>
-            <div class="sep"></div>
-            <div class="info-actual-text"></div>
-          </div>
-        </div>
       </div>
-    </main>
+      <div class="edit-feedback">
+          <div class="edit-feed-text">
+              Edit Complete
+          </div>
+      </div>
+      <div class="about">
+          <p class="about-text">asLorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mattis lorem eu ante mollis, id tristique mauris cursus. Nam commodo, felis quis euismod vestibulum, lectus diam mollis lacus, fermentum tincidunt neque ante id purus. Nulla tellus lorem, rutrum id commodo sollicitudin, commodo id odio. Mauris lobortis lectus vitae tortor iaculis, a luctus felis efficitur. Aenean non ultrices ligula. Vivamus ipsum velit, rhoncus in malesuada non, semper in massa. Pellentesque aliquam nibh eget ullamcorper mollis. Aenean nisi nulla, sollicitudin eget dui sit amet, pretium semper nulla. Quisque risus purus, laoreet vel magna lobortis, finibus accumsan magna. Sed at felis posuere, tincidunt augue a, venenatis eros. Cras interdum pulvinar nunc ac bibendum. Nam tristique non neque eu facilisis. Vivamus sit amet elit vitae nulla posuere egestas. Integer rutrum vestibulum nibh. Vestibulum vel efficitur mi. Quisque eu mauris lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras dictum, purus non consequat semper, magna leo gravida mi, eget dapibus ligula dolor eu elit. Donec nec massa turpis. Vestibulum lacus mi, euismod ut volutpat eget, venenatis sed elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fermentum nisi vitae est tempor, ultrices rhoncus velit tincidunt. Curabitur scelerisque elementum finibus. Phasellus mattis tempus eros. In consequat arcu quam. Suspendisse id scelerisque augue. Quisque blandit tellus eu diam imperdiet eleifend. Nulla egestas ac urna ac pharetra. Morbi in aliquet felis, sodales vulputate ligula. Sed sed porttitor nulla. In id nunc nec ligula congue vestibulum ut a lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin egestas, ex eu pulvinar dictum, tellus odio sollicitudin nibh, sit amet blandit sapien velit sit amet leo. Morbi lobortis aliquam lacinia. Duis sollicitudin dui eget congue convallis. Phasellus non aliquam turpis. Mauris eget sollicitudin massa. Morbi in arcu eu sem interdum laoreet vel non mi. Phasellus scelerisque semper mauris sed cursus. Morbi tincidunt lacus id tincidunt tempor. Proin auctor bibendum turpis et ultricies. Vivamus ultricies sodales nisl quis placerat. Proin interdum interdum arcu, nec tempor ex condimentum sed. Pellentesque eget felis et tellus rutrum mollis eu ut nunc. Ut convallis magna leo, ac commodo felis dignissim sed.</p>
+      </div>
+      <div class="products">
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <div class="hnp">
+
+                <h3 class="product-heading">Ethernet</h3>
+                <p class="product-price">&#8377; 2000</p>
+              </div>
+          </div>
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <div class="hnp">
+
+                <h3 class="product-heading">Ethernet</h3>
+                <p class="product-price">Contact Us</p>
+              </div>
+          </div>
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <div class="hnp">
+
+                <h3 class="product-heading">Ethernet</h3>
+                <p class="product-price">&#8377; 2000</p>
+              </div>
+          </div>
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <div class="hnp">
+
+                <h3 class="product-heading">Ethernet</h3>
+                <p class="product-price">&#8377; 2000</p>
+              </div>
+          </div>
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <div class="hnp">
+
+                <h3 class="product-heading">Ethernet</h3>
+                <p class="product-price">&#8377; 2000</p>
+              </div>
+          </div>
+          
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <div class="hnp">
+
+                <h3 class="product-heading">Ethernet</h3>
+                <p class="product-price">&#8377; 2000</p>
+              </div>
+          </div>
+          
+          <div class="product last-prod">
+            <form action="#" class="prod-form">
+
+                   <div class="product-input">
+                      <div class="info-img">
+                          <div class="show-upload">
+                            <h3 class="add-prod">Add New Product</h3>
+                              <img src="./images/upload.svg" alt="upload" class="upload-img"/>
+                              <input
+                              type="file"
+                              style="
+                              opacity: 0;
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              bottom: 0;
+                              right: 0;
+                              width: 100%;
+                              height: 100%;
+                              "
+                              required/>
+                          </div>
+                      </div>
+                  </div>
+              <input name="name" type="text" class="product-name-inp" placeholder="Product Name" required>
+              <input name="price" type="text" class="product-price-inp" placeholder="Product Price">
+              <input type="submit" class="product-submit-inp">
+              </form>
+            </div>
+          </div>
+      </div>
+      <div class="contact">
+          <div class="contact-info">
+              <a href="#" class="contact-phone"><img class="contact-info-img" src="./images/phone.svg" alt="">+91 99889 99988</a>
+              <a href="#" class="contact-email"><img class="contact-info-img" src="./images/email.svg" alt=""> johndoe@company.com</a>
+              <a href="#" class="contact-website"><img 
+                  class="contact-info-img" src="./images/internet.svg" alt=""> www.johndoe.com</a>
+          </div>
+          <div class="contact-address">
+              Please contact us through one of these mediums  
+          </div>
+      </div>
+  </main>
     <%- include('../partials/footer') %>
     <script src="./index.js"></script>
     <script src="./member.js"></script>

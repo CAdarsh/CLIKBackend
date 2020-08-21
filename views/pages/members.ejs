@@ -16,7 +16,7 @@
     <%- include('../partials/header') %>
 
     <main>
-      <div class="container">
+      <!-- <div class="container">
         <h1 class="main-heading">MEMBERS</h1>
         <div class="dash-table">
           <div class="dash-first-row">
@@ -27,26 +27,49 @@
           <div class="loader"></div>
           <div class="member-container"></div>
         </div>
+      </div> -->
+      
+
+
+      <div class="back-img-cont">
+        <!-- <div class="back-img"> -->
+        <h1 class="back-img-heading">MEMBERS</h1>
+        <!-- </div> -->
       </div>
+      <div class="members">
+        
+      </div>
+  
     </main>
     <%- include('../partials/footer') %>
     <script>
       let options = {
         method: "GET",
       };
-      let dataContainer = document.querySelector(".member-container");
+      let dataContainer = document.querySelector(".members");
       fetch("/member/all")
         .then((res) => res.json())
         .then((data) => {
-          document.querySelector(".loader").style.display = "none";
+          // document.querySelector(".loader").style.display = "none";
           data.map((member) => {
-            dataContainer.innerHTML += ` <a href="/page/${member.slug}" class="link-divs"> <div class="dash-row">
-                <div class="dash-name">
-                  <img src="./images/CLIK.png" alt="clik" class="dash-img" /> ${member.title}
-                </div>
-                <div class="dash-loc">${member.location}</div>
-                <div class="dash-yr">2006</div>
-              </div> </a>`;
+            dataContainer.innerHTML += ` <a href="/page/${member.slug}" class="link-divs"> <div class="member">
+          <img src="./images/product.jpg" alt="product" class="member-img" />
+          <div class="member-info">
+            <h2 class="member-heading">${member.title}</h2>
+            <p class="member-loc">
+              <img src="./images/pin-black.svg" alt="pin" class="pin b" />
+              <img src="./images/pin.svg" alt="pin" class="pin w" />
+              ${member.location}
+            </p>
+            <p class="member-desc">
+              ${member.tagline}
+            </p>
+            <div class="member-buttons">
+              <button class="member-vp">View Profile</button>
+              <button class="member-cu">Contact</button>
+            </div>
+          </div>
+        </div> </a>`;
             console.log(member);
           });
           console.log(dataContainer);

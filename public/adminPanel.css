@@ -1,0 +1,211 @@
+header {
+    background-color: var(--violet);
+    width: 15vw;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0vh 0;
+    color: var(--white);
+    font-family: "Oxygen", sans-serif;
+  }
+  .header-title {
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 5px;
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .header-opt {
+    display: flex;
+    opacity: 0.75;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    min-height: 30vh;
+  }
+  .header-footer {
+    font-size: 12px;
+    color: #f9f9fa;
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+  }
+  
+  .title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 10vw;
+    padding-top: 7vh;
+  }
+  .content {
+    margin-left: 20vw;
+  }
+  .title {
+    font-size: 48px;
+    color: var(--violet);
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+  }
+  .flex-container-main {
+    display: flex;
+    justify-content: space-between;
+    margin: 8vh 0vw;
+  }
+  
+  .first-header {
+    display: flex;
+    align-items: center;
+    padding-left: 0vw;
+  }
+  
+  .patch {
+    background-color: var(--light-violet);
+    width: 15px;
+    border-radius: 10px;
+    padding: 18px 0px;
+    display: inline-block;
+  }
+  .subtitle {
+    display: inline-block;
+    padding-left: 20px;
+    color: var(--violet);
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+  }
+  
+  .edit-btn {
+    color: var(--violet);
+    background-color: var(--light-violet);
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+  
+  .add-btn {
+    background-color: var(--violet);
+    color: var(--white);
+    padding: 10px 40px;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    margin-left: 1vw;
+    cursor: pointer;
+  }
+  
+  .last-header {
+    display: flex;
+    align-items: center;
+    padding-right: 10vw;
+  }
+  
+  .small-title {
+    display: grid;
+    grid-template-columns: 2fr repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    color: rgba(22, 26, 30, 0.5);
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    font-size: 24px;
+    margin-bottom: 1vw;
+    width: 70vw;
+  }
+  
+  .firm-row {
+    display: grid;
+    width: 70vw;
+    grid-template-columns: 2fr repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 3.5vh 0;
+    opacity: 0.9;
+    border-bottom: 1px solid black;
+  }
+  
+  .one {
+    grid-area: 1 / 1 / 1 / 2;
+  }
+  /* .two { grid-area: 1 / 1 / 2 / 4;;} */
+  .new-entry {
+    background-color: #444788;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 25px;
+    color: white;
+    outline: none;
+    cursor: pointer;
+  }
+  .new-entry-modal-cont {
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  
+    display: none;
+  }
+  .new-entry-modal {
+    width: 400px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 20px;
+    position: relative;
+  }
+  .new-entry-cross {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .new-entry-heading {
+    margin: 0px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--violet);
+  }
+  .new-entry-form {
+    display: grid;
+  }
+  .new-entry-form input[type="text"] {
+    padding: 10px;
+    margin: 5px auto;
+    width: 80%;
+    border-radius: 5px;
+    border: 1px solid black;
+  }
+  .new-entry-submit {
+    width: 200px;
+    justify-self: center;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    background-color: #444788;
+    border-radius: 7px;
+    margin-top: 20px;
+    padding: 10px;
+  }
+  @media only screen and (max-width: 600px) {
+    .new-entry-modal {
+      width: 80vw;
+      margin: auto;
+    }
+  }
+  

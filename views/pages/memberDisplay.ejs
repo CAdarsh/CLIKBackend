@@ -18,12 +18,13 @@
         if (data.status == 200) {
           let { content, bEmail, bPhone, website, title, location } = data.data;
           document.querySelector(".info-name").innerHTML = title;
-          document.querySelector(".location").innerHTML = location;
-          document.querySelector(".mail").href = `mailto:${bEmail}`;
-          document.querySelector(".web").href = website;
-          document.querySelector(".phone").href = `tel:+${bPhone}`;
-          document.querySelector(".info-actual-text").innerHTML = content;
-          document.querySelector("#img-main").src = image;
+        document.querySelector(".slug").value = slug;
+        document.querySelector(".slug").setAttribute("data-dslug", slug);
+        document.querySelector(".location").innerHTML = location;
+        document.querySelector(".mail").href = `mailto:${bEmail}`;
+        document.querySelector(".website").href = website;
+        document.querySelector(".phone").href = `tel:+${bPhone}`;
+        document.querySelector(".about-text").innerHTML = content;
         } else {
           window.location = "/404";
         }
@@ -52,53 +53,103 @@
 
     <%- include('../partials/header') %>
     <main>
-      <h1 class="main-heading">MEMBERS</h1>
-      <div class="container">
-        <div class="info">
-          <div class="info-img">
-            <img src="./images/company.jpg" alt="company" />
-            <div class="show-upload">
-              <img src="./images/upload.svg" id="img-main" alt="upload" />
-              Change Image
-            </div>
+      <div class="inner-nav">
+          <div class="company-logo"><img src="./images/clogo.jpg" alt="logo" id="img-main" class="company-logo-img"></div>
+          <div class="company-info"> 
+              <div class="company-name-loc">
+                  <h1 class="company-name info-name">John Doe Power Solutions</h2>
+                  <p class="company-loc location"><img class="company-loc-img" src="./images/pin.svg" alt="pin"> Mathikere, Bengaluru</p>
+              </div>
+              <div class="company-nav">
+                  <button class="company-nav-button btn-abt">About</button>
+                  <button class="company-nav-button btn-pro">Products</button>
+                  <button class="company-nav-button btn-con">Contact</button>
+              </div>
           </div>
-          <div class="info-text-1">
-            <div class="namenicon">
-              <h2 class="info-name"></h2>
-              <a class="web" href="#">
-                <img
-                  src="./images/internet.svg"
-                  alt="internet"
-                  class="info-icons"
-                />
-              </a>
-              <a class="phone" href="#">
-                <img
-                  src="./images/phone.svg"
-                  alt="internet"
-                  class="info-icons"
-                />
-              </a>
-              <a class="mail" href="#">
-                <img
-                  src="./images/email.svg"
-                  alt="internet"
-                  class="info-icons"
-                />
-              </a>
-            </div>
-            <img src="./images/pin.svg" alt="pin" class="pin-icon" />
-            <p class="location">Mathikere, Bengaluru</p>
-            <div class="sep"></div>
-            <div class="loader"></div>
-            <div class="info-actual-text">
-             
-            </div>
-          </div>
-        </div>
       </div>
-    </main>
+      <div class="edit-feedback">
+          <div class="edit-feed-text">
+              Edit Complete
+          </div>
+      </div>
+      <div class="about">
+          <p class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mattis lorem eu ante mollis, id tristique mauris cursus. Nam commodo, felis quis euismod vestibulum, lectus diam mollis lacus, fermentum tincidunt neque ante id purus. Nulla tellus lorem, rutrum id commodo sollicitudin, commodo id odio. Mauris lobortis lectus vitae tortor iaculis, a luctus felis efficitur. Aenean non ultrices ligula. Vivamus ipsum velit, rhoncus in malesuada non, semper in massa. Pellentesque aliquam nibh eget ullamcorper mollis. Aenean nisi nulla, sollicitudin eget dui sit amet, pretium semper nulla. Quisque risus purus, laoreet vel magna lobortis, finibus accumsan magna. Sed at felis posuere, tincidunt augue a, venenatis eros. Cras interdum pulvinar nunc ac bibendum. Nam tristique non neque eu facilisis. Vivamus sit amet elit vitae nulla posuere egestas. Integer rutrum vestibulum nibh. Vestibulum vel efficitur mi. Quisque eu mauris lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras dictum, purus non consequat semper, magna leo gravida mi, eget dapibus ligula dolor eu elit. Donec nec massa turpis. Vestibulum lacus mi, euismod ut volutpat eget, venenatis sed elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fermentum nisi vitae est tempor, ultrices rhoncus velit tincidunt. Curabitur scelerisque elementum finibus. Phasellus mattis tempus eros. In consequat arcu quam. Suspendisse id scelerisque augue. Quisque blandit tellus eu diam imperdiet eleifend. Nulla egestas ac urna ac pharetra. Morbi in aliquet felis, sodales vulputate ligula. Sed sed porttitor nulla. In id nunc nec ligula congue vestibulum ut a lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin egestas, ex eu pulvinar dictum, tellus odio sollicitudin nibh, sit amet blandit sapien velit sit amet leo. Morbi lobortis aliquam lacinia. Duis sollicitudin dui eget congue convallis. Phasellus non aliquam turpis. Mauris eget sollicitudin massa. Morbi in arcu eu sem interdum laoreet vel non mi. Phasellus scelerisque semper mauris sed cursus. Morbi tincidunt lacus id tincidunt tempor. Proin auctor bibendum turpis et ultricies. Vivamus ultricies sodales nisl quis placerat. Proin interdum interdum arcu, nec tempor ex condimentum sed. Pellentesque eget felis et tellus rutrum mollis eu ut nunc. Ut convallis magna leo, ac commodo felis dignissim sed.</p>
+      </div>
+      <div class="products">
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <h3 class="product-heading">Ethernet</h3>
+          </div>
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <h3 class="product-heading">Ethernet</h3>
+          </div>
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <h3 class="product-heading">Ethernet</h3>
+          </div>
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <h3 class="product-heading">Ethernet</h3>
+          </div>
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <h3 class="product-heading">Ethernet</h3>
+          </div>
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <h3 class="product-heading">Ethernet</h3>
+          </div>
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <h3 class="product-heading">Ethernet</h3>
+          </div>
+          <div class="product">
+              <img class="product-img" src="images/product.jpg" alt="product">
+              <h3 class="product-heading">Ethernet</h3>
+          </div>
+          <div class="product last-prod">
+              <form action="#">
+
+                  <div class="product-input">
+                      <div class="info-img">
+                          <div class="show-upload">
+                              <img src="./images/upload.svg" alt="upload" class="upload-img"/>
+                              <input
+                              type="file"
+                              style="
+                            opacity: 0;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            width: 100%;
+                            height: 100%;
+                            "
+                        />
+                      </div>
+                  </div>
+              </div>
+              <input type="text" class="product-name-inp" placeholder="Product Name">
+              <input type="submit" class="product-submit-inp" placeholder="Product Name">
+          </form>
+          </div>
+      </div>
+      <div class="contact">
+          <div class="contact-info">
+              <a href="#" class="contact-phone phone"><img class="contact-info-img" src="./images/phone.svg" alt="">+91 99889 99988</a>
+              <a href="#" class="contact-email mail"><img class="contact-info-img" src="./images/email.svg" alt=""> johndoe@company.com</a>
+              <a href="#" class="contact-website website"><img 
+                  class="contact-info-img" src="./images/internet.svg" alt=""> www.johndoe.com</a>
+          </div>
+          <div class="contact-address">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet possimus dolor alias accusamus molestiae maiores placeat nobis et tempora nostrum iure quaerat aliquam, laboriosam fuga veritatis, molestias officiis ad! Natus!
+          </div>
+      </div>
+  </main>
     <%- include('../partials/footer') %>
+    <script src="./memberDisplay.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>

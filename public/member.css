@@ -1,155 +1,306 @@
-:root {
+* {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }
-.main-heading {
-  margin-bottom: 50px;
-}
-.info {
+.inner-nav {
+  height: 250px;
+  background-color: #354067;
+  padding: 50px 10vw 0px 10vw;
   display: grid;
-  grid-template-columns: 1fr 2.5fr;
-}
-.info-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.info a {
-  text-decoration: none;
-}
-.info-icons {
-  height: 1.3em;
-  margin-right: 20px;
-  margin-top: 7px;
-  /* align-self: center; */
-}
-.info-text-1 {
-  padding: 10px 50px;
-}
-.namenicon {
-  display: grid;
-  grid-template-columns: 1fr auto auto auto;
-}
-.info-name {
-  margin-top: 0px;
-}
-.pin-icon {
-  display: inline-block;
-  height: 1.2em;
-  margin-right: 10px;
-}
-.location {
-  display: inline-block;
-  margin: 0px;
-}
-.info-actual-text {
-  margin-top: 20px;
-}
-.info-img {
+  grid-template-columns: 250px auto;
   position: relative;
 }
-.show-upload {
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.5);
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  align-content: center;
-  justify-content: center;
-  text-align: center;
-  cursor: pointer;
-  font-size: 23px;
-  display: none;
+.company-logo-img {
+  height: 250px;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-.show-upload img {
-  height: 30px;
-  width: auto;
-  margin: auto;
+.company-info {
+  padding: 0px 0px 0px 50px;
 }
-.edit-inps {
+.company-name-loc {
   display: flex;
   justify-content: space-between;
-}
-.edit-button {
-  background-color: #444788;
+  align-items: center;
   color: white;
-  padding: 10px 20px;
-  width: 50px;
-  margin-bottom: 30px;
-  border-radius: 5px;
-  display: grid;
-  justify-content: center;
-  outline: none;
-  border: none;
-  cursor: pointer;
 }
-.edit-inp {
-  height: 40px;
-  padding: 0px 10px;
+.company-loc-img {
+  margin-right: 10px;
+  height: 1.2em;
+}
+.company-name {
+  font-size: 35px;
+}
+.company-loc {
+  font-size: 20px;
+}
+.company-nav {
+  display: flex;
+  position: absolute;
+  bottom: -1px;
+  left: calc(10vw + 300px);
+}
+.company-nav-button {
+  border: none;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  padding: 15px 50px;
+  font-size: 20px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  margin-right: 10px;
+  color: white;
+}
+.btn-abt {
+  background-color: white;
+  color: var(--dark-violet);
+}
+.company-edit {
+  padding: 10px 40px;
+  font-size: 18px;
+  border-radius: 3px;
+  background-color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 25%;
+  right: 10vw;
+}
+.about {
+  padding: 100px 10vw;
+  font-size: 18px;
+  line-height: 1.5em;
+}
+.products {
+  padding: 100px 10vw;
+  display: none;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+  column-gap: 40px;
+  row-gap: 30px;
+}
+.product {
+  border-radius: 5px;
+  background-color: #eef1f7;
+}
+.product-img {
+  width: 100%;
+  height: auto;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.product-heading {
+  font-size: 20px;
+  margin: 20px 0px;
+}
+.last-prod {
+  /* display: grid; */
+  /* justify-content: center; */
+  /* align-items: flex-start; */
+  font-size: 70px;
+  padding-top: 0px;
+  cursor: pointer;
+  position: relative;
+  box-sizing: content-box;
+  min-height: 18vw;
+}
+.contact {
+  padding: 100px 10vw;
+  font-size: 20px;
+  display: none;
+  grid-template-columns: 1fr 1.5fr;
+  line-height: 1.5em;
+}
+.contact-info > a {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  color: black;
+  text-decoration: none;
+}
+.contact-phone {
+  margin-top: 0px !important;
+}
+.contact-info-img {
+  height: 1.5em;
   margin-right: 20px;
 }
-.inp-tags {
+.edit-feedback {
+  margin: 80px 10vw -80px 10vw;
   display: none;
 }
-.editnfeed {
-  display: flex;
-}
-.edit-feed {
-  margin-left: 20px;
-  height: 40px;
-  display: grid;
-  border: 1px solid green;
-  border-radius: 3px;
-  align-items: center;
-  padding: 0px 20px;
+.edit-feed-text {
+  display: inline-block;
+  padding: 7px 30px;
   color: green;
-  display: none;
+  border: 1px solid green;
+  /* display: none; */
 }
-.img-feed {
-  position: unset;
-  padding: 0px;
-  display: none;
+.show-upload {
+  position: relative;
 }
-.slug-feed {
-  color: red;
-  font-size: 13px;
-  display: none;
+.product-name-inp {
+  height: 35px;
+  width: 90%;
+  margin: auto;
+  position: absolute;
+  bottom: 90px;
+  left: 5%;
+  background-color: transparent;
+  border:none;
+  border-bottom:1px solid black;
+  padding:0px 10px;
+  /* border-radius:3px; */
+}
+.product-price-inp {
+  padding:0px 10px; 
+  height: 35px;
+  border:none;
+  border-bottom:1px solid black;
+  width: 90%;
+  margin: auto;
+  position: absolute;
+  bottom: 50px;
+  left: 5%;
+  background-color: transparent;
+  /* border-radius:3px; */
+}
+.product-submit-inp {
+  height: 35px;
+  width: 90%;
+  margin: auto;
+  position: absolute;
+  bottom: 10px;
+  left: 5%;
+  background-color: var(--violet);
+  border: none;
+  color: white;
+  /* border-radius:3px; */
+}
+.upload-img {
+  /* position: absolute; */
+  /* top: 20px; */
+}
+.prod-form{
+  width:100%;
+}
+.hnp{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:0px 10px;
+}
+.add-prod{
+  font-size:20px;
+  text-align:center;
+  margin-top:20px;
 }
 @media only screen and (max-width: 1000px) {
-  .info {
+  .inner-nav {
+    height: 130px;
+    padding: 10px 5vw 0px 5vw;
+    grid-template-columns: 100px auto;
+  }
+  .company-logo-img {
+    height: 100px;
+    margin-top: 5px;
+    border-radius: 20px;
+  }
+  .company-info {
+    padding: 10px 0px 0px 50px;
+  }
+  .company-name {
+    font-size: 30px;
+  }
+  .company-loc {
+    display: none;
+  }
+  .company-nav {
+    left: calc(5vw + 150px);
+  }
+  .company-nav-button {
+    font-size: 15px;
+    /* font-weight: 600; */
+    padding: 10px 30px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    margin-right: 5px;
+  }
+  .company-edit {
+    padding: 7px 20px;
+    font-size: 15px;
+    border-radius: 3px;
+    background-color: #354067;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: -45px;
+    right: 5vw;
+  }
+  .about,
+  .products,
+  .contact {
+    padding: 60px 5vw;
+  }
+  .products {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .edit-feedback {
+    margin: 30px 5vw 0px 5vw;
+  }
+  .prod-form{
+    width:100%!important;
+  }
+  .last-prod{
+    min-height: 30vw;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .products {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+  }
+  .company-info {
+    padding: 0px 0px 0px 15px;
+  }
+  .company-nav {
+    left: calc(5vw + 115px);
+  }
+  .company-name {
+    font-size: 25px;
+  }
+  .company-nav-button {
+    font-size: 15px;
+    /* font-weight: 600; */
+    padding: 7px 10px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    margin-right: 5px;
+  }
+  .product {
+    background-color: #eef1f7;
+    border-radius: 10px;
+  }
+  .product-img {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+  .contact {
     grid-template-columns: 1fr;
-    display: block;
+    row-gap: 30px;
   }
-  .info-text-1 {
-    padding: 0px;
-  }
-  .info-img img {
-    width: 300px;
-    height: auto;
-    margin-bottom: 20px;
-    /* height: 400px; */
-  }
-  .main-heading {
-    margin-bottom: 20px;
+  .edit-feedback {
     margin-top: 20px;
   }
-  .info-img {
-    display: grid;
-    justify-content: center;
+  .prod-form{
+    width:100%!important;
   }
-  .show-upload img {
-    height: 30px;
-    width: auto;
-    margin: auto;
-  }
-  .inp-tags {
-    flex-direction: column;
-    margin-bottom: 20px;
-    row-gap: 10px;
-  }
-  .edit-button {
-    height: 25px;
+  .last-prod{
+    min-height: 50vw;
   }
 }

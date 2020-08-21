@@ -3,8 +3,20 @@
   padding: 0px;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  --violet: #444788;  
+  --light-violet: rgba(59, 62, 121, 0.2);
+  --red:red;
+  --black: #161A1E;
+  --white: #FFFFFF;
 }
-body {
+*{
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  font-family: 'Oxygen', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
 }
 header {
   padding: 10px 10vw;

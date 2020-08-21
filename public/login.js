@@ -44,7 +44,7 @@ formButton.addEventListener('click', (e) => {
         alert(data);
         sessionStorage.setItem('token', data.token);
         console.log('Hellso');
-        window.location = '/member/edit';
+        window.location = '/member/page';
       }
     });
 });
