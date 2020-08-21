@@ -3,19 +3,19 @@
   padding: 0px;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  --violet: #444788;  
+  --violet: #444788;
   --light-violet: rgba(59, 62, 121, 0.2);
-  --red:red;
-  --black: #161A1E;
-  --white: #FFFFFF;
+  --red: red;
+  --black: #161a1e;
+  --white: #ffffff;
 }
-*{
+* {
   padding: 0;
   margin: 0;
 }
 
-body{
-  font-family: 'Oxygen', sans-serif;
+body {
+  font-family: "Oxygen", sans-serif;
   /* font-family: 'Poppins', sans-serif; */
 }
 header {
@@ -110,9 +110,13 @@ footer {
   text-align: center;
   font-size: 13px;
 }
+footer p {
+  margin: 15px;
+}
 footer h3 {
   font-size: 20px;
   font-weight: 600;
+  margin-bottom: 20px;
 }
 footer .ql a {
   display: block;
@@ -141,6 +145,7 @@ footer .logo {
   background-color: white;
   padding: 20px;
   transition: 0.3s;
+  z-index: 5;
 }
 .side button {
   display: grid;
@@ -182,7 +187,7 @@ footer .logo {
   height: 20px;
   width: 100%;
 }
-.feed-text-error{
+.feed-text-error {
   color: red;
   text-align: center;
 }
@@ -207,6 +212,18 @@ footer .logo {
     grid-template-columns: 1fr;
     text-align: start;
   }
+  .cu {
+    margin-top: 15px;
+  }
+  .ql {
+    margin-bottom: 15px;
+  }
+  .ql a {
+    margin-left: 15px;
+  }
+  .socials {
+    padding-left: 15px;
+  }
   .navstuff {
     display: none;
   }
@@ -221,6 +238,9 @@ footer .logo {
     margin-left: 0px;
     border-radius: 3px;
     color: white !important;
+  }
+  header a {
+    margin-left: 0px;
   }
 }
 @media only screen and (max-width: 600px) {

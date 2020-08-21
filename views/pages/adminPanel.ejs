@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./adminPanel.css" />
   </head>
   <body>
-    <header>
+    <header class="side-header">
       <div class="header-title">
         ADMIN
       </div>
@@ -37,6 +37,10 @@
         &#169; 2020 CLIK | Powered By: CLIK.
       </div>
     </header>
+    <div class="header-container">
+      <%- include('../partials/header') %>
+    </div>
+
     <div class="new-entry-modal-cont">
       <div class="new-entry-modal">
         <div class="new-entry-cross">x</div>
@@ -45,7 +49,11 @@
           <input type="text" class="cn" placeholder="Company Name" />
           <input type="text" class="nm" placeholder="Name" />
           <input type="text" class="ln" placeholder="Location" />
-          <input type="text" class="sl" placeholder="Slug  (clikindia.co.in/member/[slug])" />
+          <input
+            type="text"
+            class="sl"
+            placeholder="Slug  (clikindia.co.in/member/[slug])"
+          />
           <input type="text" class="as" placeholder="Active Since" />
           <input type="text" class="em" placeholder="Email" />
           <input type="submit" class="new-entry-submit" value="Publish" />
@@ -54,7 +62,7 @@
     </div>
     <div class="content">
       <div class="title-bar">
-        <div class="logo">
+        <div class="logo big-logo">
           <img src="./images/logo.png" alt="logo" />
         </div>
         <div class="title">
@@ -69,9 +77,9 @@
 
         <div class="last-header">
           <div class="edit-btn">Edit</div>
-          <div class="add-btn">
+          <button class="add-btn">
             <img src="./images/plus.png" alt="plus" /> New Entry
-          </div>
+          </button>
         </div>
       </div>
 
@@ -102,7 +110,9 @@
         <div class="three">2005</div>
       </div>
     </div>
-    <%- include('../partials/footer') %>
+    <div class="footer-container">
+      <%- include('../partials/footer') %>
+    </div>
     <script src="index.js"></script>
     <script src="adminPanel.js"></script>
   </body>
