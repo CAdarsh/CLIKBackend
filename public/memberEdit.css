@@ -1,72 +1,84 @@
-.edit-heading{
-    width:100%;
-    height:100px;
-    display:flex;
-    justify-content: center;
-    align-items:center;
-    background-color:var(--violet);
-    font-size:30px;
-    text-transform:uppercase;
-    font-weight:600;
-    color:white;
+.edit-heading {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--violet);
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: white;
 }
-.edit-form{
-    width: 500px;
+.edit-form {
+  width: 500px;
   margin: auto;
   display: grid;
-  padding:50px 0px;
+  padding: 50px 0px;
 }
-.form-label{
-    font-size:13px;
+.form-label {
+  font-size: 13px;
 }
-input[type="text"],input[type="email"]{
-    height:35px;
-    margin-bottom:15px;
-    border-radius:5px;
-    border:1px solid black;
-    padding:0px 10px;
+input[type="text"],
+input[type="email"] {
+  height: 35px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 0px 10px;
 }
-textarea{
-    padding:10px 10px;
-    border-radius:5px;
-    margin-bottom:15px;
+textarea {
+  padding: 10px 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
 }
-.show-upload{
-    width:100px;
-    height:100px;
-    background-size:cover;
-    background-image: url('./images/clogo.jpg');
-    position:relative;
-    cursor:pointer;
+.show-upload {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-image: url("./images/clogo.jpg");
+  position: relative;
+  cursor: pointer;
+  background-position: center;
 }
-.upload-img{
-    cursor:pointer;
-    position:absolute;
-    top:0px;
-    left:0px;
-    right:0px;
-    bottom:0px;
-    height:50%;
-    width:50%;
-    margin:25%;
-    opacity:0.7;
+.upload-img {
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 50%;
+  width: 50%;
+  margin: 25%;
+  opacity: 0.7;
 }
-.file-inp{
-    cursor:pointer;
+.file-inp {
+  cursor: pointer;
 }
-.form-butts{
-    margin:30px auto;
-    display:flex;
+.form-butts {
+  margin: 30px auto;
+  display: flex;
 }
-.form-butts a, .form-butts input{
-    padding:7px 20px;
-    background-color:var(--violet);
-    color:white;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-    outline:none;
-    text-decoration:none;
-    font-size:20px;
-    margin-right:20px;
+.form-butts a,
+.form-butts button {
+  padding: 7px 20px;
+  background-color: var(--violet);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  font-size: 20px;
+  margin-right: 20px;
+}
+.cslug {
+  margin-bottom: 0px !important;
+}
+.slug-feed {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 15px;
+  display: none;
 }

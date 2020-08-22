@@ -48,14 +48,15 @@
         <form class="new-entry-form">
           <input type="text" class="cn" placeholder="Company Name" />
           <input type="text" class="nm" placeholder="Name" />
-          <input type="text" class="ln" placeholder="Location" />
+          <input type="text" class="ln" placeholder="Location (Short)" />
+          <input type="text" class="ad" placeholder="Address" />
           <input
             type="text"
             class="sl"
             placeholder="Slug  (clikindia.co.in/member/[slug])"
           />
-          <input type="text" class="as" placeholder="Active Since" />
           <input type="text" class="em" placeholder="Email" />
+          <div class="slug-feed">This Slug already exists</div>
           <input type="submit" class="new-entry-submit" value="Publish" />
         </form>
       </div>
@@ -76,7 +77,6 @@
         </div>
 
         <div class="last-header">
-          <div class="edit-btn">Edit</div>
           <button class="add-btn">
             <img src="./images/plus.png" alt="plus" /> New Entry
           </button>
@@ -88,7 +88,11 @@
         <div class="two">Location</div>
         <div class="three">Email</div>
       </div>
-
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
       <div class="firm-row">
         <div class="one">John Doe Power Solutions</div>
         <div class="two">Bengaluru</div>
