@@ -16,15 +16,21 @@
     <script>
       function ChangeData(data) {
         if (data.status == 200) {
-          let { content, bEmail, bPhone, website, title, location } = data.data;
+          let { content, bEmail, bPhone, website, title, location,image } = data.data;
           document.querySelector(".info-name").innerHTML = title;
-        document.querySelector(".slug").value = slug;
-        document.querySelector(".slug").setAttribute("data-dslug", slug);
+        // document.querySelector(".slug").value = slug;
+        // document.querySelector(".slug").setAttribute("data-dslug", slug);
         document.querySelector(".location").innerHTML = location;
         document.querySelector(".mail").href = `mailto:${bEmail}`;
+        document.querySelector(".mail").innerHTML = `${bEmail}`;
+        document.querySelector(".website").innerHTML = `${website}`;
+        document.querySelector(".phone").innerHTML = `${bPhone}`;
         document.querySelector(".website").href = website;
         document.querySelector(".phone").href = `tel:+${bPhone}`;
         document.querySelector(".about-text").innerHTML = content;
+        document.querySelector(".contact-address").innerHTML = location;
+        // document.querySelector(".company-logo-img").src = image;
+        
         } else {
           window.location = "/404";
         }
@@ -45,7 +51,7 @@
       fetch("/page/details", requestOptions)
         .then((response) => response.json())
         .then((result) => {
-          document.querySelector(".loader").style.display = "none";
+          // document.querySelector(".loader").style.display = "none";
           ChangeData(result);
         })
         .catch((error) => console.log("error", error));
@@ -54,7 +60,7 @@
     <%- include('../partials/header') %>
     <main>
       <div class="inner-nav">
-          <div class="company-logo"><img src="./images/clogo.jpg" alt="logo" id="img-main" class="company-logo-img"></div>
+          <div class="company-logo"><img src="./images/company.jpg" alt="logo" id="img-main" class="company-logo-img"></div>
           <div class="company-info"> 
               <div class="company-name-loc">
                   <h1 class="company-name info-name">John Doe Power Solutions</h2>
@@ -109,32 +115,34 @@
               <h3 class="product-heading">Ethernet</h3>
           </div>
           <div class="product last-prod">
-              <form action="#">
+            <form action="#" class="prod-form">
 
-                  <div class="product-input">
+                   <div class="product-input">
                       <div class="info-img">
                           <div class="show-upload">
+                            <h3 class="add-prod">Add New Product</h3>
                               <img src="./images/upload.svg" alt="upload" class="upload-img"/>
                               <input
                               type="file"
                               style="
-                            opacity: 0;
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            bottom: 0;
-                            right: 0;
-                            width: 100%;
-                            height: 100%;
-                            "
-                        />
+                              opacity: 0;
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              bottom: 0;
+                              right: 0;
+                              width: 100%;
+                              height: 100%;
+                              "
+                              required/>
+                          </div>
                       </div>
                   </div>
-              </div>
-              <input type="text" class="product-name-inp" placeholder="Product Name">
-              <input type="submit" class="product-submit-inp" placeholder="Product Name">
-          </form>
-          </div>
+              <input name="name" type="text" class="product-name-inp" placeholder="Product Name" required>
+              <input name="price" type="text" class="product-price-inp" placeholder="Product Price">
+              <input type="submit" class="product-submit-inp">
+              </form>
+            </div>
       </div>
       <div class="contact">
           <div class="contact-info">

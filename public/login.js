@@ -38,10 +38,9 @@ formButton.addEventListener('click', (e) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.status == 403) {
-        alert('Bad request');
+        alert('Incorrect Credentials');
         document.querySelector('.feed-text-error').innerHTML = 'Invalid email and password';
       } else if (data.status == 200) {
-        alert(data);
         sessionStorage.setItem('token', data.token);
         console.log('Hellso');
         window.location = '/member/page';

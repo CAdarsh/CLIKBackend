@@ -1,20 +1,21 @@
-const jwt = require("jsonwebtoken");
-let memberModel = require("./models/Member");
-let adminModel = require("./models/Admin");
-const path = require("path");
-let multer = require("multer");
-let storage = multer.diskStorage({
-  destination: "./public/uploads/",
+const jwt = require('jsonwebtoken');
+const path = require('path');
+const multer = require('multer');
+const memberModel = require('./models/Member');
+const adminModel = require('./models/Admin');
+
+const storage = multer.diskStorage({
+  destination: './public/uploads/',
   filename: (req, file, cb) => {
     cb(
       null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
     );
   },
 });
-let upload = multer({
-  storage: storage,
-}).single("myImage");
+const upload = multer({
+  storage,
+}).single('myImage');
 
 function notFound(req, res, next) {
   res.status(404);
@@ -22,91 +23,100 @@ function notFound(req, res, next) {
   next(error);
 }
 
-let auth = async (req, res, next) => {
+const auth = async (req, res, next) => {
   try {
-    let token = req.header("Authorization").split(" ")[1];
-    let data = jwt.verify(token, "lololol");
-    let user = await memberModel.findOne({ email: data.email });
+    const token = req.header('Authorization').split(' ')[1];
+    const data = jwt.verify(token, 'lololol');
+    const user = await memberModel.member.findOne({ email: data.email }).populate('products');
+    // const buser = (await memberModel.product.find()).populate('products');
+    console.log(user);
     if (!user) {
-      throw new Error("Invalid Token");
+      throw new Error('Invalid Token');
     } else {
       req.dataJWT = user;
+      req.statusCode = 200;
       next();
     }
   } catch (err) {
-    // console.log("Invalid");
+    console.log('Invalid');
     req.dataJWT = err;
+    req.statusCode = 403;
+    next();
     // res.redirect("/login");
   }
 };
 
-let adminAuth = async (req, res, next) => {
+const adminAuth = async (req, res, next) => {
   try {
-    let token = req.header("Authorization").split(" ")[1];
-    let data = jwt.verify(token, "lololol");
-    let user = await adminModel
+    const token = req.header('Authorization').split(' ')[1];
+    const data = jwt.verify(token, 'lololol');
+    const user = await adminModel
       .findOne({ email: data.email, password: data.password })
       .catch((err) => console.log(err));
     console.log(user);
     if (!user) {
-      throw new Error("Invalid Token");
+      throw new Error('Invalid Token');
     } else {
       req.data = user;
       next();
     }
   } catch (err) {
-    console.log("bad");
+    console.log('bad');
     req.data = false;
   }
 };
 
-let authAndUpdate = (req, res, next) => {
+const authAndUpdate = (req, res, next) => {
   // try {
-  let { content, bEmail, bPhone, website, title, location, slug } = JSON.parse(
+  const {
+    content, bEmail, bPhone, website, title, location, slug
+  } = JSON.parse(
     req.headers.contents
   );
 
-  let token = req.header("Authorization").split(" ")[1];
-  let data = jwt.verify(token, "lololol");
+  const token = req.header('Authorization').split(' ')[1];
+  const data = jwt.verify(token, 'lololol');
 
   upload(req, res, async (err) => {
     if (err) {
       res.send(err);
     } else {
       console.log(req.file);
-      let user = await memberModel.findOne({ slug: slug });
+      const user = await memberModel.findOne({ slug });
       if (!user) {
-        throw new Error("Invalid Token");
-      } else {
-        if (req.file) {
-          req.data = await memberModel.updateOne(
-            { slug: slug },
-            {
-              content,
-              bEmail,
-              bPhone,
-              website,
-              title,
-              location,
-              image: req.file.path.split("public")[1],
-            }
-          );
-          console.log({
+        throw new Error('Invalid Token');
+      } else if (req.file) {
+        req.data = await memberModel.updateOne(
+          { slug },
+          {
             content,
             bEmail,
             bPhone,
             website,
             title,
             location,
-            image: req.file.path.split("public")[1],
-          });
-        } else {
-          req.data = await memberModel.updateOne(
-            { slug: slug },
-            { content, bEmail, bPhone, website, title, location }
-          );
-          console.log({ content, bEmail, bPhone, website, title, location });
-        }
+            image: req.file.path.split('public')[1],
+          }
+        );
+        console.log({
+          content,
+          bEmail,
+          bPhone,
+          website,
+          title,
+          location,
+          image: req.file.path.split('public')[1],
+        });
+      } else {
+        req.data = await memberModel.updateOne(
+          { slug },
+          {
+            content, bEmail, bPhone, website, title, location
+          }
+        );
+        console.log({
+          content, bEmail, bPhone, website, title, location
+        });
       }
       res.json(JSON.parse(req.headers.contents));
     }
@@ -127,7 +137,7 @@ function errorHandler(err, req, res, next) {
   res.status(statusCode);
   res.json({
     message: err.message,
-    stack: process.env.NODE_ENV === "production" ? "🥞" : err.stack,
+    stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
   });
 }
 

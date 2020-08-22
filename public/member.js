@@ -120,39 +120,6 @@ const isEditing = false;
 
 edit.addEventListener('click', () => {
   window.location = '/member/edit';
-//   isEditing = !isEditing;
-//   if (isEditing) {
-//     // document.querySelector(".inp-tags").style.display = "flex";
-//     document.designMode = 'on';
-//     edit.innerHTML = 'Submit';
-//     // document.querySelector(".show-upload").style.display = "grid";
-//   } else {
-//     const compName = document.querySelector('.company-name').innerHTML;
-//     const compDesc = document.querySelector('.about-text').innerHTML;
-//     const compLoca = document.querySelector('.company-loc').innerHTML;
-//     const compAddress = document.querySelector('.contact-address').innerHTML;
-//     const compPhone = document.querySelector('.contact-phone').innerText;
-//     const compWeb = document.querySelector('.contact-website').innerText;
-//     const compEmail = document.querySelector('.contact-email').innerText;
-//     const sendingObject = {
-//       compName,
-//       compDesc,
-//       compLoca,
-//       compAddress,
-//       compWeb,
-//       compPhone,
-//       compEmail,
-//     };
-//     // do fetch here
-//     document.designMode = 'off';
-//     edit.innerHTML = 'Edit';
-//     document.querySelector('.edit-feedback').style.display = 'block';
-//     console.log(document.querySelector('.edit-feedback').style.display);
-//     setTimeout(() => {
-//       document.querySelector('.edit-feedback').style.display = 'none';
-//     }, 3000);
-//   }
 });
-
 const lp = document.querySelector('.last-prod');
 lp.addEventListener('click', () => {});

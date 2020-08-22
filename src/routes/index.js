@@ -6,17 +6,34 @@ const multer = require('multer');
 const memberModel = require('../models/Member');
 
 const storage = multer.diskStorage({
-  destination: './public/uploads/',
+  destination(req, file, cb) {
+    cb(null, './public/uploads/');
+  },
   filename: (req, file, cb) => {
     cb(
       null,
       `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
     );
-  },
+  }
 });
+
 const upload = multer({
   storage,
 }).single('myImage');
+
+const productStorage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, './public/productImages/');
+  },
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      `Product_${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+    );
+  },
+});
+
+const productUpload = multer({ storage: productStorage });
 
 const router = express.Router();
 router.use(bodyParser.json());
@@ -26,6 +43,7 @@ const { auth, authAndUpdate, adminAuth } = require('../middlewares');
 const registerController = require('../controllers/register');
 const loginController = require('../controllers/loginController');
 const getDetails = require('../controllers/getDetails');
+const productController = require('../controllers/products');
 const {
   addAdmin,
   sendAdmin,
@@ -93,17 +111,14 @@ router.get('/member', (req, res) => {
 
 router.get('/member/edit', (req, res) => {
   res.render('pages/memberEdit.ejs', { logout: true });
-  // console.log(res);
 });
 
 router.get('/member/page', (req, res) => {
   res.render('pages/member.ejs', { logout: true });
-  // console.log(res);
 });
 
 router.get('/member/all', async (req, res) => {
   const result = await registerController.returnUsers();
-  // console.log(req.headers);
   res.send(result);
 });
 router.get('/member/details', auth, (req, res) => {
@@ -120,6 +135,21 @@ router.get('/member/slug/:slug', async (req, res) => {
   const result = await getDetails.isSlugAvail(req.params.slug);
   console.log(result);
   res.json({ result });
+});
+
+router.post('/member/product', auth, productUpload.single('product'), async (req, res) => {
+  if (req.statusCode == 200) {
+    const { file } = req;
+    if (!file) {
+      const error = new Error('Please upload a file');
+      error.httpStatusCode = 400;
+      return next(error);
+    }
+    productController.addProduct(file.path, req.dataJWT._id);
+    res.send(req.dataJWT);
+  } else {
+    res.send('Not Authorized');
+  }
 });
 
 router.get('/delete/:id', adminAuth, async (req, res) => {

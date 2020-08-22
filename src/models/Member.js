@@ -75,8 +75,27 @@ const memberScheme = new mongoose.Schema({
   tagline: {
     type: String,
     default: ''
-  }
-
+  },
+  products: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Products'
+  }]
 });
 
-module.exports = mongoose.model('Member', memberScheme);
+const productSchema = new mongoose.Schema({
+  price: {
+    type: Number,
+    // default:
+  },
+  image: {
+    type: String,
+    default: '/images/product.jpg'
+  },
+  seller: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Member'
+  }
+});
+
+exports.member = mongoose.model('Member', memberScheme);
+exports.product = mongoose.model('Products', productSchema);

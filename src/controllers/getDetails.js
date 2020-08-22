@@ -1,34 +1,30 @@
+const jwt = require('jsonwebtoken');
+const model = require('../models/Member');
 
-let model = require("../models/Member");  
-let jwt = require('jsonwebtoken');
-
-let getUser = async (slug) => {
-    let resultUser = await model.findOne({slug: slug});
-    if (resultUser){
-        return {
-            status: 200,
-            data: resultUser
-        }
-    }
-    else{
-        return {
-            status: 403
-        }
-    }
-}
-
-let isSlugAvail = async (slug) => {
-    let user = await model.findOne({slug: slug});
-    if(user){
-        return 0;
-    }
-    else{
-        return 1;
-    }
-}
-
-
-module.exports= {
-        getUser,
-        isSlugAvail
+const getUser = async (slug) => {
+  const resultUser = await model.member.findOne({ slug });
+  if (resultUser) {
+    return {
+      status: 200,
+      data: resultUser
     };
+  }
+
+  return {
+    status: 403
+  };
+};
+
+const isSlugAvail = async (slug) => {
+  const user = await model.findOne({ slug });
+  if (user) {
+    return 0;
+  }
+
+  return 1;
+};
+
+module.exports = {
+  getUser,
+  isSlugAvail
+};
