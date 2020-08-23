@@ -16,7 +16,7 @@
     <script>
       function ChangeData(data) {
         if (data.status == 200) {
-          let { content, bEmail, bPhone, website, title, location,image } = data.data;
+          let { content, bEmail, bPhone, website, title, location,image,products } = data.data;
           document.querySelector(".info-name").innerHTML = title;
         // document.querySelector(".slug").value = slug;
         // document.querySelector(".slug").setAttribute("data-dslug", slug);
@@ -31,6 +31,31 @@
         document.querySelector(".contact-address").innerHTML = location;
         document.querySelector(".company-logo-img").src = `${image.split('\\')[1]}/${image.split('\\')[2]}`;
         
+        // let a = products.reduce((acc,data,index)=>{
+        //   acc += `<div class="product">
+        //   <img class="product-img opac" src="${data.image}" alt="product">
+        //   <div class="hnp opac">
+        //     <h3 class="product-heading">${data.name}</h3>
+        //     <p class="product-price">&#8377; ${data.price} </p>
+        //   </div>
+        //   <img src="/images/delete.svg" alt="delete" class="delete-svg"/>
+        // </div>  `;
+        // console.log(data.name)
+        // },' ');  
+        // console.log(a);
+
+        let a = products.map((data)=>{
+          return  `<div class="product">
+          <img class="product-img opac" src="${data.image}" alt="product">
+          <div class="hnp opac">
+            <h3 class="product-heading">${data.name}</h3>
+            <p class="product-price">&#8377; ${data.price} </p>
+          </div>
+          <img src="/images/delete.svg" alt="delete" class="delete-svg"/>
+        </div>  `
+        })
+
+        document.querySelector('.products').innerHTML += a;
         } else {
           window.location = "/404";
         }
@@ -102,64 +127,9 @@
           <p class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mattis lorem eu ante mollis, id tristique mauris cursus. Nam commodo, felis quis euismod vestibulum, lectus diam mollis lacus, fermentum tincidunt neque ante id purus. Nulla tellus lorem, rutrum id commodo sollicitudin, commodo id odio. Mauris lobortis lectus vitae tortor iaculis, a luctus felis efficitur. Aenean non ultrices ligula. Vivamus ipsum velit, rhoncus in malesuada non, semper in massa. Pellentesque aliquam nibh eget ullamcorper mollis. Aenean nisi nulla, sollicitudin eget dui sit amet, pretium semper nulla. Quisque risus purus, laoreet vel magna lobortis, finibus accumsan magna. Sed at felis posuere, tincidunt augue a, venenatis eros. Cras interdum pulvinar nunc ac bibendum. Nam tristique non neque eu facilisis. Vivamus sit amet elit vitae nulla posuere egestas. Integer rutrum vestibulum nibh. Vestibulum vel efficitur mi. Quisque eu mauris lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras dictum, purus non consequat semper, magna leo gravida mi, eget dapibus ligula dolor eu elit. Donec nec massa turpis. Vestibulum lacus mi, euismod ut volutpat eget, venenatis sed elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fermentum nisi vitae est tempor, ultrices rhoncus velit tincidunt. Curabitur scelerisque elementum finibus. Phasellus mattis tempus eros. In consequat arcu quam. Suspendisse id scelerisque augue. Quisque blandit tellus eu diam imperdiet eleifend. Nulla egestas ac urna ac pharetra. Morbi in aliquet felis, sodales vulputate ligula. Sed sed porttitor nulla. In id nunc nec ligula congue vestibulum ut a lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin egestas, ex eu pulvinar dictum, tellus odio sollicitudin nibh, sit amet blandit sapien velit sit amet leo. Morbi lobortis aliquam lacinia. Duis sollicitudin dui eget congue convallis. Phasellus non aliquam turpis. Mauris eget sollicitudin massa. Morbi in arcu eu sem interdum laoreet vel non mi. Phasellus scelerisque semper mauris sed cursus. Morbi tincidunt lacus id tincidunt tempor. Proin auctor bibendum turpis et ultricies. Vivamus ultricies sodales nisl quis placerat. Proin interdum interdum arcu, nec tempor ex condimentum sed. Pellentesque eget felis et tellus rutrum mollis eu ut nunc. Ut convallis magna leo, ac commodo felis dignissim sed.</p>
       </div>
       <div class="products">
-        <div class="product">
-          <img class="product-img opac" src="images/product.jpg" alt="product">
-          <div class="hnp opac">
-            
-            <h3 class="product-heading">Ethernet</h3>
-            <p class="product-price">&#8377; 2000</p>
-          </div>
-          <img src="/images/delete.svg" alt="delete" class="delete-svg"/>
-        </div>  
-        <div class="product">
-          <img class="product-img opac" src="images/product.jpg" alt="product">
-          <div class="hnp opac">
-            
-            <h3 class="product-heading">Ethernet</h3>
-            <p class="product-price">&#8377; 2000</p>
-          </div>
-          <img src="/images/delete.svg" alt="delete" class="delete-svg"/>
-        </div>  
-        <div class="product">
-          <img class="product-img opac" src="images/product.jpg" alt="product">
-          <div class="hnp opac">
-            
-            <h3 class="product-heading">Ethernet</h3>
-            <p class="product-price">&#8377; 2000</p>
-          </div>
-          <img src="/images/delete.svg" alt="delete" class="delete-svg"/>
-        </div>  
-        <div class="product">
-          <img class="product-img opac" src="images/product.jpg" alt="product">
-          <div class="hnp opac">
-            
-            <h3 class="product-heading">Ethernet</h3>
-            <p class="product-price">&#8377; 2000</p>
-          </div>
-          <img src="/images/delete.svg" alt="delete" class="delete-svg"/>
-        </div>  
-        <div class="product">
-          <img class="product-img opac" src="images/product.jpg" alt="product">
-          <div class="hnp opac">
-            
-            <h3 class="product-heading">Ethernet</h3>
-            <p class="product-price">&#8377; 2000</p>
-          </div>
-          <img src="/images/delete.svg" alt="delete" class="delete-svg"/>
-        </div>  
-        <div class="product">
-          <img class="product-img opac" src="images/product.jpg" alt="product">
-          <div class="hnp opac">
-            
-            <h3 class="product-heading">Ethernet</h3>
-            <p class="product-price">&#8377; 2000</p>
-          </div>
-          <img src="/images/delete.svg" alt="delete" class="delete-svg"/>
-        </div>  
-        <div class="product add-product-btn">
-          <p>+</p>
-        </div>
+       
       </div>
+    </div>
       <div class="contact">
           <div class="contact-info">
               <a href="#" class="contact-phone phone"><img class="contact-info-img" src="./images/phone.svg" alt="phone">+91 99889 99988</a>

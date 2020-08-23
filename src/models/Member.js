@@ -87,6 +87,9 @@ const productSchema = new mongoose.Schema({
     type: Number,
     // default:
   },
+  name: {
+    type: String,
+  },
   image: {
     type: String,
     default: '/images/product.jpg'

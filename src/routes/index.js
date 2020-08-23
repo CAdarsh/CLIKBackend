@@ -183,16 +183,23 @@ router.get('/member/slug/:slug', async (req, res) => {
 router.post('/member/product', auth, productUpload.single('product'), async (req, res) => {
   if (req.statusCode == 200) {
     const { file, body } = req;
+    // console.log(body);
     if (!file) {
       const error = new Error('Please upload a file');
       error.httpStatusCode = 400;
       return next(error);
     }
     productController.addProduct(file.path, body, req.dataJWT._id);
-    res.send(req.dataJWT);
+    res.send('Added');
   } else {
     res.send('Not Authorized');
   }
+});
+
+router.delete('/member/product', auth, async (req, res) => {
+  // console.log(req.body);
+  const result = await productController.delProduct(req.body);
+  res.send(result);
 });
 
 router.get('/delete/:id', adminAuth, async (req, res) => {
