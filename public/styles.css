@@ -13,7 +13,9 @@
   padding: 0;
   margin: 0;
 }
-
+.none{
+  display: none !important;
+}
 body {
   font-family: "Oxygen", sans-serif;
   /* font-family: 'Poppins', sans-serif; */

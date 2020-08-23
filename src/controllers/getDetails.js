@@ -16,7 +16,7 @@ const getUser = async (slug) => {
 };
 
 const isSlugAvail = async (slug) => {
-  const user = await model.findOne({ slug });
+  const user = await model.member.findOne({ slug });
   if (user) {
     return 0;
   }
@@ -24,7 +24,17 @@ const isSlugAvail = async (slug) => {
   return 1;
 };
 
+const updateDetails = async (data, email) => {
+  try {
+    const user = await model.member.findOne({ email });
+    return await user.updateOne(data);
+  } catch (err) {
+    return err;
+  }
+};
+
 module.exports = {
   getUser,
+  updateDetails,
   isSlugAvail
 };

@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
-}).single('myImage');
+});
 
 const productStorage = multer.diskStorage({
   destination(req, file, cb) {
@@ -39,7 +39,9 @@ const router = express.Router();
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
-const { auth, authAndUpdate, adminAuth } = require('../middlewares');
+const {
+  auth, authAndUpdate, authForm, adminAuth
+} = require('../middlewares');
 const registerController = require('../controllers/register');
 const loginController = require('../controllers/loginController');
 const getDetails = require('../controllers/getDetails');
@@ -76,6 +78,10 @@ router.get('/admin/all', adminAuth, async (req, res) => {
   res.json(result);
 });
 
+router.get('/admin/verify', adminAuth, async (req, res) => {
+  res.send(req.data);
+});
+
 router.get('/admin/delete', adminAuth, async (req, res) => {
   const result = await deleteAdmin();
   res.json(result);
@@ -87,6 +93,7 @@ router.get('/admin/login', async (req, res) => {
 
 router.post('/admin/login', async (req, res) => {
   const result = await loginAdmin(req.body);
+  console.log(req.body, result);
   res.json(result);
 });
 
@@ -124,7 +131,43 @@ router.get('/member/all', async (req, res) => {
 router.get('/member/details', auth, (req, res) => {
   res.send(req.dataJWT);
 });
-router.post('/member/details', authAndUpdate, (req, res) => {});
+router.post('/member/details', upload.single('logoImg'), authForm, async (req, res) => {
+  if (req.statusCode == 200) {
+    if (req.file) {
+      console.log(req.file.path);
+      const data = {
+        bEmail: req.body.cemail,
+        bPhone: req.body.cphone,
+        slug: req.body.cslug,
+        location: req.body.cloc,
+        title: req.body.cname,
+        tagline: req.body.csdesc,
+        content: req.body.cdesc,
+        website: req.body.cwebsite,
+        image: req.file.path
+      };
+      const response = await getDetails.updateDetails(data, req.dataJWT.email);
+      res.redirect('/member/page');
+    } else {
+      const data = {
+        bEmail: req.body.cemail,
+        bPhone: req.body.cphone,
+        slug: req.body.cslug,
+        location: req.body.cloc,
+        title: req.body.cname,
+        tagline: req.body.csdesc,
+        content: req.body.cdesc,
+        website: req.body.cwebsite
+      };
+      const response = await getDetails.updateDetails(data, req.dataJWT.email);
+      console.log(response);
+      res.redirect('/member/page');
+      // res.send(response);
+    }
+  } else {
+    res.status(403).send('Unauthorised request');
+  }
+});
 router.post('/member/login', async (req, res) => {
   const response = await loginController.loginUser(req.body);
   console.log(response, req.body);
@@ -139,13 +182,13 @@ router.get('/member/slug/:slug', async (req, res) => {
 
 router.post('/member/product', auth, productUpload.single('product'), async (req, res) => {
   if (req.statusCode == 200) {
-    const { file } = req;
+    const { file, body } = req;
     if (!file) {
       const error = new Error('Please upload a file');
       error.httpStatusCode = 400;
       return next(error);
     }
-    productController.addProduct(file.path, req.dataJWT._id);
+    productController.addProduct(file.path, body, req.dataJWT._id);
     res.send(req.dataJWT);
   } else {
     res.send('Not Authorized');

@@ -29,7 +29,7 @@
         document.querySelector(".phone").href = `tel:+${bPhone}`;
         document.querySelector(".about-text").innerHTML = content;
         document.querySelector(".contact-address").innerHTML = location;
-        // document.querySelector(".company-logo-img").src = image;
+        document.querySelector(".company-logo-img").src = `${image.split('\\')[1]}/${image.split('\\')[2]}`;
         
         } else {
           window.location = "/404";

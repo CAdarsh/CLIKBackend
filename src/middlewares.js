@@ -29,7 +29,26 @@ const auth = async (req, res, next) => {
     const data = jwt.verify(token, 'lololol');
     const user = await memberModel.member.findOne({ email: data.email }).populate('products');
     // const buser = (await memberModel.product.find()).populate('products');
-    console.log(user);
+    if (!user) {
+      throw new Error('Invalid Token');
+    } else {
+      req.dataJWT = user;
+      req.statusCode = 200;
+      next();
+    }
+  } catch (err) {
+    console.log('Invalid');
+    req.dataJWT = err;
+    req.statusCode = 403;
+    next();
+    // res.redirect("/login");
+  }
+};
+
+const authForm = async (req, res, next) => {
+  try {
+    const email = jwt.verify(req.body.token, 'lololol');
+    const user = await memberModel.member.findOne({ email: email.email });
     if (!user) {
       throw new Error('Invalid Token');
     } else {
@@ -53,16 +72,16 @@ const adminAuth = async (req, res, next) => {
     const user = await adminModel
       .findOne({ email: data.email, password: data.password })
       .catch((err) => console.log(err));
-    console.log(user);
     if (!user) {
       throw new Error('Invalid Token');
     } else {
-      req.data = user;
+      req.data = { user, valid: true };
       next();
     }
   } catch (err) {
     console.log('bad');
-    req.data = false;
+    req.data = { valid: false };
+    next();
   }
 };
 
@@ -98,15 +117,6 @@ const authAndUpdate = (req, res, next) => {
             image: req.file.path.split('public')[1],
           }
         );
-        console.log({
-          content,
-          bEmail,
-          bPhone,
-          website,
-          title,
-          location,
-          image: req.file.path.split('public')[1],
-        });
       } else {
         req.data = await memberModel.updateOne(
           { slug },
@@ -147,4 +157,5 @@ module.exports = {
   auth,
   authAndUpdate,
   adminAuth,
+  authForm
 };

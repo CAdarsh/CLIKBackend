@@ -11,6 +11,38 @@
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./adminPanel.css" />
   </head>
+  <script>
+    
+        const token = sessionStorage.getItem('adminToken');
+        console.log(token)
+        if (token && token != 'undefined') {
+          const myHeaders = new Headers();
+          myHeaders.append('Authorization', `Bearer ${token}`);
+
+          const raw = '';
+
+          const requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow',
+          };
+          fetch('/admin/verify', requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+              if(result.valid){
+                console.log(result)
+              }
+              else{
+                window.location = '/admin/login';
+              }
+            })
+            .catch((error) => console.log('error', error));
+        } else {
+          window.location = '/admin/login';
+        }
+
+
+  </script>
   <body>
     <header class="side-header">
       <div class="header-title">
