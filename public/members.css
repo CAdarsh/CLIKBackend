@@ -28,7 +28,8 @@ body {
   border-radius: 5px;
   background-color: white;
   cursor: pointer;
-  height: 450px;
+  height: 500px;
+  transition: 0.1s;
 }
 .w {
   display: none;
@@ -37,6 +38,7 @@ body {
   background-color: var(--violet);
   color: white;
   box-shadow: 10px 10px 24px 10px rgba(0, 0, 0, 0.25);
+  transform: translateY(-10px);
 }
 .member:hover .member-vp {
   color: white;
@@ -52,7 +54,7 @@ body {
 }
 .member-img {
   width: 100%;
-  height: 150px;
+  height: 200px;
   object-fit: cover;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;

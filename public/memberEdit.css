@@ -61,7 +61,8 @@ textarea {
   display: flex;
 }
 .form-butts a,
-.form-butts button {
+.form-butts button,
+.form-butts input[type="submit"] {
   padding: 7px 20px;
   background-color: var(--violet);
   color: white;

@@ -13,6 +13,11 @@
     <title>Document</title>
   </head>
   <body>
+    <style>
+      .none{
+        display: none;
+      }
+    </style>
     <script>
       console.log("lol")
       function ChangeData(data) {
@@ -56,6 +61,7 @@
           .then((result) => {
             console.log(result);
             ChangeData(result);
+            document.forms.addProduct.token.value = token;
           })
           .catch((error) => console.log("error", error));
       } else {
@@ -65,6 +71,22 @@
     </script>
 
     <%- include('../partials/header') %>
+    <div class="new-entry-modal-cont">
+      <div class="new-entry-modal">
+        <div class="new-entry-cross">x</div>
+        <h2 class="new-entry-heading">New Entry</h2>
+        <form action="/member/product" name="addProduct" method="POST" enctype='multipart/form-data' class="new-entry-form">
+          <input type="file" name="product" id="file" class="inputfile" accept=".jpeg,.jpg,.png,.svg" required/>
+          <label for="file"><svg width="65" height="44" viewBox="0 0 65 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="upload-svg">
+            <path d="M52.4062 16.61C50.5646 7.1225 42.3583 0 32.5 0C24.6729 0 17.875 4.51 14.4896 11.11C6.3375 11.99 0 19.0025 0 27.5C0 36.6025 7.28542 44 16.25 44H51.4583C58.9333 44 65 37.84 65 30.25C65 22.99 59.4479 17.105 52.4062 16.61ZM37.9167 24.75V35.75H27.0833V24.75H18.9583L32.5 11L46.0417 24.75H37.9167Z" fill="white"/>
+            </svg> Choose Product Image</label>
+            <input type="text" name="token" class="none">
+          <input type="text" class="pn" name="name" placeholder="Product Name" required/> 
+          <input type="text" class="pp" name="price" placeholder="Product Price (optional)" />
+          <input type="submit" class="new-entry-submit" value="Add" />
+        </form>
+      </div>
+    </div>
     <main>
       <div class="inner-nav">
           <div class="company-logo"><img src="./images/clogo.jpg" alt="logo" id="img-main" class="company-logo-img"></div>
@@ -90,86 +112,10 @@
           <p class="about-text">asLorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mattis lorem eu ante mollis, id tristique mauris cursus. Nam commodo, felis quis euismod vestibulum, lectus diam mollis lacus, fermentum tincidunt neque ante id purus. Nulla tellus lorem, rutrum id commodo sollicitudin, commodo id odio. Mauris lobortis lectus vitae tortor iaculis, a luctus felis efficitur. Aenean non ultrices ligula. Vivamus ipsum velit, rhoncus in malesuada non, semper in massa. Pellentesque aliquam nibh eget ullamcorper mollis. Aenean nisi nulla, sollicitudin eget dui sit amet, pretium semper nulla. Quisque risus purus, laoreet vel magna lobortis, finibus accumsan magna. Sed at felis posuere, tincidunt augue a, venenatis eros. Cras interdum pulvinar nunc ac bibendum. Nam tristique non neque eu facilisis. Vivamus sit amet elit vitae nulla posuere egestas. Integer rutrum vestibulum nibh. Vestibulum vel efficitur mi. Quisque eu mauris lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras dictum, purus non consequat semper, magna leo gravida mi, eget dapibus ligula dolor eu elit. Donec nec massa turpis. Vestibulum lacus mi, euismod ut volutpat eget, venenatis sed elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fermentum nisi vitae est tempor, ultrices rhoncus velit tincidunt. Curabitur scelerisque elementum finibus. Phasellus mattis tempus eros. In consequat arcu quam. Suspendisse id scelerisque augue. Quisque blandit tellus eu diam imperdiet eleifend. Nulla egestas ac urna ac pharetra. Morbi in aliquet felis, sodales vulputate ligula. Sed sed porttitor nulla. In id nunc nec ligula congue vestibulum ut a lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin egestas, ex eu pulvinar dictum, tellus odio sollicitudin nibh, sit amet blandit sapien velit sit amet leo. Morbi lobortis aliquam lacinia. Duis sollicitudin dui eget congue convallis. Phasellus non aliquam turpis. Mauris eget sollicitudin massa. Morbi in arcu eu sem interdum laoreet vel non mi. Phasellus scelerisque semper mauris sed cursus. Morbi tincidunt lacus id tincidunt tempor. Proin auctor bibendum turpis et ultricies. Vivamus ultricies sodales nisl quis placerat. Proin interdum interdum arcu, nec tempor ex condimentum sed. Pellentesque eget felis et tellus rutrum mollis eu ut nunc. Ut convallis magna leo, ac commodo felis dignissim sed.</p>
       </div>
       <div class="products">
-          <div class="product">
-              <img class="product-img" src="images/product.jpg" alt="product">
-              <div class="hnp">
-
-                <h3 class="product-heading">Ethernet</h3>
-                <p class="product-price">&#8377; 2000</p>
-              </div>
-          </div>
-          <div class="product">
-              <img class="product-img" src="images/product.jpg" alt="product">
-              <div class="hnp">
-
-                <h3 class="product-heading">Ethernet</h3>
-                <p class="product-price">Contact Us</p>
-              </div>
-          </div>
-          <div class="product">
-              <img class="product-img" src="images/product.jpg" alt="product">
-              <div class="hnp">
-
-                <h3 class="product-heading">Ethernet</h3>
-                <p class="product-price">&#8377; 2000</p>
-              </div>
-          </div>
-          <div class="product">
-              <img class="product-img" src="images/product.jpg" alt="product">
-              <div class="hnp">
-
-                <h3 class="product-heading">Ethernet</h3>
-                <p class="product-price">&#8377; 2000</p>
-              </div>
-          </div>
-          <div class="product">
-              <img class="product-img" src="images/product.jpg" alt="product">
-              <div class="hnp">
-
-                <h3 class="product-heading">Ethernet</h3>
-                <p class="product-price">&#8377; 2000</p>
-              </div>
+          <div class="product add-product-btn">
+            <p>+</p>
           </div>
           
-          <div class="product">
-              <img class="product-img" src="images/product.jpg" alt="product">
-              <div class="hnp">
-
-                <h3 class="product-heading">Ethernet</h3>
-                <p class="product-price">&#8377; 2000</p>
-              </div>
-          </div>
-          
-          <div class="product last-prod">
-            <form action="#" class="prod-form">
-
-                   <div class="product-input">
-                      <div class="info-img">
-                          <div class="show-upload">
-                            <h3 class="add-prod">Add New Product</h3>
-                              <img src="./images/upload.svg" alt="upload" class="upload-img"/>
-                              <input
-                              type="file"
-                              style="
-                              opacity: 0;
-                              position: absolute;
-                              top: 0;
-                              left: 0;
-                              bottom: 0;
-                              right: 0;
-                              width: 100%;
-                              height: 100%;
-                              "
-                              required/>
-                          </div>
-                      </div>
-                  </div>
-              <input name="name" type="text" class="product-name-inp" placeholder="Product Name" required>
-              <input name="price" type="text" class="product-price-inp" placeholder="Product Price">
-              <input type="submit" class="product-submit-inp">
-              </form>
-            </div>
-          </div>
       </div>
       <div class="contact">
           <div class="contact-info">

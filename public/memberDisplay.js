@@ -51,6 +51,28 @@ Array.prototype.forEach.call(inputs, function (input) {
   });
 });
 
+const slugUnique = async (event, form) => {
+  event.preventDefault();
+  document.querySelector(".slug-feed").style.display = "none";
+  try {
+    const slugValue = document.forms.addProduct.slug.value;
+    fetch(`/member/slug/${slugValue}`)
+      .then((data) => data.json())
+      .then((data) => {
+        if (data.result == 1 || window.initialSlug == slugValue) {
+          // console.log(form);
+          document.forms.main.token.value = token;
+          form.submit();
+        } else {
+          document.querySelector(".slug-feed").style.display = "block";
+        }
+      });
+  } catch (e) {
+    throw new Error(e);
+  }
+  return false;
+};
+
 document.querySelector(".add-product-btn").addEventListener("click", () => {
   document.querySelector(".new-entry-modal-cont").style.display = "grid";
 });

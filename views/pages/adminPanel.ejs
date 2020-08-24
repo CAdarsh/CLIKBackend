@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./adminPanel.css" />
   </head>
   <script>
-    
+
         const token = sessionStorage.getItem('adminToken');
         console.log(token)
         if (token && token != 'undefined') {
@@ -77,20 +77,19 @@
       <div class="new-entry-modal">
         <div class="new-entry-cross">x</div>
         <h2 class="new-entry-heading">New Entry</h2>
-        <form class="new-entry-form">
-          <input type="text" class="cn" placeholder="Company Name" />
-          <input type="text" class="nm" placeholder="Name" />
-          <input type="text" class="ln" placeholder="Location (Short)" />
-          <input type="text" class="ad" placeholder="Address" />
+        <div class="new-entry-form">
+          <input type="text" class="cn" placeholder="Company Name" required/>
+          <input type="text" class="ad" placeholder="Address" required/>
+          <input type="email" class="em" placeholder="Email" required/>
           <input
             type="text"
             class="sl"
             placeholder="Slug  (clikindia.co.in/member/[slug])"
+            required
           />
-          <input type="text" class="em" placeholder="Email" />
           <div class="slug-feed">This Slug already exists</div>
-          <input type="submit" class="new-entry-submit" value="Publish" />
-        </form>
+          <button  class="new-entry-submit" >Publish</button>
+        </div>
       </div>
     </div>
     <div class="content">
@@ -125,25 +124,8 @@
         <div class="bounce2"></div>
         <div class="bounce3"></div>
       </div>
-      <div class="firm-row">
-        <div class="one">John Doe Power Solutions</div>
-        <div class="two">Bengaluru</div>
-        <div class="three">john@gmail.com</div>
+      <div class="newContent">
       </div>
-      <div class="firm-row">
-        <div class="one">John Doe Power Solutions</div>
-        <div class="two">Bengaluru</div>
-        <div class="three">2005</div>
-      </div>
-      <div class="firm-row">
-        <div class="one">John Doe Power Solutions</div>
-        <div class="two">Bengaluru</div>
-        <div class="three">2005</div>
-      </div>
-      <div class="firm-row">
-        <div class="one">John Doe Power Solutions</div>
-        <div class="two">Bengaluru</div>
-        <div class="three">2005</div>
       </div>
     </div>
     <div class="footer-container">
