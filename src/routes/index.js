@@ -197,17 +197,16 @@ router.post(
   authForm,
   async (req, res) => {
     const { file, body } = req;
-    if (req.statusCode == 200) {
-      if (!file) {
-        const error = new Error("Please upload a file");
-        error.httpStatusCode = 400;
-        return next(error);
-      }
-      productController.addProduct(file.path, body, req.dataJWT._id);
-      res.send(req.dataJWT);
-    } else {
-      res.send("Not Authorized");
+    // console.log(body);
+    if (!file) {
+      const error = new Error('Please upload a file');
+      error.httpStatusCode = 400;
+      return next(error);
     }
+    productController.addProduct(file.path, body, req.dataJWT._id);
+    res.send('Added');
+  } else {
+    res.send('Not Authorized');
   }
 );
 
@@ -216,7 +215,13 @@ router.get("/demo", async (req, res) => {
   res.send(result);
 });
 
-router.get("/delete/:id", adminAuth, async (req, res) => {
+router.delete('/member/product', auth, async (req, res) => {
+  // console.log(req.body);
+  const result = await productController.delProduct(req.body);
+  res.send(result);
+});
+
+router.get('/delete/:id', adminAuth, async (req, res) => {
   const member = await memberModel.findOne({ _id: req.params.id });
   if (member.image.split("\\")[2]) {
     fs.unlink(`public/uploads/${member.image.split("\\")[2]}`, (err) => {

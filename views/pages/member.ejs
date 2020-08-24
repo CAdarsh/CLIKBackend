@@ -19,9 +19,7 @@
       }
     </style>
     <script>
-      console.log("lol")
       function ChangeData(data) {
-      console.log("lol")
         let {
           content,
           bEmail,
@@ -31,25 +29,37 @@
           location,
           slug,
           image,
+          products
         } = data;
         document.querySelector(".info-name").innerHTML = title;
-        // document.querySelector(".slug").value = slug;
-        // document.querySelector(".slug").setAttribute("data-dslug", slug);
         document.querySelector(".location").innerHTML = location;
         document.querySelector(".contact-email").href = `mailto:${bEmail}`;
         document.querySelector(".contact-website").href = website;
         document.querySelector(".contact-phone").href = `tel:+${bPhone}`;
         document.querySelector(".about-text").innerHTML = content;
         document.querySelector("#img-main").src = `${image.split('\\')[1]}/${image.split('\\')[2]}`;
-        console.log(data)
+        let a = products.map((data)=>{
+          return  `<div class="product">
+          <img class="product-img opac" src="${data.image}" alt="product">
+          <div class="hnp opac">
+            <h3 class="product-heading">${data.name}</h3>
+            <p class="product-price">&#8377; ${data.price} </p>
+          </div>
+          <img src="/images/delete.svg" alt="delete" class="delete-svg" onclick="deleteUser('${data._id}')"/>
+        </div>  `
+        })
+
+        document.querySelector('.products').innerHTML += a;
+        document.querySelector('.products').innerHTML += ` </div>  
+        <div class="product add-product-btn">
+          <p>+</p>
+        </div>`;
       }
       let token = sessionStorage.getItem("token");
       if (token && token != "undefined") {
         var myHeaders = new Headers();
-        myHeaders.append("Authorization", `Bearer ${token}`);
-
+        myHeaders.append("Authorization", `Bearer ${token}`); 
         var raw = "";
-
         var requestOptions = {
           method: "GET",
           headers: myHeaders,
@@ -68,6 +78,30 @@
         window.location = "/member";
       }
 
+      function deleteUser(id){
+        let Header = new Headers();
+        let data = {id:id};
+        console.log(JSON.stringify(data))
+        Header.append("Authorization", `Bearer ${token}`);
+        Header.append("Content-Type", `application/json`);
+        var requestOptions = {
+          method: "DELETE",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": `application/json`
+          },
+          body: JSON.stringify(data),
+          redirect: "follow",
+        };
+
+        fetch("/member/product", requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+            ChangeData(result);
+          })
+          .catch((error) => console.log("error", error));
+      }
     </script>
 
     <%- include('../partials/header') %>
@@ -112,10 +146,7 @@
           <p class="about-text">asLorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mattis lorem eu ante mollis, id tristique mauris cursus. Nam commodo, felis quis euismod vestibulum, lectus diam mollis lacus, fermentum tincidunt neque ante id purus. Nulla tellus lorem, rutrum id commodo sollicitudin, commodo id odio. Mauris lobortis lectus vitae tortor iaculis, a luctus felis efficitur. Aenean non ultrices ligula. Vivamus ipsum velit, rhoncus in malesuada non, semper in massa. Pellentesque aliquam nibh eget ullamcorper mollis. Aenean nisi nulla, sollicitudin eget dui sit amet, pretium semper nulla. Quisque risus purus, laoreet vel magna lobortis, finibus accumsan magna. Sed at felis posuere, tincidunt augue a, venenatis eros. Cras interdum pulvinar nunc ac bibendum. Nam tristique non neque eu facilisis. Vivamus sit amet elit vitae nulla posuere egestas. Integer rutrum vestibulum nibh. Vestibulum vel efficitur mi. Quisque eu mauris lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras dictum, purus non consequat semper, magna leo gravida mi, eget dapibus ligula dolor eu elit. Donec nec massa turpis. Vestibulum lacus mi, euismod ut volutpat eget, venenatis sed elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fermentum nisi vitae est tempor, ultrices rhoncus velit tincidunt. Curabitur scelerisque elementum finibus. Phasellus mattis tempus eros. In consequat arcu quam. Suspendisse id scelerisque augue. Quisque blandit tellus eu diam imperdiet eleifend. Nulla egestas ac urna ac pharetra. Morbi in aliquet felis, sodales vulputate ligula. Sed sed porttitor nulla. In id nunc nec ligula congue vestibulum ut a lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin egestas, ex eu pulvinar dictum, tellus odio sollicitudin nibh, sit amet blandit sapien velit sit amet leo. Morbi lobortis aliquam lacinia. Duis sollicitudin dui eget congue convallis. Phasellus non aliquam turpis. Mauris eget sollicitudin massa. Morbi in arcu eu sem interdum laoreet vel non mi. Phasellus scelerisque semper mauris sed cursus. Morbi tincidunt lacus id tincidunt tempor. Proin auctor bibendum turpis et ultricies. Vivamus ultricies sodales nisl quis placerat. Proin interdum interdum arcu, nec tempor ex condimentum sed. Pellentesque eget felis et tellus rutrum mollis eu ut nunc. Ut convallis magna leo, ac commodo felis dignissim sed.</p>
       </div>
       <div class="products">
-          <div class="product add-product-btn">
-            <p>+</p>
-          </div>
-          
+        
       </div>
       <div class="contact">
           <div class="contact-info">
