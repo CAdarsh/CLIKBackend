@@ -6,7 +6,7 @@
   flex-direction: column;
   height: 100vh;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding: 0vh 0;
   color: var(--white);
   font-family: "Oxygen", sans-serif;
@@ -16,6 +16,7 @@
   letter-spacing: 5px;
   font-weight: 600;
   font-size: 22px;
+  margin-top: 50px;
 }
 .header-opt {
   display: flex;
@@ -27,15 +28,17 @@
   justify-content: space-around;
   flex-direction: column;
   min-height: 30vh;
+  row-gap: 50px;
 }
 .header-opt .option {
   cursor: pointer;
 }
 .header-footer {
-  font-size: 12px;
+  font-size: 10px;
   color: #f9f9fa;
   opacity: 0.8;
   letter-spacing: 0.5px;
+  margin-bottom: 20px;
 }
 
 .title-bar {
@@ -58,7 +61,7 @@
 .flex-container-main {
   display: flex;
   justify-content: space-between;
-  margin: 8vh 0vw;
+  margin: 6vh 0vw;
 }
 
 .first-header {
@@ -114,7 +117,7 @@
 
 .small-title {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 150px;
+  grid-template-columns: 1.2fr 1fr 1fr 175px;
   grid-template-rows: 1fr;
   color: rgba(22, 26, 30, 0.5);
   font-weight: 700;
@@ -122,6 +125,7 @@
   font-size: 24px;
   margin-bottom: 1vw;
   width: 70vw;
+  column-gap: 20px;
 }
 .small-title .one,
 .firm-row .one {
@@ -129,7 +133,7 @@
 }
 .small-title .three,
 .firm-row .three {
-  justify-self: flex-end;
+  justify-self: center;
 }
 .small-title .two,
 .firm-row .two {
@@ -139,15 +143,17 @@
 .firm-row {
   display: grid;
   width: 70vw;
-  grid-template-columns: 1.4fr 1fr 1fr 150px;
+  grid-template-columns: 1.2fr 1fr 1fr 175px;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 300;
   padding: 3.5vh 0;
   opacity: 0.9;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(22, 26, 30, 0.2);
+  text-align: center;
+  column-gap: 20px;
 }
 .firm-row:last-child {
   border-bottom: none;
@@ -248,19 +254,21 @@ textarea {
   align-items: center;
 }
 .viewp {
-  margin-left: 10px;
+  margin-left: 20px;
   font-size: 12px;
   color: #444788;
-  width: 100px;
+  width: 150px;
   cursor: pointer;
 }
 .delete-member {
   height: 0.8em;
-  margin-left: 5px;
+  margin-left: 20px;
   cursor: pointer;
 }
 .big-logo img {
+  height: 150%;
   cursor: pointer;
+  transform: translateY(-20%);
 }
 @media only screen and (max-width: 1000px) {
   .side-header {
