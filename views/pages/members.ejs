@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./dashboard.css" />
     <link rel="stylesheet" href="./members.css" />
-    <title>Document</title>
+    <title>Members | CLIK India</title>
   </head>
   <body>
     <%- include('../partials/header') %>
@@ -54,28 +54,42 @@
           document.querySelector(".spinner").style.display = "none";
           data.map((member, index) => {
             console.log(index + member.image);
-            dataContainer.innerHTML += ` <a href="/page/${
-              member.slug
-            }" class="link-divs"> <div class="member">
+            dataContainer.innerHTML += ` <div class="link-divs" > <div class="member">
           <img src="${member.image.split("\\")[1]}/${
               member.image.split("\\")[2]
-            }" alt="product" class="member-img" />
+            }" alt="product" class="member-img" onclick='window.location.href = "/page/${
+              member.slug
+            }";'/>
           <div class="member-info">
-            <h2 class="member-heading">${member.title}</h2>
-            <p class="member-loc">
-              <img src="./images/pin-black.svg" alt="pin" class="pin b" />
-              <img src="./images/pin.svg" alt="pin" class="pin w" />
+            <h2 class="member-heading" onclick='window.location.href = "/page/${
+              member.slug
+            }";'>${member.title}</h2>
+            <p class="member-loc" onclick='window.location.href = "/page/${
+              member.slug
+            }";'>
+              <img src="./images/pin-black.svg" alt="pin" class="pin b" onclick='window.location.href = "/page/${
+                member.slug
+              }";'/>
+              <img src="./images/pin.svg" alt="pin" class="pin w" onclick='window.location.href = "/page/${
+                member.slug
+              }";'/>
               ${member.location}
             </p>
-            <p class="member-desc">
+            <p class="member-desc" onclick='window.location.href = "/page/${
+              member.slug
+            }";'>
               ${member.tagline}
             </p>
             <div class="member-buttons">
-              <button class="member-vp">View Profile</button>
-              <button class="member-cu">Contact</button>
+              <button class="member-vp" onclick='window.location.href = "/page/${
+                member.slug
+              }";'>View Profile</button>
+              <button class="member-cu" onclick="window.location.href = '/page/${
+                member.slug
+              }#contact'">Contact</button>
             </div>
           </div>
-        </div> </a>`;
+        </div> </div>`;
             console.log(member);
           });
           console.log(dataContainer);

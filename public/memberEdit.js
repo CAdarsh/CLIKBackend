@@ -42,6 +42,7 @@ if (token && token != "undefined") {
   fetch("/member/details", requestOptions)
     .then((response) => response.json())
     .then((result) => {
+      document.querySelector(".spinner").style.display = "none";
       window.initialSlug = ChangeData(result);
     })
     .catch((error) => console.log("error", error));
@@ -60,7 +61,7 @@ const slugUnique = async (event, form) => {
         if (data.result == 1 || window.initialSlug == slugValue) {
           document.forms.main.token.value = token;
           if (form.csdesc.value.length > 150) {
-            form.csdesc.value = form.csdesc.value.substring(0, 149) + "...";
+            form.csdesc.value = form.csdesc.value.substring(0, 139) + "...";
             console.log(form.csdesc.value);
           }
           form.submit();
