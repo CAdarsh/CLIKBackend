@@ -58,8 +58,11 @@ const slugUnique = async (event, form) => {
       .then((data) => data.json())
       .then((data) => {
         if (data.result == 1 || window.initialSlug == slugValue) {
-          // console.log(form);
           document.forms.main.token.value = token;
+          if (form.csdesc.value.length > 150) {
+            form.csdesc.value = form.csdesc.value.substring(0, 149) + "...";
+            console.log(form.csdesc.value);
+          }
           form.submit();
         } else {
           document.querySelector(".slug-feed").style.display = "block";

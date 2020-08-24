@@ -32,6 +32,7 @@
       <div class="back-img-cont">
         <!-- <div class="back-img"> -->
         <h1 class="back-img-heading">MEMBERS</h1>
+        <div class="underline"></div>
         <!-- </div> -->
       </div>
       <div class="spinner">
@@ -51,9 +52,14 @@
         .then((res) => res.json())
         .then((data) => {
           document.querySelector(".spinner").style.display = "none";
-          data.map((member) => {
-            dataContainer.innerHTML += ` <a href="/page/${member.slug}" class="link-divs"> <div class="member">
-          <img src="${member.image.split('\\')[1]}/${member.image.split('\\')[2]}" alt="product" class="member-img" />
+          data.map((member, index) => {
+            console.log(index + member.image);
+            dataContainer.innerHTML += ` <a href="/page/${
+              member.slug
+            }" class="link-divs"> <div class="member">
+          <img src="${member.image.split("\\")[1]}/${
+              member.image.split("\\")[2]
+            }" alt="product" class="member-img" />
           <div class="member-info">
             <h2 class="member-heading">${member.title}</h2>
             <p class="member-loc">

@@ -110,7 +110,12 @@ router.post("/admin/register", adminAuth, async (req, res) => {
     res.send("0");
   }
 });
-
+router.post("/admin/deleteMember", adminAuth, async (req, res) => {
+  if (req.body) {
+    let result = await memberModel.member.deleteOne({ _id: req.body.id });
+    res.send(result);
+  }
+});
 // members area
 
 router.get("/member", (req, res) => {
@@ -126,6 +131,7 @@ router.get("/member/page", (req, res) => {
 });
 
 router.get("/member/all", async (req, res) => {
+  console.log("hhh");
   const result = await registerController.returnUsers();
   res.send(result);
 });
@@ -192,6 +198,12 @@ router.get("/member/slug/:slug", async (req, res) => {
   res.json({ result });
 });
 
+router.get("/member/email/:email", async (req, res) => {
+  const result = await getDetails.isEmailAvail(req.params.email);
+  console.log(result);
+  res.json({ result });
+});
+
 router.post(
   "/member/product",
   productUpload.single("product"),
@@ -206,7 +218,7 @@ router.post(
         return next(error);
       }
       productController.addProduct(file.path, body, req.dataJWT._id);
-      res.send("Added");
+      res.redirect("/member/page");
     } else {
       res.send("Not Authorized");
     }

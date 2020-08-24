@@ -43,7 +43,7 @@
           <img class="product-img opac" src="${data.image}" alt="product">
           <div class="hnp opac">
             <h3 class="product-heading">${data.name}</h3>
-            <p class="product-price">&#8377; ${data.price} </p>
+            <p class="product-price">${!!data.price?'&#8377;':''} ${(!data.price?'Contact Us':data.price)} </p>
           </div>
           <img src="/images/delete.svg" alt="delete" class="delete-svg" onclick="deleteUser('${data._id}')"/>
         </div>  `
@@ -136,7 +136,7 @@
     </div>
     <main>
       <div class="inner-nav">
-          <div class="company-logo"><img src="./images/clogo.jpg" alt="logo" id="img-main" class="company-logo-img"></div>
+          <div class="company-logo"><img src="./images/ph.png" alt="logo" id="img-main" class="company-logo-img"></div>
           <div class="company-info"> 
               <div class="company-name-loc">
                   <h1 class="company-name info-name"></h2>
@@ -164,9 +164,9 @@
           <p class="about-text"></p>
       </div>
       <div class="products">
-        <div class="product add-product-btn">
+        <!-- <div class="product add-product-btn">
           <p>+</p>
-        </div>
+        </div> -->
       </div>
       <div class="contact">
           <div class="contact-info">

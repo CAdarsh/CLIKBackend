@@ -13,7 +13,7 @@
   padding: 0;
   margin: 0;
 }
-.none{
+.none {
   display: none !important;
 }
 body {
@@ -251,6 +251,14 @@ footer .logo {
   40% {
     -webkit-transform: scale(1);
     transform: scale(1);
+  }
+}
+@keyframes fade-up {
+  from {
+    transform: translateY(40px);
+  }
+  to {
+    transform: translateY(0px);
   }
 }
 @media only screen and (max-width: 1000px) {

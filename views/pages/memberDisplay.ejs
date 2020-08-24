@@ -48,18 +48,27 @@
         // console.log(data.name)
         // },' ');  
         // console.log(a);
+        if(products.length!==0){
+          products.forEach((data)=>{
+            let a=  `<div class="product">
+              <img class="product-img " src="${data.image}" alt="product">
+              <div class="hnp ">
+                <h3 class="product-heading">${data.name}</h3>
+                <p class="product-price">${!!data.price?'&#8377;':''} ${(!data.price?'Contact Us':data.price)} </p>
+                </div>
+                </div> `
+                document.querySelector('.products').innerHTML += a;
+              })
+            }else{
+              document.querySelector('.products').innerHTML +=`
+              <div class="noProducts">
+                <img src="/images/noProducts.svg" alt="np" class="noProd-img"/>
+                <h3 class="np-heading">No Products Found</h3>
+                <p class="np-text">*The company has not listed any products on the website</p>
+              </div>
+              `;
 
-        products.forEach((data)=>{
-          let a=  `<div class="product">
-          <img class="product-img opac" src="${data.image}" alt="product">
-          <div class="hnp opac">
-            <h3 class="product-heading">${data.name}</h3>
-            <p class="product-price">&#8377; ${data.price} </p>
-          </div>
-          <img src="/images/delete.svg" alt="delete" class="delete-svg"/>
-        </div> `
-        document.querySelector('.products').innerHTML += a;
-        })
+            }
 
         } else {
           window.location = "/404";
@@ -106,7 +115,7 @@
     </div>
     <main>
       <div class="inner-nav">
-          <div class="company-logo"><img src="./images/company.jpg" alt="logo" id="img-main" class="company-logo-img"></div>
+          <div class="company-logo"><img src="./images/ph.png" alt="logo" id="img-main" class="company-logo-img"></div>
           <div class="company-info"> 
               <div class="company-name-loc">
                   <h1 class="company-name info-name"></h2>
@@ -134,6 +143,7 @@
       </div>
       <div class="products">
        
+        
       </div>
     </div>
       <div class="contact">

@@ -71,7 +71,7 @@ const memberScheme = new mongoose.Schema({
   },
   image: {
     type: String,
-    default: "/images/company.jpg",
+    default: "public\\uploads\\ph.png",
   },
   tagline: {
     type: String,
