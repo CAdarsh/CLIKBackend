@@ -41,9 +41,6 @@ edit.addEventListener("click", () => {
   window.location = "/member/edit";
 });
 
-document.querySelector(".add-product-btn").addEventListener("click", () => {
-  document.querySelector(".new-entry-modal-cont").style.display = "grid";
-});
 document.querySelector(".new-entry-cross").addEventListener("click", () => {
   document.querySelector(".new-entry-modal-cont").style.display = "none";
 });

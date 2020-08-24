@@ -103,6 +103,7 @@ router.get("/admin/register", (req, res) => {
 
 router.post("/admin/register", adminAuth, async (req, res) => {
   if (req.data) {
+    console.log(req.data);
     const token = await registerController.addNewUser(req.body);
     res.send("1");
   } else {
@@ -198,15 +199,17 @@ router.post(
   async (req, res) => {
     const { file, body } = req;
     // console.log(body);
-    if (!file) {
-      const error = new Error('Please upload a file');
-      error.httpStatusCode = 400;
-      return next(error);
+    if (req.statusCode == 200) {
+      if (!file) {
+        const error = new Error("Please upload a file");
+        error.httpStatusCode = 400;
+        return next(error);
+      }
+      productController.addProduct(file.path, body, req.dataJWT._id);
+      res.send("Added");
+    } else {
+      res.send("Not Authorized");
     }
-    productController.addProduct(file.path, body, req.dataJWT._id);
-    res.send('Added');
-  } else {
-    res.send('Not Authorized');
   }
 );
 
@@ -215,13 +218,13 @@ router.get("/demo", async (req, res) => {
   res.send(result);
 });
 
-router.delete('/member/product', auth, async (req, res) => {
+router.delete("/member/product", auth, async (req, res) => {
   // console.log(req.body);
   const result = await productController.delProduct(req.body);
   res.send(result);
 });
 
-router.get('/delete/:id', adminAuth, async (req, res) => {
+router.get("/delete/:id", adminAuth, async (req, res) => {
   const member = await memberModel.findOne({ _id: req.params.id });
   if (member.image.split("\\")[2]) {
     fs.unlink(`public/uploads/${member.image.split("\\")[2]}`, (err) => {

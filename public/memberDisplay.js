@@ -73,26 +73,26 @@ const slugUnique = async (event, form) => {
   return false;
 };
 
-document.querySelector(".add-product-btn").addEventListener("click", () => {
-  document.querySelector(".new-entry-modal-cont").style.display = "grid";
-});
-document.querySelector(".new-entry-cross").addEventListener("click", () => {
-  document.querySelector(".new-entry-modal-cont").style.display = "none";
-});
-document
-  .querySelector(".new-entry-modal-cont")
-  .addEventListener("click", (event) => {
-    if (event.target === event.currentTarget) {
-      document.querySelector(".new-entry-modal-cont").style.display = "none";
-    }
-  });
-document.querySelector(".new-entry-submit").addEventListener("click", () => {
-  let productName = document.querySelector(".pn").value;
-  let productPrice = document.querySelector(".pp").value;
+// document.querySelector(".add-product-btn").addEventListener("click", () => {
+//   document.querySelector(".new-entry-modal-cont").style.display = "grid";
+// });
+// document.querySelector(".new-entry-cross").addEventListener("click", () => {
+//   document.querySelector(".new-entry-modal-cont").style.display = "none";
+// });
+// document
+//   .querySelector(".new-entry-modal-cont")
+//   .addEventListener("click", (event) => {
+//     if (event.target === event.currentTarget) {
+//       document.querySelector(".new-entry-modal-cont").style.display = "none";
+//     }
+//   });
+// document.querySelector(".new-entry-submit").addEventListener("click", () => {
+//   let productName = document.querySelector(".pn").value;
+//   let productPrice = document.querySelector(".pp").value;
 
-  let sendingObject = {
-    productName,
-    productPrice,
-  };
-  //fetch sendingObject
-});
+//   let sendingObject = {
+//     productName,
+//     productPrice,
+//   };
+//   //fetch sendingObject
+// });
