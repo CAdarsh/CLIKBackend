@@ -73,9 +73,9 @@
 
     <div class="new-entry-modal-cont">
       <div class="new-entry-modal">
-        <div class="new-entry-cross">x</div>
-        <h2 class="new-entry-heading">New Entry</h2>
-        <form class="new-entry-form">
+        <img src="/images/cross.svg" alt="cross" class="new-entry-cross">
+        <h2 class="new-entry-heading">NEW ENTRY</h2>
+        <!-- <form class="new-entry-form">
           <input type="text" class="cn" placeholder="Company Name" required/>
           <input type="text" class="pn" placeholder="Phone Number" required/>
           <input type="email" class="em" placeholder="Email" required/>
@@ -88,6 +88,36 @@
           />
           <div class="slug-feed">This Slug already exists</div>
           <input  class="new-entry-submit" type="submit"/>
+        </form> -->
+        <form class="new-entry-form">
+          <div class="text-inp-cont ">
+            <label class="name-l field-label">Company Name</label>
+            <input class="text-inp cn" type="text" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont ">
+            <label class="phone-l field-label">Phone Number</label>
+            <input class="text-inp pn" type="text" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont ">
+            <label class="email-l field-label">Email</label>
+            <input class="text-inp em" type="email" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont ">
+            <label class="pass-l field-label">Password</label>
+            <input class="text-inp pa" type="password" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont slug-inp-cont">
+            <label class="slug-l field-label">Slug (clikindia.co.in/member/[slug])</label>
+            <input class="text-inp sl" type="text" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="feed-text-error"></div>
+  
+          <input class="subm new-entry-submit" type="submit"/>
         </form>
       </div>
     </div>

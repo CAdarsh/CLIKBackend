@@ -193,13 +193,13 @@
   background-color: white;
   border-radius: 5px;
   border: 1px solid black;
-  padding: 20px;
+  padding: 20px 120px;
   position: relative;
 }
 .new-entry-cross {
   position: absolute;
-  right: 20px;
-  top: 10px;
+  right: 30px;
+  top: 23px;
   font-size: 20px;
   cursor: pointer;
 }
@@ -210,18 +210,20 @@
   color: var(--violet);
 }
 .new-entry-form {
+  width: 400px;
+  margin: auto;
   display: grid;
+  /* justify-content: center; */
 }
-.new-entry-form input[type="text"],
+/* .new-entry-form input[type="text"],
 .new-entry-form input[type="email"],
 .new-entry-form input[type="password"],
 textarea {
   padding: 10px;
   margin: 5px auto;
-  width: 80%;
   border-radius: 5px;
   border: 1px solid black;
-}
+} */
 .new-entry-submit {
   width: 200px;
   justify-self: center;
@@ -324,7 +326,9 @@ textarea {
 }
 @media only screen and (max-width: 600px) {
   .new-entry-modal {
-    width: 80vw;
+    box-sizing: border-box;
+    width: 90vw;
     margin: auto;
+    padding: 20px 20px;
   }
 }
