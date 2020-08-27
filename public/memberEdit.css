@@ -15,6 +15,7 @@
   margin: auto;
   display: grid;
   padding: 50px 0px;
+  position: relative;
 }
 .form-label {
   font-size: 13px;
@@ -40,6 +41,7 @@ textarea {
   position: relative;
   cursor: pointer;
   background-position: center;
+  margin-left: 50px;
 }
 .upload-img {
   cursor: pointer;
@@ -59,6 +61,9 @@ textarea {
 .form-butts {
   margin: 30px auto;
   display: flex;
+  position: absolute;
+  bottom: -10px;
+  left: 40%;
 }
 .form-butts a,
 .form-butts button,
@@ -82,4 +87,7 @@ textarea {
   font-size: 12px;
   margin-bottom: 15px;
   display: none;
+}
+.mar-top {
+  margin-top: 20px;
 }
