@@ -1,11 +1,11 @@
-const jwt = require("jsonwebtoken");
-const path = require("path");
-const multer = require("multer");
-const memberModel = require("./models/Member");
-const adminModel = require("./models/Admin");
+const jwt = require('jsonwebtoken');
+const path = require('path');
+const multer = require('multer');
+const memberModel = require('./models/Member');
+const adminModel = require('./models/Admin');
 
 const storage = multer.diskStorage({
-  destination: "./public/uploads/",
+  destination: './public/uploads/',
   filename: (req, file, cb) => {
     cb(
       null,
@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({
   storage,
-}).single("myImage");
+}).single('myImage');
 
 function notFound(req, res, next) {
   res.status(404);
@@ -25,21 +25,21 @@ function notFound(req, res, next) {
 
 const auth = async (req, res, next) => {
   try {
-    const token = req.header("Authorization").split(" ")[1];
-    const data = jwt.verify(token, "lololol");
+    const token = req.header('Authorization').split(' ')[1];
+    const data = jwt.verify(token, 'lololol');
     const user = await memberModel.member
       .findOne({ email: data.email })
-      .populate("products");
+      .populate('products');
     // const buser = (await memberModel.product.find()).populate('products');
     if (!user) {
-      throw new Error("Invalid Token");
+      throw new Error('Invalid Token');
     } else {
       req.dataJWT = user;
       req.statusCode = 200;
       next();
     }
   } catch (err) {
-    console.log("Invalid");
+    console.log('Invalid');
     req.dataJWT = err;
     req.statusCode = 403;
     next();
@@ -49,17 +49,18 @@ const auth = async (req, res, next) => {
 
 const authForm = async (req, res, next) => {
   try {
-    const email = jwt.verify(req.body.token, "lololol");
+    console.log(req.body);
+    const email = jwt.verify(req.body.token, 'lololol');
     const user = await memberModel.member.findOne({ email: email.email });
     if (!user) {
-      throw new Error("Invalid Token");
+      throw new Error('Invalid Token');
     } else {
       req.dataJWT = user;
       req.statusCode = 200;
       next();
     }
   } catch (err) {
-    console.log("Invalid");
+    console.log('Invalid');
     req.dataJWT = err;
     req.statusCode = 403;
     next();
@@ -69,19 +70,19 @@ const authForm = async (req, res, next) => {
 
 const adminAuth = async (req, res, next) => {
   try {
-    const token = req.header("Authorization").split(" ")[1];
-    const data = jwt.verify(token, "lololol");
+    const token = req.header('Authorization').split(' ')[1];
+    const data = jwt.verify(token, 'lololol');
     const user = await adminModel
       .findOne({ email: data.email, password: data.password })
       .catch((err) => console.log(err));
     if (!user) {
-      throw new Error("Invalid Token");
+      throw new Error('Invalid Token');
     } else {
       req.data = { user, valid: true };
       next();
     }
   } catch (err) {
-    console.log("bad");
+    console.log('bad');
     req.data = { valid: false };
     next();
   }
@@ -99,8 +100,8 @@ const authAndUpdate = (req, res, next) => {
     slug,
   } = JSON.parse(req.headers.contents);
 
-  const token = req.header("Authorization").split(" ")[1];
-  const data = jwt.verify(token, "lololol");
+  const token = req.header('Authorization').split(' ')[1];
+  const data = jwt.verify(token, 'lololol');
 
   upload(req, res, async (err) => {
     if (err) {
@@ -109,7 +110,7 @@ const authAndUpdate = (req, res, next) => {
       console.log(req.file);
       const user = await memberModel.findOne({ slug });
       if (!user) {
-        throw new Error("Invalid Token");
+        throw new Error('Invalid Token');
       } else if (req.file) {
         req.data = await memberModel.updateOne(
           { slug },
@@ -120,7 +121,7 @@ const authAndUpdate = (req, res, next) => {
             website,
             title,
             location,
-            image: req.file.path.split("public")[1],
+            image: req.file.path.split('public')[1],
           }
         );
       } else {
@@ -163,7 +164,7 @@ function errorHandler(err, req, res, next) {
   res.status(statusCode);
   res.json({
     message: err.message,
-    stack: process.env.NODE_ENV === "production" ? "🥞" : err.stack,
+    stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
   });
 }
 

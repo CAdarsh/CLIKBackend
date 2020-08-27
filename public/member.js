@@ -1,6 +1,23 @@
 const abt = document.querySelector('.about');
 const pro = document.querySelector('.products');
 const con = document.querySelector('.contact');
+
+async function formSubmit(form, thisForm) {
+  form.preventDefault();
+  const image = document.querySelector('#file');
+  if (image.files[0]) {
+    const uploadImage = await AddFile(image.files[0]);
+    if (uploadImage) {
+      document.forms.addProduct.image.value = uploadImage;
+      document.forms.addProduct.imageRef.value = window.imageRef;
+      thisForm.submit();
+    }
+  } else {
+    alert('Please upload an Image');
+  }
+  return false;
+}
+
 function resetColor() {
   document.querySelector('.btn-abt').style.backgroundColor = 'transparent';
   document.querySelector('.btn-abt').style.color = 'white';

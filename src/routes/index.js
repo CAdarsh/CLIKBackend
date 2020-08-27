@@ -2,40 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const multer = require('multer');
 const memberModel = require('../models/Member');
-
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, './public/uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
-    );
-  },
-});
-
-const upload = multer({
-  storage,
-});
-
-const productStorage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, './public/productImages/');
-  },
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      `Product_${file.fieldname}-${Date.now()}${path.extname(
-        file.originalname
-      )}`
-    );
-  },
-});
-
-const productUpload = multer({ storage: productStorage });
 
 const router = express.Router();
 router.use(bodyParser.json());
@@ -69,11 +36,6 @@ router.use((req, res, next) => {
 router.get('/admin', (req, res) => {
   res.render('pages/adminPanel.ejs');
 });
-
-// router.get('/admin/add',async (req,res)=>{
-//   let result = await addAdmin(req.body);
-//   res.json(result)
-// })
 
 router.get('/admin/all', adminAuth, async (req, res) => {
   const result = await sendAdmin();
@@ -142,12 +104,11 @@ router.get('/member/details', auth, (req, res) => {
 });
 router.post(
   '/member/details',
-  upload.single('logoImg'),
   authForm,
   async (req, res) => {
+    console.log(req.body);
     if (req.statusCode == 200) {
-      if (req.file) {
-        console.log(req.file.path);
+      if (req.body.image) {
         const data = {
           bEmail: req.body.cemail,
           bPhone: req.body.cphone,
@@ -157,7 +118,7 @@ router.post(
           tagline: req.body.csdesc,
           content: req.body.cdesc,
           website: req.body.cwebsite,
-          image: req.file.path,
+          image: req.body.image,
         };
         const response = await getDetails.updateDetails(
           data,
@@ -197,7 +158,11 @@ router.post('/member/login', async (req, res) => {
 router.get('/member/slug/:slug', async (req, res) => {
   const result = await getDetails.isSlugAvail(req.params.slug);
   console.log(result);
-  res.json({ result });
+  if (result != 1) {
+    res.json({ result: 0, imageRef: result.imageRef });
+  } else {
+    res.json({ result });
+  }
 });
 
 router.get('/member/email/:email', async (req, res) => {
@@ -208,18 +173,11 @@ router.get('/member/email/:email', async (req, res) => {
 
 router.post(
   '/member/product',
-  productUpload.single('product'),
   authForm,
   async (req, res) => {
-    const { file, body } = req;
-    // console.log(body);
+    const { body } = req;
     if (req.statusCode == 200) {
-      if (!file) {
-        const error = new Error('Please upload a file');
-        error.httpStatusCode = 400;
-        return next(error);
-      }
-      productController.addProduct(file.path, body, req.dataJWT._id);
+      productController.addProduct(body.image, body, req.dataJWT._id);
       res.redirect('/member/page');
     } else {
       res.send('Not Authorized');

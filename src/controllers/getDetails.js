@@ -1,9 +1,9 @@
-const jwt = require("jsonwebtoken");
-const fs = require("fs");
-const model = require("../models/Member");
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const model = require('../models/Member');
 
 const getUser = async (slug) => {
-  const resultUser = await model.member.findOne({ slug }).populate("products");
+  const resultUser = await model.member.findOne({ slug }).populate('products');
   if (resultUser) {
     return {
       status: 200,
@@ -19,7 +19,7 @@ const getUser = async (slug) => {
 const isSlugAvail = async (slug) => {
   const user = await model.member.findOne({ slug });
   if (user) {
-    return 0;
+    return user;
   }
   return 1;
 };
@@ -34,15 +34,6 @@ const isEmailAvail = async (email) => {
 const updateDetails = async (data, email) => {
   try {
     const user = await model.member.findOne({ email });
-    if (data.image) {
-      fs.unlink(`${user.image}`, (err) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("Done");
-        }
-      });
-    }
     return await user.updateOne(data);
   } catch (err) {
     return err;

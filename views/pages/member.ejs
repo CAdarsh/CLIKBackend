@@ -19,7 +19,45 @@
       }
     </style>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-storage.js"></script>
+  
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyChFXCTJ27m5ptDKcHTnugdIVRr0zScHRc",
+        authDomain: "clik-b7a86.firebaseapp.com",
+        databaseURL: "https://clik-b7a86.firebaseio.com",
+        projectId: "clik-b7a86",
+        storageBucket: "clik-b7a86.appspot.com",
+        messagingSenderId: "957767558485",
+        appId: "1:957767558485:web:a0d9e10b3392848934bbdc"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      
+      const storage = firebase.storage();
+      async function AddFile(file) {
+        window.imageRef = `${file.name}-${Date.now()}`;
+        window.fileName = 'products/' + `${file.name}-${Date.now()}`;
+        const refer = await storage.ref(window.fileName);
+        return await refer.put(file)
+          .then((data) => console.log(data.state))
+          .then(async () => {
+            return await refer.getDownloadURL().then((url) => {
+              return url;
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+            return err;
+          });
+        
+  }
+    </script>
 
     <script>
       function ChangeData(data) {
@@ -34,13 +72,17 @@
           image,
           products
         } = data;
-        document.querySelector(".info-name").innerHTML = title;
-        document.querySelector(".location").innerHTML = location;
+        document.querySelector(".location").innerHTML = `<img class="company-loc-img" src="./images/pin.svg" alt="pin">${location}`;
         document.querySelector(".contact-email").href = `mailto:${bEmail}`;
+        document.querySelector(".contact-email .contact-value").innerHTML = `${bEmail}`;
+        document.querySelector(".contact-website .contact-value").innerHTML = `${website}`;
+        document.querySelector(".contact-phone .contact-value").innerHTML = `${bPhone}`;
         document.querySelector(".contact-website").href = website;
         document.querySelector(".contact-phone").href = `tel:+${bPhone}`;
         document.querySelector(".about-text").innerHTML = content;
-        document.querySelector("#img-main").src = `${image.split('\\')[1]}/${image.split('\\')[2]}`;
+        document.querySelector(".contact-address .contact-value").innerHTML = location;
+        document.querySelector(".company-logo-img").src = `${image.split('\\')[1]}/${image.split('\\')[2]}`;
+        document.querySelector("#img-main").src = `${image}`;
         products.map((data,index)=>{
           let a =  `<div class="product">
           <img class="product-img opac" src="${data.image}" alt="product">
@@ -126,17 +168,20 @@
       <div class="new-entry-modal">
         <div class="new-entry-cross">x</div>
         <h2 class="new-entry-heading">New Entry</h2>
-        <form action="/member/product" name="addProduct" method="POST" enctype='multipart/form-data' class="new-entry-form">
-          <input type="file" name="product" id="file" class="inputfile" accept=".jpeg,.jpg,.png,.svg" required/>
-          <label for="file"><svg width="65" height="44" viewBox="0 0 65 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="upload-svg">
-            <path d="M52.4062 16.61C50.5646 7.1225 42.3583 0 32.5 0C24.6729 0 17.875 4.51 14.4896 11.11C6.3375 11.99 0 19.0025 0 27.5C0 36.6025 7.28542 44 16.25 44H51.4583C58.9333 44 65 37.84 65 30.25C65 22.99 59.4479 17.105 52.4062 16.61ZM37.9167 24.75V35.75H27.0833V24.75H18.9583L32.5 11L46.0417 24.75H37.9167Z" fill="white"/>
-            </svg> Choose Product Image</label>
-            <input type="text" name="token" class="none">
+        <form action="/member/product" name="addProduct" onsubmit="return formSubmit(event,this)" method="POST" class="new-entry-form">
+          <input type="text" name="token" class="none">
           <input type="text" class="pn" name="name" placeholder="Product Name" required/> 
           <input type="text" class="pp" name="price" placeholder="Product Price (optional)" />
+          <input type="text" class="none" name="image" />
+          <input type="text" class="none" name="imageRef" />
           <textarea class="pd" name="desc" rows="4" placeholder="Product description (under 170 characters)"></textarea>
           <input type="submit" class="new-entry-submit" value="Add" />
         </form>
+        <input type="file" name="product" id="file" class="inputfile" accept=".jpeg,.jpg,.png,.svg"/>
+        <label for="file"><svg width="65" height="44" viewBox="0 0 65 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="upload-svg">
+          <path d="M52.4062 16.61C50.5646 7.1225 42.3583 0 32.5 0C24.6729 0 17.875 4.51 14.4896 11.11C6.3375 11.99 0 19.0025 0 27.5C0 36.6025 7.28542 44 16.25 44H51.4583C58.9333 44 65 37.84 65 30.25C65 22.99 59.4479 17.105 52.4062 16.61ZM37.9167 24.75V35.75H27.0833V24.75H18.9583L32.5 11L46.0417 24.75H37.9167Z" fill="white"/>
+          </svg> Choose Product Image</label>
+     
       </div>
     </div>
     <main>
@@ -174,16 +219,58 @@
         </div> -->
       </div>
       <div class="contact">
-          <div class="contact-info">
-              <a href="#" class="contact-phone"><img class="contact-info-img" src="./images/phone.svg" alt="">+91 99889 99988</a>
-              <a href="#" class="contact-email"><img class="contact-info-img" src="./images/email.svg" alt=""> johndoe@company.com</a>
-              <a href="#" class="contact-website"><img 
-                  class="contact-info-img" src="./images/internet.svg" alt=""> www.johndoe.com</a>
+        <a class="contact-phone">
+          <div class="contact-svg">
+            <svg  width="120" height="123" viewBox="0 0 120 123" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.7" d="M113.4 84.5967C105.2 84.5967 97.2667 83.23 89.8667 80.77C87.5333 79.95 84.9333 80.565 83.1333 82.41L72.6667 95.8717C53.8 86.6467 36.1333 69.2217 26.7333 49.2L39.7333 37.8567C41.5333 35.9433 42.0667 33.2783 41.3333 30.8867C38.8667 23.3017 37.6 15.17 37.6 6.765C37.6 3.075 34.6 0 31 0H7.93333C4.33333 0 0 1.64 0 6.765C0 70.2467 51.5333 123 113.4 123C118.133 123 120 118.695 120 114.937V91.3617C120 87.6717 117 84.5967 113.4 84.5967Z" fill="#4A4A4B"/>
+              </svg>
+              
           </div>
-          <div class="contact-address">
-              Please contact us through one of these mediums  
+          <div class="contact-stuff">
+            <div class="contact-verb">Call</div>
+            <div class="contact-value">+91 99889 99988</div>
           </div>
-      </div>
+        </a>
+        <a class="contact-address">
+          <div class="contact-svg">
+            <svg width="81" height="115" viewBox="0 0 81 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.7" d="M40.5 0C18.1093 0 0 17.9975 0 40.25C0 70.4375 40.5 115 40.5 115C40.5 115 81 70.4375 81 40.25C81 17.9975 62.8907 0 40.5 0ZM40.5 54.625C32.5157 54.625 26.0357 48.185 26.0357 40.25C26.0357 32.315 32.5157 25.875 40.5 25.875C48.4843 25.875 54.9643 32.315 54.9643 40.25C54.9643 48.185 48.4843 54.625 40.5 54.625Z" fill="#4A4A4B"/>
+              </svg>
+              
+              
+          </div>
+          <div class="contact-stuff">
+            <div class="contact-verb">Locate</div>
+            <div class="contact-value">#10, Main Road , Mathikere, Bengaluru</div>
+          </div>
+        </a>
+        <a class="contact-email">
+          <div class="contact-svg">
+            <svg width="100" height="80" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M90 0H10C4.5 0 0.05 4.5 0.05 10L0 70C0 75.5 4.5 80 10 80H90C95.5 80 100 75.5 100 70V10C100 4.5 95.5 0 90 0ZM90 20L50 45L10 20V10L50 35L90 10V20Z" fill="#4A4A4B"/>
+              </svg>
+              
+              
+          </div>
+          <div class="contact-stuff">
+            <div class="contact-verb">Email</div>
+            <div class="contact-value">johndoe@gmail.com </div>
+          </div>
+        </a>
+        <a class="contact-website">
+          <div class="contact-svg">
+            <svg width="97" height="97" viewBox="0 0 97 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M6.17163 45.4688H21.2673C21.4491 40.1519 22.1039 35.0534 23.1588 30.3125H10.1486C7.88803 35.0719 6.53909 40.2126 6.17163 45.4688ZM13.6709 24.25H24.7956C25.806 21.0297 27.1046 17.907 28.6756 14.9198C29.7239 12.9377 30.9345 11.0458 32.2949 9.2635C24.7833 12.3783 18.3207 17.5787 13.6709 24.25ZM48.5 0C35.637 0 23.3008 5.10981 14.2053 14.2053C5.10981 23.3008 0 35.637 0 48.5C0 61.363 5.10981 73.6992 14.2053 82.7947C23.3008 91.8902 35.637 97 48.5 97C61.363 97 73.6992 91.8902 82.7947 82.7947C91.8902 73.6992 97 61.363 97 48.5C97 35.637 91.8902 23.3008 82.7947 14.2053C73.6992 5.10981 61.363 0 48.5 0V0ZM45.4688 6.52931C41.4069 7.76606 37.3753 11.5006 34.0288 17.7752C32.98 19.7395 32.0282 21.9099 31.1916 24.25H45.4688V6.52931ZM45.4688 30.3125H29.3849C28.1925 35.2826 27.506 40.3605 27.3358 45.4688H45.4688V30.3125ZM51.5312 45.4688V30.3125H67.6151C68.7487 34.9503 69.4702 40.061 69.6642 45.4688H51.5312ZM45.4688 51.5312H27.3419C27.5101 56.6393 28.1946 61.7172 29.3849 66.6875H45.4688V51.5312ZM51.5312 66.6875V51.5312H69.6581C69.4901 56.6393 68.8056 61.7173 67.6151 66.6875H51.5312ZM45.4688 72.75H31.1916C32.0282 75.0901 32.98 77.2605 34.0288 79.2247C37.3753 85.4994 41.4129 89.2279 45.4688 90.4707V72.75ZM32.2949 87.7365C30.9343 85.9543 29.7238 84.0624 28.6756 82.0802C27.1047 79.093 25.8061 75.9703 24.7956 72.75H13.6709C18.3207 79.4213 24.7833 84.6217 32.2949 87.7365ZM10.1486 66.6875H23.1588C22.0624 61.7045 21.4292 56.6308 21.2673 51.5312H6.17163C6.5475 56.9269 7.93581 62.0376 10.1486 66.6875ZM64.7051 87.7365C72.2167 84.6217 78.6793 79.4213 83.3291 72.75H72.2104C71.1977 75.9704 69.8971 79.093 68.3244 82.0802C67.2764 84.0625 66.0658 85.9544 64.7051 87.7365ZM65.8084 72.75H51.5312V90.4707C55.5931 89.2339 59.6247 85.4994 62.9712 79.2247C64.0736 77.1386 65.0218 74.9745 65.8084 72.75ZM73.8413 66.6875H86.8514C89.0642 62.0376 90.4525 56.9269 90.8284 51.5312H75.7327C75.5708 56.6308 74.9376 61.7045 73.8413 66.6875ZM75.7327 45.4688H90.8284C90.4608 40.2127 89.1118 35.0719 86.8514 30.3125H73.8413C74.8961 35.0534 75.5509 40.1519 75.7327 45.4688ZM72.2044 24.25C71.1936 21.0298 69.895 17.9072 68.3244 14.9198C67.2763 12.9376 66.0657 11.0457 64.7051 9.2635C72.2167 12.3783 78.6793 17.5787 83.3291 24.25H72.2104H72.2044ZM65.8084 24.25H51.5312V6.52931C55.5931 7.76606 59.6247 11.5006 62.9712 17.7752C64.02 19.7395 64.9718 21.9099 65.8084 24.25Z" fill="#4A4A4B"/>
+              </svg>
+              
+              
+          </div>
+          <div class="contact-stuff">
+            <div class="contact-verb">Visit</div>
+            <div class="contact-value">www.johndoe.com</div>
+          </div>
+        </a>
+    </div>
   </main>
     <%- include('../partials/footer') %>
     <script src="./index.js"></script>

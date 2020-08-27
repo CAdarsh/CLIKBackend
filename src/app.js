@@ -5,24 +5,24 @@ const cors = require('cors');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const multer = require('multer');
 
-var bodyParser = require('body-parser');
+const upload = multer();
+const bodyParser = require('body-parser');
 
-// parse application/x-www-form-urlencoded 
-
+// parse application/x-www-form-urlencoded
 
 const uri = 'mongodb+srv://adarsh:eaUNvic6gESuY5Q@cluster0.mgwoh.mongodb.net/<clikIndia>?retryWrites=true&w=majority';
 
-mongoose.connect(uri,{useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const middlewares = require('./middlewares');
 const index = require('./routes');
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
-
+app.use(upload.array());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(express.static('public'));
 app.set('view engine', ejs);

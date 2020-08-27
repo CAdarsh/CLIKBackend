@@ -73,6 +73,10 @@ const memberScheme = new mongoose.Schema({
     type: String,
     default: 'public\\uploads\\ph.png',
   },
+  imageRef: {
+    type: String,
+    // default: 'public\\uploads\\ph.png',
+  },
   tagline: {
     type: String,
     default: '',
@@ -96,6 +100,9 @@ const productSchema = new mongoose.Schema({
   image: {
     type: String,
     default: '/images/product.jpg',
+  },
+  imageRef: {
+    type: String,
   },
   seller: {
     type: mongoose.Schema.Types.ObjectId,

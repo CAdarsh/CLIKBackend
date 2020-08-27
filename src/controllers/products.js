@@ -2,7 +2,6 @@ const productModel = require('../models/Member').product;
 const memberModel = require('../models/Member').member;
 
 const addProduct = async (path, body, id) => {
-  path = `${path.split('\\')[1]}\\${path.split('\\')[2]}`;
   if (body.price) {
     console.log('Hello');
     const product = new productModel({
