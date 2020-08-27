@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard - CLIK India</title>
+    <title>Admin Dashboard | CLIK India</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&family=Poppins:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -50,19 +50,16 @@
         ADMIN
       </div>
       <div class="header-opt">
-        <div class="option">
+        <div class="option" onclick='window.location.href = "https:\/\/www.newclikindia.co.in/services"'>
           Services
         </div>
-        <div class="option">
+        <div class="option" onclick='window.location.href = "https:\/\/www.newclikindia.co.in/about-us"'>
           About Us
         </div>
-        <div class="option">
-          Events
-        </div>
-        <div class="option">
+        <div class="option" onclick='window.location.href = "https:\/\/www.newclikindia.co.in/contact-us"'>
           Contact Us
         </div>
-        <div class="option">
+        <div class="option" onclick='window.location.href = "https:\/\/www.newclikindia.co.in/community"'>
           Forum
         </div>
       </div>
@@ -76,9 +73,9 @@
 
     <div class="new-entry-modal-cont">
       <div class="new-entry-modal">
-        <div class="new-entry-cross">x</div>
-        <h2 class="new-entry-heading">New Entry</h2>
-        <form class="new-entry-form">
+        <img src="/images/cross.svg" alt="cross" class="new-entry-cross">
+        <h2 class="new-entry-heading">NEW ENTRY</h2>
+        <!-- <form class="new-entry-form">
           <input type="text" class="cn" placeholder="Company Name" required/>
           <input type="text" class="pn" placeholder="Phone Number" required/>
           <input type="email" class="em" placeholder="Email" required/>
@@ -91,13 +88,43 @@
           />
           <div class="slug-feed">This Slug already exists</div>
           <input  class="new-entry-submit" type="submit"/>
+        </form> -->
+        <form class="new-entry-form">
+          <div class="text-inp-cont ">
+            <label class="name-l field-label">Company Name</label>
+            <input class="text-inp cn" type="text" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont ">
+            <label class="phone-l field-label">Phone Number</label>
+            <input class="text-inp pn" type="text" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont ">
+            <label class="email-l field-label">Email</label>
+            <input class="text-inp em" type="email" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont ">
+            <label class="pass-l field-label">Password</label>
+            <input class="text-inp pa" type="password" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont slug-inp-cont">
+            <label class="slug-l field-label">Slug (clikindia.co.in/member/[slug])</label>
+            <input class="text-inp sl" type="text" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="feed-text-error"></div>
+  
+          <input class="subm new-entry-submit" type="submit"/>
         </form>
       </div>
     </div>
     <div class="content">
       <div class="title-bar">
         <div class="logo big-logo">
-          <img src="./images/logo.png" alt="logo" />
+          <img src="./images/logo.png" alt="logo" onclick='window.location.href = "https:\/\/www.newclikindia.co.in"'/>
         </div>
         <div class="title">
           DASHBOARD

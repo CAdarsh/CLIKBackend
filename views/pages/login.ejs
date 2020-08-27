@@ -13,14 +13,16 @@
   <body>
     <%- include('../partials/header') %>
     <main>
-      <h1 class="main-heading">Welcome Back</h1>
+      <h1 class="main-heading">Welcome Back!</h1>
       <form>
         <div class="text-inp-cont e-text">
-          <input class="text-inp" type="email" placeholder="Email" required />
+          <label class="email-l field-label">Email</label>
+          <input class="text-inp" type="email" required />
           <div class="feed-text"></div>
         </div>
         <div class="text-inp-cont p-text">
-          <input type="text" class="text-inp" placeholder="Password" />
+          <label class="pass-l field-label">Password</label>
+          <input type="password" class="text-inp" />
           <div class="feed-text"></div>
         </div>
         <div class="feed-text-error"></div>

@@ -13,7 +13,7 @@ body {
   background-size: cover;
   height: 150px;
   color: var(--violet);
-  font-size: 35px;
+  font-size: 30px;
 }
 .back-img-heading {
   /* font-weight: 1600; */
@@ -103,6 +103,7 @@ body {
   color: var(--violet);
   margin-right: 20px;
   font-size: 17px;
+  font-family: "Poppins", sans-serif;
 }
 .member-cu {
   font-size: 17px;
@@ -114,12 +115,13 @@ body {
   border-radius: 3px;
   color: var(--violet);
   background-color: white;
+  font-family: "Poppins", sans-serif;
 }
 
 @media only screen and (max-width: 1100px) {
   .back-img-cont {
     height: 100px;
-    font-size: 30px;
+    font-size: 25px;
   }
   .members {
     grid-template-columns: 1fr 1fr;
@@ -129,7 +131,8 @@ body {
 @media only screen and (max-width: 730px) {
   .back-img-cont {
     height: 100px;
-    font-size: 25px;
+    font-size: 22px;
+    padding-left: 5vw;
     /* align-items: center; */
   }
   .members {

@@ -72,7 +72,9 @@ document
   .querySelector(".new-entry-submit")
   .addEventListener("click", async (e) => {
     e.preventDefault();
-    document.querySelector(".slug-feed").style.display = "none";
+    document.querySelectorAll(".text-inp-cont").forEach((x) => {
+      x.querySelector(".feed-text").innerHTML = "";
+    });
     let buisnessName = document.querySelector(".cn").value;
     let slug = document.querySelector(".sl").value;
     let phone = document.querySelector(".pn").value;
@@ -100,7 +102,8 @@ document
       })
       .then((y) => {
         if (y.result === 0) {
-          document.querySelector(".slug-feed").style.display = "block";
+          document.querySelector(".slug-inp-cont .feed-text").innerHTML =
+            "This Slug is taken";
           return;
         }
         //fetch sendingObject

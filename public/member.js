@@ -10,6 +10,7 @@ function resetColor() {
   document.querySelector('.btn-con').style.color = 'white';
 }
 document.querySelector('.btn-abt').addEventListener('click', () => {
+  document.location.hash = '';
   abt.style.display = 'block';
   pro.style.display = 'none';
   con.style.display = 'none';
@@ -18,6 +19,7 @@ document.querySelector('.btn-abt').addEventListener('click', () => {
   document.querySelector('.btn-abt').style.color = 'var(--dark-violet)';
 });
 document.querySelector('.btn-pro').addEventListener('click', () => {
+  document.location.hash = 'products';
   abt.style.display = 'none';
   pro.style.display = 'grid';
   con.style.display = 'none';
@@ -26,6 +28,7 @@ document.querySelector('.btn-pro').addEventListener('click', () => {
   document.querySelector('.btn-pro').style.color = 'var(--dark-violet)';
 });
 document.querySelector('.btn-con').addEventListener('click', () => {
+  document.location.hash = 'contact';
   abt.style.display = 'none';
   pro.style.display = 'none';
   con.style.display = 'grid';
@@ -55,11 +58,6 @@ document.querySelector('.new-entry-submit').addEventListener('click', () => {
   const productName = document.querySelector('.pn').value;
   const productPrice = document.querySelector('.pp').value;
 
-  const sendingObject = {
-    productName,
-    productPrice,
-  };
-
   // fetch sendingObject
 });
 
@@ -79,3 +77,23 @@ Array.prototype.forEach.call(inputs, (input) => {
     else label.innerHTML = labelVal;
   });
 });
+
+if (window.location.href.split('#')[1] === 'contact') {
+  resetColor();
+  abt.style.display = 'none';
+  pro.style.display = 'none';
+  con.style.display = 'grid';
+  resetColor();
+  document.querySelector('.btn-con').style.backgroundColor = 'white';
+  document.querySelector('.btn-con').style.color = 'var(--dark-violet)';
+} else if (window.location.href.split('#')[1] === 'products') {
+  resetColor();
+  document.querySelector('.btn-pro').addEventListener('click', () => {
+    abt.style.display = 'none';
+    pro.style.display = 'grid';
+    con.style.display = 'none';
+    resetColor();
+    document.querySelector('.btn-pro').style.backgroundColor = 'white';
+    document.querySelector('.btn-pro').style.color = 'var(--dark-violet)';
+  });
+}
