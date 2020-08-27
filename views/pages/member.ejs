@@ -18,6 +18,9 @@
         display: none;
       }
     </style>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+
     <script>
       function ChangeData(data) {
         let {
@@ -44,7 +47,8 @@
           <div class="hnp opac">
             <h3 class="product-heading">${data.name}</h3>
             <p class="product-price">${!!data.price?'&#8377;':''} ${(!data.price?'Contact Us':data.price)} </p>
-          </div>
+            <p class="product-desc">${data.desc?data.desc:''}</p>
+            </div>
           <img src="/images/delete.svg" alt="delete" class="delete-svg" onclick="deleteUser('${data._id}')"/>
         </div>  `
         
@@ -130,6 +134,7 @@
             <input type="text" name="token" class="none">
           <input type="text" class="pn" name="name" placeholder="Product Name" required/> 
           <input type="text" class="pp" name="price" placeholder="Product Price (optional)" />
+          <textarea class="pd" name="desc" rows="4" placeholder="Product description (under 170 characters)"></textarea>
           <input type="submit" class="new-entry-submit" value="Add" />
         </form>
       </div>

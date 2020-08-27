@@ -9,7 +9,8 @@ const addProduct = async (path, body, id) => {
       image: path,
       name: body.name,
       price: body.price,
-      seller: id
+      seller: id,
+      desc: body.desc
     });
     const saveProduct = await product.save();
     // console.log(saveProduct);

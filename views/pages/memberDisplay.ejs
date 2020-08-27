@@ -55,6 +55,7 @@
               <div class="hnp ">
                 <h3 class="product-heading">${data.name}</h3>
                 <p class="product-price">${!!data.price?'&#8377;':''} ${(!data.price?'Contact Us':data.price)} </p>
+                <p class="product-desc">${data.desc?data.desc:''}</p>
                 </div>
                 </div> `
                 document.querySelector('.products').innerHTML += a;
@@ -147,14 +148,54 @@
       </div>
     </div>
       <div class="contact">
-          <div class="contact-info">
-              <a href="#" class="contact-phone phone"><img class="contact-info-img" src="./images/phone.svg" alt="phone">+91 99889 99988</a>
-              <a href="#" class="contact-email mail"><img class="contact-info-img" src="./images/email.svg" alt="phone"> johndoe@company.com</a>
-              <a href="#" class="contact-website website"><img 
-                  class="contact-info-img" src="./images/internet.svg" alt="website"> www.johndoe.com</a>
+          <div class="contact-phone">
+            <div class="contact-svg">
+              <svg  width="120" height="123" viewBox="0 0 120 123" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.7" d="M113.4 84.5967C105.2 84.5967 97.2667 83.23 89.8667 80.77C87.5333 79.95 84.9333 80.565 83.1333 82.41L72.6667 95.8717C53.8 86.6467 36.1333 69.2217 26.7333 49.2L39.7333 37.8567C41.5333 35.9433 42.0667 33.2783 41.3333 30.8867C38.8667 23.3017 37.6 15.17 37.6 6.765C37.6 3.075 34.6 0 31 0H7.93333C4.33333 0 0 1.64 0 6.765C0 70.2467 51.5333 123 113.4 123C118.133 123 120 118.695 120 114.937V91.3617C120 87.6717 117 84.5967 113.4 84.5967Z" fill="black"/>
+                </svg>
+                
+            </div>
+            <div class="contact-stuff">
+              <div class="contact-verb">Call</div>
+              <div class="contact-value">+91 99889 99988</div>
+            </div>
           </div>
           <div class="contact-address">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet possimus dolor alias accusamus molestiae maiores placeat nobis et tempora nostrum iure quaerat aliquam, laboriosam fuga veritatis, molestias officiis ad! Natus!
+            <div class="contact-svg">
+              <svg width="81" height="115" viewBox="0 0 81 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.7" d="M40.5 0C18.1093 0 0 17.9975 0 40.25C0 70.4375 40.5 115 40.5 115C40.5 115 81 70.4375 81 40.25C81 17.9975 62.8907 0 40.5 0ZM40.5 54.625C32.5157 54.625 26.0357 48.185 26.0357 40.25C26.0357 32.315 32.5157 25.875 40.5 25.875C48.4843 25.875 54.9643 32.315 54.9643 40.25C54.9643 48.185 48.4843 54.625 40.5 54.625Z" fill="black"/>
+                </svg>
+                
+                
+            </div>
+            <div class="contact-email">
+              <div class="contact-verb">Locate</div>
+              <div class="contact-value">#10, Main Road, Mathikere, Bengaluru</div>
+            </div>
+          </div>
+          <div class="contact-phone">
+            <div class="contact-svg">
+              <svg  width="120" height="123" viewBox="0 0 120 123" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.7" d="M113.4 84.5967C105.2 84.5967 97.2667 83.23 89.8667 80.77C87.5333 79.95 84.9333 80.565 83.1333 82.41L72.6667 95.8717C53.8 86.6467 36.1333 69.2217 26.7333 49.2L39.7333 37.8567C41.5333 35.9433 42.0667 33.2783 41.3333 30.8867C38.8667 23.3017 37.6 15.17 37.6 6.765C37.6 3.075 34.6 0 31 0H7.93333C4.33333 0 0 1.64 0 6.765C0 70.2467 51.5333 123 113.4 123C118.133 123 120 118.695 120 114.937V91.3617C120 87.6717 117 84.5967 113.4 84.5967Z" fill="black"/>
+                </svg>
+                
+            </div>
+            <div class="contact-website">
+              <div class="contact-verb">Email</div>
+              <div class="contact-value">johndoe@gmail.com </div>
+            </div>
+          </div>
+          <div class="contact-phone">
+            <div class="contact-svg">
+              <svg  width="120" height="123" viewBox="0 0 120 123" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.7" d="M113.4 84.5967C105.2 84.5967 97.2667 83.23 89.8667 80.77C87.5333 79.95 84.9333 80.565 83.1333 82.41L72.6667 95.8717C53.8 86.6467 36.1333 69.2217 26.7333 49.2L39.7333 37.8567C41.5333 35.9433 42.0667 33.2783 41.3333 30.8867C38.8667 23.3017 37.6 15.17 37.6 6.765C37.6 3.075 34.6 0 31 0H7.93333C4.33333 0 0 1.64 0 6.765C0 70.2467 51.5333 123 113.4 123C118.133 123 120 118.695 120 114.937V91.3617C120 87.6717 117 84.5967 113.4 84.5967Z" fill="black"/>
+                </svg>
+                
+            </div>
+            <div class="contact-stuff">
+              <div class="contact-verb">Visit</div>
+              <div class="contact-value">www.johndoe.com</div>
+            </div>
           </div>
       </div>
   </main>

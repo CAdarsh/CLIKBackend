@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 // const validator = require("validator");
-const validator = require("validator");
-const { token } = require("morgan");
+const validator = require('validator');
+const { token } = require('morgan');
 
 const memberScheme = new mongoose.Schema({
   email: {
@@ -10,7 +10,7 @@ const memberScheme = new mongoose.Schema({
     unique: true,
     validate: (val) => {
       if (!validator.isEmail(val)) {
-        throw new Error({ error: "Invalid Email Address" });
+        throw new Error({ error: 'Invalid Email Address' });
       }
     },
   },
@@ -42,45 +42,45 @@ const memberScheme = new mongoose.Schema({
   },
   location: {
     type: String,
-    default: "Enter your location",
+    default: 'Enter your location',
   },
   title: {
-    default: "Enter Title/Name of Buisness",
+    default: 'Enter Title/Name of Buisness',
     type: String,
   },
   content: {
     type: String,
-    default: "Enter content here",
+    default: 'Enter content here',
   },
   bEmail: {
     type: String,
     validate: (data) => {
       if (!validator.isEmail(data)) {
-        throw new Error("Invalid Email Address");
+        throw new Error('Invalid Email Address');
       }
     },
-    default: "youremail@domain.com",
+    default: 'youremail@domain.com',
   },
   bPhone: {
     type: String,
-    default: "Enter Phone Number",
+    default: 'Enter Phone Number',
   },
   website: {
     type: String,
-    default: "Enter your website address",
+    default: 'Enter your website address',
   },
   image: {
     type: String,
-    default: "public\\uploads\\ph.png",
+    default: 'public\\uploads\\ph.png',
   },
   tagline: {
     type: String,
-    default: "",
+    default: '',
   },
   products: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Products",
+      ref: 'Products',
     },
   ],
 });
@@ -95,13 +95,16 @@ const productSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    default: "/images/product.jpg",
+    default: '/images/product.jpg',
   },
   seller: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Member",
+    ref: 'Member',
   },
+  desc: {
+    type: String
+  }
 });
 
-exports.member = mongoose.model("Member", memberScheme);
-exports.product = mongoose.model("Products", productSchema);
+exports.member = mongoose.model('Member', memberScheme);
+exports.product = mongoose.model('Products', productSchema);
