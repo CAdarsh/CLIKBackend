@@ -96,26 +96,26 @@
   background-color: #eef1f7;
   height: auto;
   animation: fade-up 0.5s forwards;
-  display:grid;
+  display: grid;
   grid-template-columns: 12vw auto;
-  padding:20px;
+  padding: 20px;
 }
 .product-img {
   width: 100%;
-  height:12vw;
+  height: 12vw;
   object-fit: cover;
-  border-radius:10px;
+  border-radius: 10px;
   justify-self: center;
-  align-self:center;
+  align-self: center;
 }
 .product-heading {
   font-size: 22px;
   margin: 5px 0px 15px 0px;
 }
-.product-price{
-  margin-bottom:20px;
-  opacity:0.5;
-  font-size:14px;
+.product-price {
+  margin-bottom: 20px;
+  opacity: 0.5;
+  font-size: 14px;
 }
 .last-prod {
   /* display: grid; */
@@ -134,50 +134,49 @@
   display: none;
   grid-template-columns: 1fr 1fr;
   line-height: 1.5em;
-  column-gap:25px;
-  row-gap:25px;
+  column-gap: 25px;
+  row-gap: 25px;
 }
-.contact > div,.contact > a{
-  background-color: #F6F6F9;
-  border-radius:20px;
-  height:250px;
-  display:flex;
-  padding-left:10%;
-  padding-right:10%;
+.contact > div,
+.contact > a {
+  background-color: #f6f6f9;
+  border-radius: 20px;
+  height: 250px;
+  display: flex;
+  padding-left: 10%;
+  padding-right: 10%;
   align-items: center;
   cursor: pointer;
-  text-decoration:none;
-  color:black;
+  text-decoration: none;
+  color: black;
 }
-.contact > a:hover{
+.contact > a:hover {
   background-color: var(--violet);
   box-shadow: 8px 10px 30px 10px rgba(0, 0, 0, 0.15);
-  color:white;
+  color: white;
 }
-.contact > a:hover path{
-  fill:white;
-  
+.contact > a:hover path {
+  fill: white;
 }
-.contact svg{
-  height:80px;
-  width:80px;
-  fill:#4A4A4B;
+.contact svg {
+  height: 80px;
+  width: 80px;
+  fill: #4a4a4b;
 }
-.contact svg path{
-  opacity:1;
+.contact svg path {
+  opacity: 1;
 }
-.contact-stuff{
-  padding:5% 0px 5% 10%;
-
+.contact-stuff {
+  padding: 5% 0px 5% 10%;
 }
-.contact-verb{
-  opacity:0.5;
-  font-size:20px;
+.contact-verb {
+  opacity: 0.5;
+  font-size: 20px;
   font-weight: 600;
 }
-.contact-value{
-  font-size:25px;
-  margin-top:10px;
+.contact-value {
+  font-size: 25px;
+  margin-top: 10px;
 }
 .contact-info > a {
   display: flex;
@@ -287,7 +286,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  text-align:center;
+  text-align: center;
 }
 
 .new-entry-modal-cont {
@@ -330,7 +329,8 @@
 .new-entry-form {
   width: 100%;
 }
-.new-entry-form input[type="text"],.new-entry-form textarea {
+.new-entry-form input[type="text"],
+.new-entry-form textarea {
   padding: 10px;
   margin: 5px auto;
   width: 80%;
@@ -434,7 +434,9 @@
 .np-text {
   color: rgba(22, 26, 30, 0.6);
 }
-
+.choose-img {
+  margin-left: 35px;
+}
 @-webkit-keyframes sk-bouncedelay {
   0%,
   80%,
@@ -459,11 +461,12 @@
   }
 }
 @media only screen and (max-width: 1100px) {
-  .contact{
+  .contact {
     grid-template-columns: 1fr;
   }
-  .contact > div,.contact a{
-    height:200px;
+  .contact > div,
+  .contact a {
+    height: 200px;
   }
   .inner-nav {
     height: 130px;
@@ -533,59 +536,60 @@
   }
 }
 @media only screen and (max-width: 850px) {
-  .product{
+  .product {
     grid-template-columns: 150px auto;
-    padding:15px;
+    padding: 15px;
   }
-  .product-img{
-    height:150px;
-    width:150px;
+  .product-img {
+    height: 150px;
+    width: 150px;
     justify-self: center;
     align-self: center;
   }
-  .hnp{
-    margin:0px;
-    padding:0px 0px 0px 20px;
+  .hnp {
+    margin: 0px;
+    padding: 0px 0px 0px 20px;
   }
 }
 @media only screen and (max-width: 600px) {
-  .contact{
-    row-gap:15px;
+  .contact {
+    row-gap: 15px;
   }
-  .contact > div,.contact a{
-    height:150px;
+  .contact > div,
+  .contact a {
+    height: 150px;
   }
-  .contact svg{
-    height:40px;
-    width:40px;
+  .contact svg {
+    height: 40px;
+    width: 40px;
   }
-  .contact-verb{
-    font-size:18px;
+  .contact-verb {
+    font-size: 18px;
   }
-  .contact-value{
-    font-size:20px;
+  .contact-value {
+    font-size: 20px;
   }
-        .contact-address .contact-value{
-          font-size:16px;
-        }
-  .product{
+  .contact-address .contact-value {
+    font-size: 16px;
+  }
+  .product {
     grid-template-columns: 100px auto;
-    padding:15px;
+    padding: 15px;
   }
-  .product-img{
-    height:100px;
-    width:100px;
+  .product-img {
+    height: 100px;
+    width: 100px;
   }
-  .product-heading{
+  .product-heading {
     margin-bottom: 5px;
-    font-size:19px;
+    font-size: 19px;
   }
-  .product-price{
+  .product-price {
     margin-bottom: 10px;
-    font-size:12px;
+    font-size: 12px;
   }
-  .product-desc{
-    font-size:13px;
+  .product-desc {
+    font-size: 13px;
   }
   .company-info {
     padding: 0px 0px 0px 15px;

@@ -10,9 +10,11 @@ async function formSubmit(form, thisForm) {
     if (uploadImage) {
       document.forms.addProduct.image.value = uploadImage;
       document.forms.addProduct.imageRef.value = window.imageRef;
-      document.forms.addProduct.desc.value = document.forms.addProduct.desce.value;
-      // alert();
-      thisForm.submit();
+      if (document.querySelector('.pd').value.length > 170) {
+        alert('Product description should be below 170 characters');
+      } else {
+        thisForm.submit();
+      }
     }
   } else {
     alert('Please upload an Image');

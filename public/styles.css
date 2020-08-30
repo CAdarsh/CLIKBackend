@@ -13,8 +13,11 @@
   padding: 0;
   margin: 0;
 }
-
-input {
+.choose-img {
+  margin-left: 35px;
+}
+input,
+textarea {
   font-family: "Oxygen", sans-serif;
 }
 ::-webkit-scrollbar {
