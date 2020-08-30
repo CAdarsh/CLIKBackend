@@ -10,6 +10,8 @@ async function formSubmit(form, thisForm) {
     if (uploadImage) {
       document.forms.addProduct.image.value = uploadImage;
       document.forms.addProduct.imageRef.value = window.imageRef;
+      document.forms.addProduct.desc.value = document.forms.addProduct.desce.value;
+      // alert();
       thisForm.submit();
     }
   } else {

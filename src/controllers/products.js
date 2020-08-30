@@ -12,7 +12,6 @@ const addProduct = async (path, body, id) => {
       desc: body.desc
     });
     const saveProduct = await product.save();
-    // console.log(saveProduct);
     const User = (await memberModel.findOne({ _id: id }));
     User.products.push(saveProduct._id);
     const savedUser = await User.save();
@@ -22,7 +21,8 @@ const addProduct = async (path, body, id) => {
     const product = new productModel({
       image: path,
       name: body.name,
-      seller: id
+      seller: id,
+      desc: body.desc
     });
     const saveProduct = await product.save();
     const User = (await memberModel.findOne({ _id: id }));

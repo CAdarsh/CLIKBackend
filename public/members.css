@@ -11,7 +11,7 @@ body {
   /* background: url("./images/background.jpg"); */
   background-position: center;
   background-size: cover;
-  height: 150px;
+  /* height: 150px; */
   color: var(--violet);
   font-size: 30px;
 }
@@ -34,7 +34,7 @@ body {
 .members {
   padding: 50px 10vw;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 30px;
   row-gap: 50px;
 }
@@ -86,13 +86,17 @@ body {
   margin: 20px 0px;
 }
 .member-desc {
-  font-size: 16px;
+  font-size: 14px;
 }
 .pin {
   height: 1em;
 }
 .member-buttons {
-  margin: 30px 0px;
+  position: absolute;
+  bottom: 30px;
+  vertical-align: center;
+  width: 90%;
+  left: 5%;
 }
 .member-vp {
   cursor: pointer;
@@ -119,6 +123,12 @@ body {
 }
 
 @media only screen and (max-width: 1100px) {
+  .member-buttons{
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    bottom: 0px;
+  }
   .back-img-cont {
     height: 100px;
     font-size: 25px;

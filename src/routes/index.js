@@ -176,6 +176,8 @@ router.post(
   authForm,
   async (req, res) => {
     const { body } = req;
+    console.log('Yes');
+    console.log(body);
     if (req.statusCode == 200) {
       productController.addProduct(body.image, body, req.dataJWT._id);
       res.redirect('/member/page');
