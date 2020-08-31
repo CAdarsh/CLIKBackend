@@ -22,7 +22,7 @@
 .company-logo-img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .company-info {
   padding: 0px 0px 0px 50px;
