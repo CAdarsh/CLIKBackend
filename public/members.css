@@ -43,7 +43,7 @@ body {
   border-radius: 5px;
   background-color: white;
   cursor: pointer;
-  height: 400px;
+  height: 360px;
   /* transform: translate(5px); */
   transition-duration: 0.3s !important;
   animation: fade-up 0.5s forwards;
@@ -80,6 +80,9 @@ body {
 .member-heading {
   margin: 5px 0px;
   font-size: 27px;
+}
+.heading-small {
+  font-size: 20px;
 }
 .member-loc {
   font-size: 13px;
@@ -124,7 +127,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-@media only screen and (max-width: 1220px) {
+@media only screen and (max-width: 1230px) {
   .members {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -145,12 +148,12 @@ body {
     column-gap: 15px;
   } */
 }
-@media only screen and (max-width: 910px) {
+@media only screen and (max-width: 920px) {
   .members {
     grid-template-columns: 1fr 1fr;
   }
 }
-@media only screen and (max-width: 730px) {
+@media only screen and (max-width: 740px) {
   .back-img-cont {
     height: 100px;
     font-size: 22px;
