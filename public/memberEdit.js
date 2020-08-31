@@ -64,8 +64,8 @@ const slugUnique = async (event, form) => {
               document.forms.main.token.value = token;
               document.forms.main.image.value = image;
               document.forms.main.imageRef.value = window.fileName;
-              if (form.csdesc.value.length > 150) {
-                form.csdesc.value = `${form.csdesc.value.substring(0, 139)}...`;
+              if (form.csdesc.value.length > 130) {
+                form.csdesc.value = `${form.csdesc.value.substring(0, 130)}...`;
               }
               form.submit();
             } else {
