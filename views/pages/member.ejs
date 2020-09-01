@@ -61,9 +61,6 @@
     </script>
 
     <script>
-       if(<%= reload %>){
-      window.location = '/member/page';
-    } 
     let token = sessionStorage.getItem("token");
       if (token && token != "undefined") {
         var myHeaders = new Headers();
