@@ -85,13 +85,15 @@ body {
   font-size: 20px;
 }
 .member-loc {
-  font-size: 13px;
+  font-size: 12px;
   margin: 10px 0px;
   opacity: 0.5;
 }
 
 .member-desc {
-  font-size: 14px;
+  font-weight: 300;
+  padding-top: 10px;
+  font-size: 12px;
 }
 .pin {
   height: 0.8em;
@@ -111,11 +113,11 @@ body {
   text-decoration: underline;
   color: var(--violet);
   margin-right: 10px;
-  font-size: 15px;
+  font-size: 13px;
   font-family: "Poppins", sans-serif;
 }
 .member-cu {
-  font-size: 15px;
+  font-size: 13px;
   background: transparent;
   border: 1px solid var(--violet);
   cursor: pointer;

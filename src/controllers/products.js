@@ -32,6 +32,20 @@ const addProduct = async (path, body, id) => {
   }
 };
 
+const editProduct = async (body, id) => {
+  console.log(body);
+  delete body.id;
+  delete body.productId;
+  const keys = Object.keys(body);
+  keys.map((data) => {
+    if (body[data] == '') { delete body[data]; }
+  });
+  console.log(body);
+  const product = await productModel.updateOne({ _id: id }, body);
+  console.log(product);
+  return 'Success';
+};
+
 const delProduct = async (data) => {
   const { id } = data;
   console.log(id);
@@ -41,5 +55,6 @@ const delProduct = async (data) => {
 
 module.exports = {
   addProduct,
-  delProduct
+  delProduct,
+  editProduct
 };

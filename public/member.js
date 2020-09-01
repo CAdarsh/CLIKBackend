@@ -21,6 +21,28 @@ async function formSubmit(form, thisForm) {
   }
   return false;
 }
+async function formSubmitEdit(form, thisForm) {
+  let uploadImage = false;
+  form.preventDefault();
+  const image = document.querySelector('#fileEdit');
+  if (image.files[0]) {
+    uploadImage = await AddFile(image.files[0]);
+  }
+  if (true) {
+    if (uploadImage) {
+      document.forms.editProduct.image.value = uploadImage;
+      document.forms.editProduct.imageRef.value = window.imageRef;
+    }
+
+    if (document.querySelector('.pd').value.length > 170) {
+      alert('Product description should be below 170 characters');
+    } else {
+      thisForm.submit();
+    }
+  }
+
+  return false;
+}
 
 function resetColor() {
   document.querySelector('.btn-abt').style.backgroundColor = 'transparent';
@@ -82,8 +104,34 @@ document.querySelector('.new-entry-submit').addEventListener('click', () => {
   // fetch sendingObject
 });
 
+document.querySelector('.new-edit .new-entry-cross').addEventListener('click', () => {
+  document.querySelector('.new-edit.new-entry-modal-cont').style.display = 'none';
+});
+document
+  .querySelector('.new-edit.new-entry-modal-cont')
+  .addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) {
+      document.querySelector('.new-edit.new-entry-modal-cont').style.display = 'none';
+    }
+  });
+
 const inputs = document.querySelectorAll('.inputfile');
 Array.prototype.forEach.call(inputs, (input) => {
+  const label	 = input.nextElementSibling;
+  const labelVal = label.innerHTML;
+
+  input.addEventListener('change', (e) => {
+    let fileName = '';
+    // if( this.files && this.files.length > 1 )
+    // fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+    // else
+    fileName = e.target.value.split('\\').pop();
+
+    if (fileName) { label.innerHTML = fileName; }
+  });
+});
+const inputs2 = document.querySelectorAll('.inp2');
+Array.prototype.forEach.call(inputs2, (input) => {
   const label = input.nextElementSibling;
   const labelVal = label.innerHTML;
 
@@ -94,8 +142,7 @@ Array.prototype.forEach.call(inputs, (input) => {
     // else
     fileName = e.target.value.split('\\').pop();
 
-    if (fileName) label.innerText = fileName;
-    else label.innerHTML = labelVal;
+    if (fileName) { label.innerText = fileName; }
   });
 });
 

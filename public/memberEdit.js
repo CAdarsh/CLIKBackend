@@ -71,6 +71,9 @@ const slugUnique = async (event, form) => {
             } else {
               console.log('Hey');
             }
+          } else {
+            document.forms.main.token.value = token;
+            form.submit();
           }
         } else {
           document.querySelector('.slug-feed').style.display = 'block';

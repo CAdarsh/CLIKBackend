@@ -91,7 +91,7 @@ router.get('/member/edit', (req, res) => {
 });
 
 router.get('/member/page', (req, res) => {
-  res.render('pages/member.ejs', { logout: true });
+  res.render('pages/member.ejs', { logout: true, reload: false });
 });
 
 router.get('/member/all', async (req, res) => {
@@ -180,7 +180,23 @@ router.post(
     console.log(body);
     if (req.statusCode == 200) {
       productController.addProduct(body.image, body, req.dataJWT._id);
-      res.redirect('/member/page');
+      res.render('pages/member.ejs', { logout: true, reload: true });
+    } else {
+      res.send('Not Authorized');
+    }
+  }
+);
+
+router.post(
+  '/member/product/edit',
+  authForm,
+  async (req, res) => {
+    const { body } = req;
+    console.log('Yes');
+    console.log(body);
+    if (req.statusCode == 200) {
+      productController.editProduct(body, body.productId);
+      res.render('pages/member.ejs', { logout: true, reload: true });
     } else {
       res.send('Not Authorized');
     }
@@ -193,7 +209,6 @@ router.get('/demo', async (req, res) => {
 });
 
 router.delete('/member/product', auth, async (req, res) => {
-  // console.log(req.body);
   const result = await productController.delProduct(req.body);
   res.send(result);
 });

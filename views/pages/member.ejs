@@ -18,6 +18,7 @@
         display: none;
       }
     </style>
+   
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-storage.js"></script>
@@ -60,6 +61,35 @@
     </script>
 
     <script>
+       if(<%= reload %>){
+      window.location = '/member/page';
+    } 
+    let token = sessionStorage.getItem("token");
+      if (token && token != "undefined") {
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`); 
+        var raw = "";
+        var requestOptions = {
+          method: "GET",
+          headers: myHeaders,
+          redirect: "follow",
+        };
+
+        fetch("/member/details", requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+            document.querySelector('.spinner').style.display="none"
+            ChangeData(result);
+            document.forms.addProduct.token.value = token;
+            document.forms.editProduct.token.value = token;
+            // console.log(document.forms.addProduct.token.value)
+          })
+          .catch((error) => console.log("error", error));
+      } else {
+        window.location = "/member";
+      }
+
       function ChangeData(data) {
         let {
           content,
@@ -72,6 +102,7 @@
           image,
           products
         } = data;
+        document.querySelector(".info-name").innerHTML = title;
         document.querySelector(".location").innerHTML = `<img class="company-loc-img" src="./images/pin.svg" alt="pin">${location}`;
         document.querySelector(".contact-email").href = `mailto:${bEmail}`;
         document.querySelector(".contact-email .contact-value").innerHTML = `${bEmail}`;
@@ -92,6 +123,7 @@
             <p class="product-desc">${data.desc?data.desc:''}</p>
             </div>
           <img src="/images/delete.svg" alt="delete" class="delete-svg" onclick="deleteUser('${data._id}')"/>
+          <img src="/images/edit.svg" alt="edit" class="edit-svg" data-name="${data.name}" data-price="${data.price}" data-desc="${data.desc}" data-id="${data._id}"/>
         </div>  `
         
         if(index == 0){
@@ -105,36 +137,35 @@
         // document.querySelector('.products').innerHTML += a;
         document.querySelector('.products').innerHTML += ` </div>  
         <div class="product add-product-btn">
-          <p>+</p>
+          <div>Add Product</div>
         </div>`;
 
         document.querySelector(".add-product-btn").addEventListener("click", () => {
+          
           document.querySelector(".new-entry-modal-cont").style.display = "grid";
         });
-      }
-      let token = sessionStorage.getItem("token");
-      if (token && token != "undefined") {
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization", `Bearer ${token}`); 
-        var raw = "";
-        var requestOptions = {
-          method: "GET",
-          headers: myHeaders,
-          redirect: "follow",
-        };
 
-        fetch("/member/details", requestOptions)
-          .then((response) => response.json())
-          .then((result) => {
-            console.log(result);
-            document.querySelector('.spinner').style.display="none"
-            ChangeData(result);
-            document.forms.addProduct.token.value = token;
-          })
-          .catch((error) => console.log("error", error));
-      } else {
-        window.location = "/member";
+        if(document.querySelector('.edit-svg')){
+          
+          document.querySelectorAll('.edit-svg').forEach(x=>{
+
+            x.addEventListener('click', (e) => {
+              document.querySelector('.new-edit').style.display = 'grid';
+              const id = e.target.getAttribute('data-id');
+              const name=e.target.getAttribute('data-name');
+              const price=e.target.getAttribute('data-price');
+              const desc=e.target.getAttribute('data-desc');
+              document.querySelector('.new-edit .pn').value=name;
+              document.querySelector('.new-edit .pp').value=price;
+              document.querySelector('.new-edit .pd').value=desc;
+              document.querySelector('.product-id-input').value=id;
+            });
+          });
+        }
       }
+
+          
+     
 
       function deleteUser(id){
         let Header = new Headers();
@@ -174,11 +205,32 @@
           <input type="text" class="pp" name="price" placeholder="Product Price (optional)" />
           <input type="text" class="none" name="image" />
           <input type="text" class="none" name="imageRef" />
-          <textarea class="pd" name="desc" rows="4" placeholder="Product description (under 170 characters)"></textarea>
+          <textarea class="pd" name="desc" rows="4" placeholder="Product description (under 120 characters)"></textarea>
           <input type="submit" class="new-entry-submit" value="Add" />
         </form>
         <input type="file" name="product" id="file" class="inputfile" accept=".jpeg,.jpg,.png,.svg"/>
         <label for="file" class="choose-img" style="margin-left:10%"><svg width="65" height="44" viewBox="0 0 65 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="upload-svg">
+          <path d="M52.4062 16.61C50.5646 7.1225 42.3583 0 32.5 0C24.6729 0 17.875 4.51 14.4896 11.11C6.3375 11.99 0 19.0025 0 27.5C0 36.6025 7.28542 44 16.25 44H51.4583C58.9333 44 65 37.84 65 30.25C65 22.99 59.4479 17.105 52.4062 16.61ZM37.9167 24.75V35.75H27.0833V24.75H18.9583L32.5 11L46.0417 24.75H37.9167Z" fill="white"/>
+          </svg> Choose Product Image</label>
+     
+      </div>
+    </div>
+    <div class="new-entry-modal-cont new-edit">
+      <div class="new-entry-modal">
+        <div class="new-entry-cross">x</div>
+        <h2 class="new-entry-heading">Product Edit</h2>
+        <form action="/member/product/edit" name="editProduct" onsubmit="return formSubmitEdit(event,this)" method="POST" class="new-entry-form">
+          <input type="text" name="token" class="none">
+          <input type="text" name="productId" class="none product-id-input">
+          <input type="text" class="pn" name="name" placeholder="Product Name" required/> 
+          <input type="text" class="pp" name="price" placeholder="Product Price (optional)" />
+          <input type="text" class="none" name="image" />
+          <input type="text" class="none" name="imageRef" />
+          <textarea class="pd" name="desc" rows="4" placeholder="Product description (under 120 characters)"></textarea>
+          <input type="submit" class="new-entry-submit" value="Edit" />
+        </form>
+        <input type="file" name="productEdit" id="fileEdit" class="inp2" accept=".jpeg,.jpg,.png,.svg"/>
+        <label for="fileEdit" class="choose-img" style="margin-left:10%"><svg width="65" height="44" viewBox="0 0 65 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="upload-svg">
           <path d="M52.4062 16.61C50.5646 7.1225 42.3583 0 32.5 0C24.6729 0 17.875 4.51 14.4896 11.11C6.3375 11.99 0 19.0025 0 27.5C0 36.6025 7.28542 44 16.25 44H51.4583C58.9333 44 65 37.84 65 30.25C65 22.99 59.4479 17.105 52.4062 16.61ZM37.9167 24.75V35.75H27.0833V24.75H18.9583L32.5 11L46.0417 24.75H37.9167Z" fill="white"/>
           </svg> Choose Product Image</label>
      
