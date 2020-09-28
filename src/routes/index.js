@@ -17,6 +17,7 @@ const getDetails = require('../controllers/getDetails');
 const productController = require('../controllers/products');
 const {
   addAdmin,
+  updatePassword,
   sendAdmin,
   deleteAdmin,
   loginAdmin,
@@ -60,7 +61,10 @@ router.post('/admin/login', async (req, res) => {
   console.log(req.body, result);
   res.json(result);
 });
-
+router.post('/admin/changePassword', async (req, res) => {
+  const result = await updatePassword(req.body);
+  res.send(result);
+});
 router.get('/admin/register', (req, res) => {
   res.render('pages/register.ejs', { isError: false });
 });
@@ -89,7 +93,10 @@ router.get('/member', (req, res) => {
 router.get('/member/edit', (req, res) => {
   res.render('pages/memberEdit.ejs', { logout: true });
 });
-
+router.post('/member/changePassword', async (req, res) => {
+  const result = await loginController.updateMemberPassword(req.body);
+  res.send(result);
+});
 router.get('/member/page', (req, res) => {
   res.render('pages/member.ejs', { logout: true });
 });
@@ -248,8 +255,11 @@ router.get('/', (req, res) => {
   res.render('pages/members.ejs');
 });
 
-router.get('/404', (req, res) => {
-  res.render('pages/members.ejs');
+// router.get('/404', (req, res) => {
+//   res.render('pages/members.ejs');
+// });
+router.get('*', (req, res) => {
+  res.send('what???', 404);
 });
 
 module.exports = router;

@@ -1,53 +1,54 @@
-const jwt = require("jsonwebtoken");
-const adminModel = require("../models/Admin");
+const jwt = require('jsonwebtoken');
+const adminModel = require('../models/Admin');
 
-let loginAdmin = async (data) => {
-  let { email, password } = data;
-  let resultUser = await adminModel.findOne({ email, password });
+const loginAdmin = async (data) => {
+  const { email, password } = data;
+  const resultUser = await adminModel.findOne({ email, password });
   if (resultUser) {
-    let token = jwt.sign({ email: email, password: password }, "lololol");
+    const token = jwt.sign({ email, password }, 'lololol');
     return {
       status: 200,
-      token: token,
-    };
-  } else {
-    return {
-      status: 403,
+      token,
     };
   }
+  return {
+    status: 403,
+  };
 };
 
-let addAdmin = async ({ email, password }) => {
-  let token = jwt.sign(
+const addAdmin = async ({ email, password }) => {
+  const token = jwt.sign(
     {
-      email: email,
-      password: password,
+      email,
+      password,
     },
-    "lololol"
+    'lololol'
   );
 
   console.log(token);
 
-  let newUser = new adminModel({
-    email: email,
-    password: password,
+  const newUser = new adminModel({
+    email,
+    password,
     tokens: [{ token }],
   });
 
-  let result = await newUser.save();
+  const result = await newUser.save();
   console.log(result);
   return result;
 };
 
-let sendAdmin = async () => {
-  return await adminModel.find({});
+const updatePassword = async ({ email, password, newPassword }) => {
+  const result = await adminModel.updateOne({ email, password }, { password: newPassword });
+  return result;
 };
 
-let deleteAdmin = async () => {
-  return await adminModel.deleteMany({});
-};
+const sendAdmin = async () => await adminModel.find({});
+
+const deleteAdmin = async () => await adminModel.deleteMany({});
 
 exports.addAdmin = addAdmin;
 exports.sendAdmin = sendAdmin;
 exports.loginAdmin = loginAdmin;
 exports.deleteAdmin = deleteAdmin;
+exports.updatePassword = updatePassword;
