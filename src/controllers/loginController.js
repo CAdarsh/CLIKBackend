@@ -20,7 +20,8 @@ const loginUser = async (data) => {
 
 const updateMemberPassword = async ({ email, password, newPassword }) => {
   const result = await model.member.updateOne({ email, password }, { password: newPassword });
-  return result;
+  console.log(result);
+  return !!result.n;
 };
 exports.updateMemberPassword = updateMemberPassword;
 exports.loginUser = loginUser;
