@@ -62,13 +62,54 @@
         <div class="option" onclick='window.location.href = "https:\/\/www.newclikindia.co.in/community"'>
           Forum
         </div>
+        <div class="option cp-button">
+          Change Password
+        </div>
       </div>
       <div class="header-footer">
         &#169; 2020 CLIK | Powered By: CLIK.
       </div>
     </header>
     <div class="header-container">
-      <%- include('../partials/header') %>
+      <link
+href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&family=Poppins:wght@400;500;600&display=swap"
+rel="stylesheet"
+/>
+<div class="side">
+  <button class="close-side">
+    <img src="./images/close.svg" alt="close" class="close-svg" /> CLOSE MENU
+  </button>
+  <div class="side-links">
+    <a href="https://www.newclikindia.co.in">Home</a>
+    <a href="https://www.newclikindia.co.in/services">Services</a>
+    <a href="https://www.newclikindia.co.in/community">Forum</a>
+    <a href="https://www.newclikindia.co.in/members">Members</a>
+    <a href="https://www.newclikindia.co.in/about-us">About Us</a>
+    <a href="https://www.newclikindia.co.in/contact-us">Contact Us</a>
+    <a class="cp-header-link">Change Password</a>
+    <% if(logout){ %>
+    <a href="/" class="sup">Logout</a>
+    <% } %>
+  </div>
+</div>
+<header>
+  <a href="https://www.newclikindia.co.in">
+    <img src="./images/CLIK.png" alt="CLIK" class="logo" />
+  </a>
+  <div class="navstuff">
+    <a href="https://www.newclikindia.co.in">Home</a>
+    <a href="https://www.newclikindia.co.in/services">Services</a>
+    <a href="https://www.newclikindia.co.in/community">Forum</a>
+    <a href="https://www.newclikindia.co.in/members">Members</a>
+    <a href="https://www.newclikindia.co.in/ec-team-details">About Us</a>
+    <a href="https://www.newclikindia.co.in/contact-us">Contact Us</a>
+    <% if(logout){ %>
+    <a href="/" class="sup">Logout</a>
+    <% } %>
+  </div>
+  <img src="./images/open-menu.svg" alt="menu" class="ham" />
+</header>
+
     </div>
 
     <div class="new-entry-modal-cont">
@@ -118,6 +159,27 @@
           <div class="feed-text-error"></div>
   
           <input class="subm new-entry-submit" type="submit"/>
+        </form>
+      </div>
+    </div>
+    <div class="change-p-modal-cont">
+      <div class="change-p-modal">
+        <img src="/images/cross.svg" alt="cross" class="change-p-cross">
+        <h2 class="change-p-heading">CHANGE PASSWORD</h2>
+        <form class="change-p-form">
+          <div class="text-inp-cont curp-cont">
+            <label class="cpassword-l field-label">Current Password</label>
+            <input class="text-inp curp" type="password" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont ">
+            <label class="npassword-l field-label">New Password</label>
+            <input class="text-inp newp" type="password" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="feed-text-error"></div>
+  
+          <input class="subm change-p-submit" type="submit"/>
         </form>
       </div>
     </div>

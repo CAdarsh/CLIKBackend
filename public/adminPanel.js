@@ -135,3 +135,64 @@ document
         }
       });
   });
+
+document.querySelector(".cp-button").addEventListener("click", () => {
+  // console.log("show iv");
+  document.querySelector(".change-p-modal-cont").style.display = "grid";
+});
+
+document.querySelector(".cp-header-link").addEventListener("click", () => {
+  // console.log("show iv");
+  document.querySelector(".change-p-modal-cont").style.display = "grid";
+  document.querySelector(".side").style.left = "-100%";
+});
+document.querySelector(".change-p-cross").addEventListener("click", () => {
+  document.querySelectorAll(".feed-text").forEach((x) => {
+    x.innerHTML = "";
+  });
+  document.querySelector(".change-p-modal-cont").style.display = "none";
+});
+document
+  .querySelector(".change-p-modal-cont")
+  .addEventListener("click", (event) => {
+    if (event.target === event.currentTarget) {
+      document.querySelectorAll(".feed-text").forEach((x) => {
+        x.innerHTML = "";
+      });
+      document.querySelector(".change-p-modal-cont").style.display = "none";
+    }
+  });
+document.querySelector(".change-p-submit").addEventListener("click", (e) => {
+  e.preventDefault();
+  document.querySelectorAll(".text-inp-cont").forEach((x) => {
+    x.querySelector(".feed-text").innerHTML = "";
+  });
+  let currPass = document.querySelector(".curp").value;
+  let newPass = document.querySelector(".newp").value;
+  let currEmail = "123@gmail.com";
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+  var urlencoded = new URLSearchParams();
+  urlencoded.append("email", currEmail);
+  urlencoded.append("password", currPass);
+  urlencoded.append("newPassword", newPass);
+
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: "follow",
+  };
+  fetch("/admin/changePassword", requestOptions)
+    .then((response) => response.text())
+    .then((result) => {
+      if (result === "true") {
+        document.querySelector(".change-p-modal-cont").style.display = "none";
+      } else {
+        document.querySelector(".curp-cont .feed-text").innerHTML =
+          "Incorrect Password";
+      }
+    })
+    .catch((error) => console.log("error", error));
+});

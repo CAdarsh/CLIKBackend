@@ -32,6 +32,7 @@
 }
 .header-opt .option {
   cursor: pointer;
+  text-align: center;
 }
 .header-footer {
   font-size: 10px;
@@ -130,6 +131,7 @@
 .small-title .one,
 .firm-row .one {
   justify-self: flex-start;
+  text-align: left;
 }
 .small-title .three,
 .firm-row .three {
@@ -163,7 +165,8 @@
   grid-area: 1 / 1 / 1 / 2;
 }
 /* .two { grid-area: 1 / 1 / 2 / 4;;} */
-.new-entry {
+.new-entry,
+.change-p {
   background-color: #444788;
   border: none;
   border-radius: 3px;
@@ -172,7 +175,8 @@
   outline: none;
   cursor: pointer;
 }
-.new-entry-modal-cont {
+.new-entry-modal-cont,
+.change-p-modal-cont {
   position: fixed;
   z-index: 2;
   top: 0px;
@@ -188,7 +192,8 @@
 
   display: none;
 }
-.new-entry-modal {
+.new-entry-modal,
+.change-p-modal {
   width: 400px;
   background-color: white;
   border-radius: 5px;
@@ -196,20 +201,23 @@
   padding: 20px 120px;
   position: relative;
 }
-.new-entry-cross {
+.new-entry-cross,
+.change-p-cross {
   position: absolute;
   right: 30px;
   top: 23px;
   font-size: 20px;
   cursor: pointer;
 }
-.new-entry-heading {
+.new-entry-heading,
+.change-p-heading {
   margin: 0px;
   text-align: center;
   margin-bottom: 30px;
   color: var(--violet);
 }
-.new-entry-form {
+.new-entry-form,
+.change-p-form {
   width: 400px;
   margin: auto;
   display: grid;
@@ -224,7 +232,8 @@ textarea {
   border-radius: 5px;
   border: 1px solid black;
 } */
-.new-entry-submit {
+.new-entry-submit,
+.change-p-submit {
   width: 200px;
   justify-self: center;
   border: none;
@@ -320,12 +329,14 @@ textarea {
   .flex-container-main {
     margin: 40px 0px;
   }
-  .new-entry-form {
+  .new-entry-form,
+  .change-p-form {
     width: auto !important;
   }
 }
 @media only screen and (max-width: 600px) {
-  .new-entry-modal {
+  .new-entry-modal,
+  .change-p-modal {
     box-sizing: border-box;
     width: 90vw;
     margin: auto;

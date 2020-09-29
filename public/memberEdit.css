@@ -21,12 +21,26 @@
   font-size: 13px;
 }
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="password"] {
   height: 35px;
   margin-bottom: 15px;
   border-radius: 5px;
   border: 1px solid black;
   padding: 0px 10px;
+}
+.change-p {
+  height: 37px;
+  width: 100px;
+  transform: translateY(-52px);
+  padding: 5px 10px;
+  justify-self: flex-end;
+  background: #444788;
+  border: none;
+  outline: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
 }
 textarea {
   padding: 10px 10px;
@@ -90,4 +104,15 @@ textarea {
 }
 .mar-top {
   margin-top: 20px;
+}
+.c-pass-before {
+  display: none;
+}
+.ty {
+  transform: translateY(-35px);
+}
+@media (max-width: 600px) {
+  .edit-form {
+    width: auto;
+  }
 }
