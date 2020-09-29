@@ -62,10 +62,10 @@ router.post('/admin/login', async (req, res) => {
   res.json(result);
 });
 router.post('/admin/changePassword', async (req, res) => {
-  console.log('admin-changeeeeeeeeeeeeeeeeeeee');
-  console.log(req.body);
-  const result = await updatePassword(req.body);
-  res.send(result);
+  // console.log('admin-changeeeeeeeeeeeeeeeeeeee');
+  // console.log(req.body);
+  // const result = await updatePassword(req.body);
+  res.send('result');
 });
 router.get('/admin/changePassword', async (req, res) => {
   console.log('admin-changeeeeeeeeeeeeeeeeeeee');
