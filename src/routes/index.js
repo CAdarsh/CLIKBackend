@@ -67,6 +67,12 @@ router.post('/admin/changePassword', async (req, res) => {
   const result = await updatePassword(req.body);
   res.send(result);
 });
+router.get('/admin/changePassword', async (req, res) => {
+  console.log('admin-changeeeeeeeeeeeeeeeeeeee');
+  console.log(req.body);
+  const result = await updatePassword(req.body);
+  res.send('admin-changeeeeeeeeeeeeeeeeeeee');
+});
 router.get('/admin/register', (req, res) => {
   res.render('pages/register.ejs', { isError: false });
 });
