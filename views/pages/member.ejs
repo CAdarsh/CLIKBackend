@@ -61,6 +61,7 @@
     </script>
 
     <script>
+      let userEmail='';
     let token = sessionStorage.getItem("token");
       if (token && token != "undefined") {
         var myHeaders = new Headers();
@@ -99,6 +100,7 @@
           image,
           products
         } = data;
+        userEmail=bEmail;
         document.querySelector(".info-name").innerHTML = title;
         document.querySelector(".location").innerHTML = `<img class="company-loc-img" src="./images/pin.svg" alt="pin">${location}`;
         document.querySelector(".contact-email").href = `mailto:${bEmail}`;
@@ -233,6 +235,27 @@
      
       </div>
     </div>
+    <div class="change-p-modal-cont">
+      <div class="change-p-modal">
+        <img src="/images/cross.svg" alt="cross" class="change-p-cross">
+        <h2 class="change-p-heading">CHANGE PASSWORD</h2>
+        <form class="change-p-form">
+          <div class="text-inp-cont curp-cont">
+            <label class="cpassword-l field-label">Current Password</label>
+            <input class="text-inp curp" type="password" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="text-inp-cont ">
+            <label class="npassword-l field-label">New Password</label>
+            <input class="text-inp newp" type="password" required />
+            <div class="feed-text"></div>
+          </div>
+          <div class="feed-text-error"></div>
+  
+          <input class="subm change-p-submit" type="submit"/>
+        </form>
+      </div>
+    </div>
     <main>
       <div class="inner-nav">
           <div class="company-logo"><img src="./images/ph.png" alt="logo" id="img-main" class="company-logo-img"></div>
@@ -320,6 +343,7 @@
           </div>
         </a>
     </div>
+    <span class="cp-link-button">Change Password?</span>
   </main>
     <%- include('../partials/footer') %>
     <script src="./index.js"></script>
