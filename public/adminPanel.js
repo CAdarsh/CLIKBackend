@@ -189,7 +189,7 @@ document.querySelector('.change-p-submit').addEventListener('click', (e) => {
     body: JSON.stringify(data),
   };
 
-  fetch('/admin/changePassword', requestOptions)
+  fetch('/admin/updatePassword', requestOptions)
     .then((response) => response.text())
     .then((result) => {
       if (result === 'true') {

@@ -222,7 +222,7 @@ document.querySelector('.change-p-submit').addEventListener('click', (e) => {
     redirect: 'follow',
     body: JSON.stringify(data),
   };
-  fetch('/member/changePassword', requestOptions)
+  fetch('/member/updatePassword', requestOptions)
     .then((response) => response.text())
     .then((result) => {
       if (result === 'true') {

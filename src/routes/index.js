@@ -61,10 +61,10 @@ router.post('/admin/login', async (req, res) => {
   console.log(req.body, result);
   res.json(result);
 });
-router.post('/admin/changePassword', async (req, res) => {
-  // console.log('admin-changeeeeeeeeeeeeeeeeeeee');
-  // console.log(req.body);
-  // const result = await updatePassword(req.body);
+router.post('/admin/updatePassword', async (req, res) => {
+  console.log('admin-changeeeeeeeeeeeeeeeeeeee');
+  console.log(req.body);
+  const result = await updatePassword(req.body);
   res.send('result');
 });
 router.get('/admin/changePassword', async (req, res) => {
@@ -101,7 +101,7 @@ router.get('/member', (req, res) => {
 router.get('/member/edit', (req, res) => {
   res.render('pages/memberEdit.ejs', { logout: true });
 });
-router.post('/member/changePassword', async (req, res) => {
+router.post('/member/updatePassword', async (req, res) => {
   console.log(req.body);
   const result = await loginController.updateMemberPassword(req.body);
   res.send(result);
