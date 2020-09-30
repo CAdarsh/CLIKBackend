@@ -192,7 +192,6 @@ document.querySelector('.change-p-submit').addEventListener('click', (e) => {
   fetch('/admin/updatePassword', requestOptions)
     .then((response) => response.text())
     .then((result) => {
-      alert(result);
       if (result === 'true') {
         document.querySelector('.change-p-modal-cont').style.display = 'none';
       } else {
