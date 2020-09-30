@@ -40,7 +40,7 @@ const addAdmin = async ({ email, password }) => {
 
 const updatePassword = async ({ email, password, newPassword }) => {
   const result = await adminModel.updateOne({ email, password }, { password: newPassword });
-  console.log(result);
+  console.log(!!result.n);
   return (!!result.n);
 };
 
