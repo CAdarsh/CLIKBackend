@@ -1,32 +1,32 @@
 const modalOpen = false;
 function deleteUser(id) {
-  const adminToken = sessionStorage.getItem('adminToken');
+  const adminToken = sessionStorage.getItem("adminToken");
   if (adminToken) {
     const myHeaders = new Headers();
-    myHeaders.append('Authorization', `Bearer ${adminToken}`);
-    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append("Authorization", `Bearer ${adminToken}`);
+    myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({ id });
 
     const requestOptions = {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
       body: raw,
-      redirect: 'follow',
+      redirect: "follow",
     };
 
-    fetch('/admin/deleteMember', requestOptions)
+    fetch("/admin/deleteMember", requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
-      .then(() => (window.location = '/admin'))
-      .catch((error) => console.log('error', error));
+      .then(() => (window.location = "/admin"))
+      .catch((error) => console.log("error", error));
   }
 }
 
-fetch('/member/all')
+fetch("/member/all")
   .then((res) => res.json())
   .then((data) => {
-    document.querySelector('.spinner').style.display = 'none';
+    document.querySelector(".spinner").style.display = "none";
     data.forEach((member) => {
       const a = `<div class="firm-row">
       <div class="one">${member.title}</div>
@@ -39,53 +39,53 @@ fetch('/member/all')
         <img onclick="deleteUser('${member._id}')" src="/images/delete.svg" alt="delete" class="delete-member"/>
       </div>
       </div>`;
-      document.querySelector('.newContent').innerHTML += a;
+      document.querySelector(".newContent").innerHTML += a;
     });
-    console.log(document.querySelector('.newContent').innerHTML);
+    console.log(document.querySelector(".newContent").innerHTML);
   })
   .then(() => {
-    document.querySelectorAll('.viewp').forEach((x) => {
-      x.addEventListener('click', () => {
-        const password = x.getAttribute('data-password');
+    document.querySelectorAll(".viewp").forEach((x) => {
+      x.addEventListener("click", () => {
+        const password = x.getAttribute("data-password");
         x.innerHTML = password;
-        x.style.textAlign = 'center';
-        x.style.color = 'black';
+        x.style.textAlign = "center";
+        x.style.color = "black";
       });
     });
   });
-document.querySelector('.add-btn').addEventListener('click', () => {
+document.querySelector(".add-btn").addEventListener("click", () => {
   // console.log("show iv");
-  document.querySelector('.new-entry-modal-cont').style.display = 'grid';
+  document.querySelector(".new-entry-modal-cont").style.display = "grid";
 });
-document.querySelector('.new-entry-cross').addEventListener('click', () => {
-  document.querySelector('.new-entry-modal-cont').style.display = 'none';
+document.querySelector(".new-entry-cross").addEventListener("click", () => {
+  document.querySelector(".new-entry-modal-cont").style.display = "none";
 });
 document
-  .querySelector('.new-entry-modal-cont')
-  .addEventListener('click', (event) => {
+  .querySelector(".new-entry-modal-cont")
+  .addEventListener("click", (event) => {
     if (event.target === event.currentTarget) {
-      document.querySelector('.new-entry-modal-cont').style.display = 'none';
+      document.querySelector(".new-entry-modal-cont").style.display = "none";
     }
   });
 
 document
-  .querySelector('.new-entry-submit')
-  .addEventListener('click', async (e) => {
+  .querySelector(".new-entry-submit")
+  .addEventListener("click", async (e) => {
     e.preventDefault();
-    document.querySelectorAll('.text-inp-cont').forEach((x) => {
-      x.querySelector('.feed-text').innerHTML = '';
+    document.querySelectorAll(".text-inp-cont").forEach((x) => {
+      x.querySelector(".feed-text").innerHTML = "";
     });
-    const buisnessName = document.querySelector('.cn').value;
-    const slug = document.querySelector('.sl').value;
-    const phone = document.querySelector('.pn').value;
-    const email = document.querySelector('.em').value;
-    const password = document.querySelector('.pa').value;
+    const buisnessName = document.querySelector(".cn").value;
+    const slug = document.querySelector(".sl").value;
+    const phone = document.querySelector(".pn").value;
+    const email = document.querySelector(".em").value;
+    const password = document.querySelector(".pa").value;
     if (
-      buisnessName === ''
-      || slug === ''
-      || phone === ''
-      || email === ''
-      || password === ''
+      buisnessName === "" ||
+      slug === "" ||
+      phone === "" ||
+      email === "" ||
+      password === ""
     ) {
       return;
     }
@@ -100,103 +100,111 @@ document
       .then((x) => x.json())
       .then((y) => {
         if (y.result === 0) {
-          document.querySelector('.slug-inp-cont .feed-text').innerHTML = 'This Slug is taken';
+          document.querySelector(".slug-inp-cont .feed-text").innerHTML =
+            "This Slug is taken";
           return;
         }
         // fetch sendingObject
 
-        const adminToken = sessionStorage.getItem('adminToken');
+        const adminToken = sessionStorage.getItem("adminToken");
         if (adminToken) {
           const myHeaders = new Headers();
-          myHeaders.append('Authorization', `Bearer ${adminToken}`);
-          myHeaders.append('Content-Type', 'application/json');
+          myHeaders.append("Authorization", `Bearer ${adminToken}`);
+          myHeaders.append("Content-Type", "application/json");
 
           const raw = JSON.stringify(sendingObject);
 
           const requestOptions = {
-            method: 'POST',
+            method: "POST",
             headers: myHeaders,
             body: raw,
-            redirect: 'follow',
+            redirect: "follow",
           };
 
-          fetch('/admin/register', requestOptions)
+          fetch("/admin/register", requestOptions)
             .then((response) => response.text())
             .then((result) => console.log(result))
             .then(() => {
-              window.location = '/admin';
+              window.location = "/admin";
             })
-            .catch((error) => console.log('error', error));
+            .catch((error) => console.log("error", error));
         } else {
-          window.location = '/admin';
+          window.location = "/admin";
         }
       });
   });
 
-document.querySelector('.cp-button').addEventListener('click', () => {
+document.querySelector(".cp-button").addEventListener("click", () => {
   // console.log("show iv");
-  document.querySelector('.change-p-modal-cont').style.display = 'grid';
+  document.querySelector(".change-p-modal-cont").style.display = "grid";
 });
 
-document.querySelector('.cp-header-link').addEventListener('click', () => {
+document.querySelector(".cp-header-link").addEventListener("click", () => {
   // console.log("show iv");
-  document.querySelector('.change-p-modal-cont').style.display = 'grid';
-  document.querySelector('.side').style.left = '-100%';
+  document.querySelector(".change-p-modal-cont").style.display = "grid";
+  document.querySelector(".side").style.left = "-100%";
 });
-document.querySelector('.change-p-cross').addEventListener('click', () => {
-  document.querySelectorAll('.feed-text').forEach((x) => {
-    x.innerHTML = '';
+document.querySelector(".change-p-cross").addEventListener("click", () => {
+  document.querySelectorAll(".feed-text").forEach((x) => {
+    x.innerHTML = "";
   });
-  document.querySelector('.change-p-modal-cont').style.display = 'none';
+  document.querySelector(".change-p-modal-cont").style.display = "none";
 });
 document
-  .querySelector('.change-p-modal-cont')
-  .addEventListener('click', (event) => {
+  .querySelector(".change-p-modal-cont")
+  .addEventListener("click", (event) => {
     if (event.target === event.currentTarget) {
-      document.querySelectorAll('.feed-text').forEach((x) => {
-        x.innerHTML = '';
+      document.querySelectorAll(".feed-text").forEach((x) => {
+        x.innerHTML = "";
       });
-      document.querySelector('.change-p-modal-cont').style.display = 'none';
+      document.querySelector(".change-p-modal-cont").style.display = "none";
     }
   });
-document.querySelector('.change-p-submit').addEventListener('click', (e) => {
+document.querySelector(".change-p-submit").addEventListener("click", (e) => {
   e.preventDefault();
-  document.querySelectorAll('.text-inp-cont').forEach((x) => {
-    x.querySelector('.feed-text').innerHTML = '';
+  document.querySelectorAll(".text-inp-cont").forEach((x) => {
+    x.querySelector(".feed-text").innerHTML = "";
   });
-  const currPass = document.querySelector('.curp').value;
-  const newPass = document.querySelector('.newp').value;
-  const currEmail = '123@gmail.com';
+  const currPass = document.querySelector(".curp").value;
+  const newPass = document.querySelector(".newp").value;
+  const confPass = document.querySelector(".confp").value;
+  if (newPass !== confPass) {
+    document.querySelector(".confp-cont .feed-text").innerHTML =
+      "Password does not Match";
+    return;
+  }
+  const currEmail = "123@gmail.com";
   const myHeaders = new Headers();
-  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+  myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
   const urlencoded = new URLSearchParams();
-  urlencoded.append('email', currEmail);
-  urlencoded.append('password', currPass);
-  urlencoded.append('newPassword', newPass);
+  urlencoded.append("email", currEmail);
+  urlencoded.append("password", currPass);
+  urlencoded.append("newPassword", newPass);
   const data = {
     email: currEmail,
     password: currPass,
-    newPassword: newPass
+    newPassword: newPass,
   };
 
   const requestOptions = {
-    method: 'post',
+    method: "post",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-    redirect: 'follow',
+    redirect: "follow",
     body: JSON.stringify(data),
   };
 
-  fetch('/admin/updatePassword', requestOptions)
+  fetch("/admin/updatePassword", requestOptions)
     .then((response) => response.text())
     .then((result) => {
-      if (result === 'true') {
-        document.querySelector('.change-p-modal-cont').style.display = 'none';
+      if (result === "true") {
+        document.querySelector(".change-p-modal-cont").style.display = "none";
       } else {
-        document.querySelector('.curp-cont .feed-text').innerHTML = 'Incorrect Password';
+        document.querySelector(".curp-cont .feed-text").innerHTML =
+          "Incorrect Password";
       }
     })
-    .catch((error) => console.log('error', error));
+    .catch((error) => console.log("error", error));
 });
