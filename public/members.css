@@ -4,7 +4,7 @@ body {
 .back-img-cont {
   display: flex;
   flex-direction: column;
-  padding-top: 50px;
+  padding-top: 20px;
   padding-left: 7vw;
   justify-content: flex-start;
   /* align-items: center; */
@@ -13,7 +13,7 @@ body {
   background-size: cover;
   /* height: 150px; */
   color: var(--violet);
-  font-size: 30px;
+  font-size: 25px;
 }
 .back-img-heading {
   /* font-weight: 1600; */
@@ -32,7 +32,7 @@ body {
   color: unset;
 }
 .members {
-  padding: 50px 7vw;
+  padding: 40px 7vw;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 15px;
@@ -43,7 +43,7 @@ body {
   border-radius: 5px;
   background-color: white;
   cursor: pointer;
-  height: 360px;
+  height: 335px;
   /* transform: translate(5px); */
   transition-duration: 0.3s !important;
   animation: fade-up 0.5s forwards;
@@ -72,7 +72,7 @@ body {
 }
 .member-img {
   width: 100%;
-  height: 100px;
+  height: 75px;
   object-fit: contain;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;

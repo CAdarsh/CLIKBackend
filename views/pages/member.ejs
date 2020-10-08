@@ -115,7 +115,7 @@
         document.querySelector("#img-main").src = `${image}`;
         products.map((data,index)=>{
           let a =  `<div class="product">
-          <img class="product-img opac" src="${data.image}" alt="product">
+          <img class="product-img opac" src="${data.image}" alt="">
           <div class="hnp opac">
             <h3 class="product-heading">${data.name}</h3>
             <p class="product-price">${!!data.price?'&#8377;':''} ${(!data.price?'Contact Us':data.price)} </p>
