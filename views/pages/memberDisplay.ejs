@@ -17,6 +17,9 @@
       .none{
         display: none;
       }
+      .company-logo{
+        cursor:pointer;
+      }
     </style>
     <script>
       function ChangeData(data) {
@@ -30,7 +33,15 @@
         document.querySelector(".contact-email .contact-value").innerHTML = `${bEmail}`;
         document.querySelector(".contact-website .contact-value").innerHTML = `${website}`;
         document.querySelector(".contact-phone .contact-value").innerHTML = `${bPhone}`;
-        document.querySelector(".contact-website").href = website;
+        console.log(website.substring(0, 3))
+        if(website.substring(0, 3)==='www'){
+          document.querySelector('.company-logo').onclick=()=>{window.location.href=`https://${website}`}
+          document.querySelector(".contact-website").href = `https://${website}`;
+        }else{
+          document.querySelector('.company-logo').onclick=()=>{window.location.href=website}
+
+          document.querySelector(".contact-website").href = website;
+        }
         document.querySelector(".contact-phone").href = `tel:+${bPhone}`;
         document.querySelector(".about-text").innerHTML = content;
         document.querySelector(".contact-address .contact-value").innerHTML = location;
